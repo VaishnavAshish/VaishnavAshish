@@ -1,0 +1,11 @@
+.tc{
+text-align:center !important;
+}
+
+.content-center{
+display:inline-flex; 
+width:100%; 
+max-height:100%;
+align-items:center; 
+justify-content:center;
+}
