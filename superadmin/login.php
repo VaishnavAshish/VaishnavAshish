@@ -4,7 +4,7 @@ if(isset($_POST['login']))
 	{
 		$username = $_POST['username'];
 		$password = crypt($_POST['password'],'$2y$@NTRIKSH$@@Y$');
-		$result = mysql_query("Select * from users where email='".$username."' && password ='".$password."'");
+		$result = mysql_query("Select * from users where uid=1 && email='".$username."' && password ='".$password."'");
 		$count = mysql_num_rows($result);
 		if($count>0)
 		{

@@ -4,7 +4,7 @@ ob_start();
 session_start();
 	if(isset($_SESSION['username']) )
 	{
-		if(!($_SESSION['uid']=='1' && $_SESSION['status']=='0'))
+		if(!($_SESSION['status']=='0'))
 		{
 			header('Location:login.php');
 		}

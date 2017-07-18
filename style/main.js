@@ -203,10 +203,6 @@ $(document).on('click','#fbLink',function(){
 	});
 	
 	
-function googlelogin(id,name,email)
-{
-	alert(name);
-}
 				
 //Display the view answer tab on question page
 $(document).on('click','.view-answer',function(){
