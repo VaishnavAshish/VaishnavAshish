@@ -1,9 +1,9 @@
 <?php 
 include("connection.php");
-if(isset($_POST['cat_id']))
-{   $cat_id=$_POST['cat_id'];
+if(isset($_GET['cat_id']))
+{   $cat_id=$_GET['cat_id'];
 	$query=mysql_query("SELECT * FROM `topics` JOIN `category` ON topics.cat_id=category.cat_id where topics.cat_id='".$cat_id."' ");
-	
+	$row1=mysql_fetch_array($query);
 }
 ?>
 <!DOCTYPE html>
@@ -32,9 +32,26 @@ if(isset($_POST['cat_id']))
 
 
 
-<!--Icons-->
-<br><br>
+<!--Page heading-->
+<div class="col-sm-12 col-xs-12 page-heading">
+	<h3>HOME <span class="glyphicon glyphicon-forward"></span> <span class="text-success"><?php echo $row1['category'];?></span><h3>
+</div>	
+<!--/Page Heading-->
+	
+<!--Breadcrumbs-->
+<div class="col-sm-12 col-xs-12 fixme" style="width:100%; height: 45px; margin-bottom: 1%; margin-left: 4%; margin-right: 0% !important; width:88%;">
+	<div class="col-sm-12 col-xs-12">
+		<ol class="breadcrumb">
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Private</a></li>
+			<li><a href="#">Pictures</a></li>
+			<li class="active">Vacation</li>        
+		 </ol>
+	</div>
+</div>	
+<!--/Breadcrumbs-->
 
+<!--Page Content-->
 <div class = "container" style="padding-left:0; padding-right:0;" >			
 	
 		<div class="media_div col-sm-7 col-xs-12 " >
@@ -50,7 +67,7 @@ if(isset($_POST['cat_id']))
 		</div>
 	
 		
-<!--/Icons-->
+<!--/Page Content-->
 
 <!--Footer-->	
 <?php include("footer.php");?>	

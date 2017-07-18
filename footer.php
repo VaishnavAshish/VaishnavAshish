@@ -35,24 +35,19 @@ if(isset($_POST['subscription'])){
 				</div>
 				
 				<marquee direction="up">
-					<div class="col-xs-12 " >
-						<?php 
-
+					<?php 
 						$homepage = file_get_contents('http://newsapi.org/v1/articles?source=the-times-of-india&sortBy=top&apiKey=aac20ad4883a41e0b8d8f4874e8168e1');
 						$news=json_decode($homepage,true);
-						
 						foreach($news['articles'] as $value)
-						{
-
-						?>
-						<a href="<?php echo $value['url'];?>" target="_blank"
+						{ 
+					?>
+					<div class="col-xs-12" >
+					   <a href="<?php echo $value['url'];?>" target="_blank"
 					   <h4 class="text-primary"><?php echo $value['title'];?></h4></a>
 					   <p class="text-default"><?php echo $value['description'];?></p>
 					</div>
-					
-					
-				</marquee>
 						<?php } ?>
+				</marquee>
 			</div>
 		</div>
 </div>
