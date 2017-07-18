@@ -14,10 +14,11 @@ require('header.php');
 
 	if(isset($_POST['submit']))
 	{
-		@$topic = $_POST['topic'];
-		@$category = $_POST['category'];
+		$topic = $_POST['topic'];
+		$category = $_POST['category'];
 		$topic_id = $_POST['topic_id'];
-		$result = mysql_query("Update `topics` set topic='".$topic."',cat_id='".$category."' where topic_id='".$topic_id."'");
+		$type=$_POST['type'];
+		$result = mysql_query("Update `topics` set topic='".$topic."',cat_id='".$category."',type='".$type."' where topic_id='".$topic_id."'");
 		if($result)
 		{
 		echo "<script>alert('Successfully Updated');</script>";
@@ -68,7 +69,18 @@ require('header.php');
 								</select>
                         </div>
                       </div>
-                      
+                       <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select type</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+						   <select class="sel_val form-control" name="type" >
+									<option value="">Select Type</option>
+									<option value="0">Folder</option>
+									<option value="1">Questions Page</option>
+									<option value="2">Basics Page</option>
+									<option value="3">Video Page</option>
+						   </select>
+						</div>
+                      </div>
                       
                       <div class="ln_solid"></div>
                       <div class="form-group">

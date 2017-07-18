@@ -36,6 +36,7 @@ if(isset($_POST['delete_topic'])){
 									<th class="column-title">S.No.</th>
 									<th class="column-title ">Topic Name</th>
 									<th class="column-title ">Category</th>
+									<th class="column-title ">Page Type</th>
 									<th class="column-title no-link last tc"><span class="nobr">Action</span>
 									
 									</th>
@@ -58,6 +59,13 @@ if(isset($_POST['delete_topic'])){
 									<td class=" "><?php echo $i;?></td>
 									<td class=" "><?php echo $row['topic']?></td>
 									<td class="a-right a-right "><?php echo $row['category']?></td>
+									<td class="a-right a-right "><?php 
+									   if($row['type']=='0'){ echo "Folder";}
+									   else if($row['type']=='1'){ echo "Questions Page";}
+									   else if($row['type']=='2'){ echo "Basics";}
+									   else{ echo "Videos Page";}
+									   ?>
+									</td>
 									<td class="tc content-center">
 										<form action="" method="post">
 											<button type="submit" name="delete_topic" class="btn btn-primary" value="<?php echo $row['topic_id']?>">Delete</button>

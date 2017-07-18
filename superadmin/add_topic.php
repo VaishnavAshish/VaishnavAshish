@@ -9,7 +9,8 @@ require('header.php');
 	{
 		$topic = ucwords($_POST['topic']);
 		$category = $_POST['category'];
-		$result = mysql_query("Insert into `topics`(topic,cat_id) values('$topic','$category')");
+		$type = $_POST['type'];
+		$result = mysql_query("Insert into `topics`(topic,cat_id,type) values('$topic','$category','$type')");
 		if($result)
 		{
 			echo "<script>alert('successful');</script>";
@@ -56,9 +57,22 @@ require('header.php');
 									<option value="<?php echo $row['cat_id'];?>"><?php echo $row['category'];?></option>
 										<?php } ?>
 								</select>
+								
                         </div>
                       </div>
                       
+					  <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select type</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+						   <select class="sel_val form-control" name="type" >
+									<option value="">Select Type</option>
+									<option value="0">Folder</option>
+									<option value="1">Questions Page</option>
+									<option value="2">Basics Page</option>
+									<option value="3">Video Page</option>
+						   </select>
+						</div>
+                      </div>
                       
                       <div class="ln_solid"></div>
                       <div class="form-group">
