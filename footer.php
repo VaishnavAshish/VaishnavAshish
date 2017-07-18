@@ -25,6 +25,8 @@ if(isset($_POST['subscription'])){
 }
 ?>
 
+
+
 <!--NEWS-->
 <div class="col-sm-4 col-xs-12" style="max-width:100%; ">
 			<div class="col-xs-4" style="border:solid; background-color:white; height:560px; padding:0px; border:1; width:100%; margin-left:2%;"> 
@@ -34,18 +36,23 @@ if(isset($_POST['subscription'])){
 				
 				<marquee direction="up">
 					<div class="col-xs-12 " >
-					   <h4 class="text-primary">Money in Swiss banks: India slips to 88th place, UK on top - Times of India</h4>
-					   <p class="text-default">The money officially held by Indians with banks in Switzerland now accounts for a meagre 0.04 per cent of the total funds kept by all foreign clients in the Swiss banking system, as per an analysis of the latest figures compiled by the SNB (Swiss National Bank) as on 2016-end.</p>
+						<?php 
+
+						$homepage = file_get_contents('http://newsapi.org/v1/articles?source=the-times-of-india&sortBy=top&apiKey=aac20ad4883a41e0b8d8f4874e8168e1');
+						$news=json_decode($homepage,true);
+						
+						foreach($news['articles'] as $value)
+						{
+
+						?>
+						<a href="<?php echo $value['url'];?>" target="_blank"
+					   <h4 class="text-primary"><?php echo $value['title'];?></h4></a>
+					   <p class="text-default"><?php echo $value['description'];?></p>
 					</div>
-					<div class="col-xs-12 " >
-					   <h4 class="text-primary">Money in Swiss banks: India slips to 88th place, UK on top - Times of India</h4>
-					   <p class="text-default">The money officially held by Indians with banks in Switzerland now accounts for a meagre 0.04 per cent of the total funds kept by all foreign clients in the Swiss banking system, as per an analysis of the latest figures compiled by the SNB (Swiss National Bank) as on 2016-end.</p>
-					</div>
-					<div class="col-xs-12 " >
-					   <h4 class="text-primary">Money in Swiss banks: India slips to 88th place, UK on top - Times of India</h4>
-					   <p class="text-default">The money officially held by Indians with banks in Switzerland now accounts for a meagre 0.04 per cent of the total funds kept by all foreign clients in the Swiss banking system, as per an analysis of the latest figures compiled by the SNB (Swiss National Bank) as on 2016-end.</p>
-					</div>
+					
+					
 				</marquee>
+						<?php } ?>
 			</div>
 		</div>
 </div>
