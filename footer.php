@@ -54,22 +54,6 @@ if(isset($_POST['subscription'])){
 
 <!--JavaScript File-->
 <script src="style/main.js"></script>
-<!--/JavaScript File-->
-<script>
-
- 
-function onSignIn(googleUser) {
-	
-  var profile = googleUser.getBasicProfile();
-  var id=profile.getId(); 
-  var name=profile.getName();
- // var image=profile.getImageUrl();
-  var email=profile.getEmail(); 
-  
-  googlelogin(id,name,email);
-}
-</script>
-
 
 <!--footer start-->
 <div class="footer">

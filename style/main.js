@@ -64,7 +64,18 @@ var valid=false;
 			   });
 		return false;
 	});
-	
+
+
+//google signin 
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  saveUserData(profile);
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
+
 	$(document).on('submit','.login_form',function(){
 	    $.ajax({
 				 type:'post',
@@ -164,6 +175,7 @@ $(document).on('click','#fbLink',function(){
 			FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
 			function (response) {
 				saveUserData(response);
+				console.log(userDetails);
 				
 			});
 		}
@@ -201,7 +213,7 @@ $(document).on('click','#fbLink',function(){
 		}
 
 	});
-	
+
 	
 				
 //Display the view answer tab on question page
@@ -329,8 +341,8 @@ var x = setInterval(function() {
     var seconds = Math.floor((difference % (1000 * 60)) / 1000);
     
     // Output the result in an element with id="demo"
-    document.getElementById("timer").innerHTML = hours + "h "
-    + minutes + "m " + seconds + "s ";
+    // document.getElementById("timer").innerHTML = hours + "h "
+    // + minutes + "m " + seconds + "s ";
     
     // If the count down is over, write some text 
     if (difference < 0) {

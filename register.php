@@ -1,5 +1,9 @@
 <?php
 include('connection.php');
+if(isset($_POST['gmailRegister'])){
+	$data=json_decode($_POST['gmailRegister'], true);
+	print_r($data);
+}
 
 if(isset($_POST['userdata'])){
 					$data=json_decode($_POST['userdata'], true);
