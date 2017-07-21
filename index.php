@@ -34,12 +34,9 @@ $cat=mysql_query("SELECT * FROM `category`");
 
 <div class="container cont-width" >			
 		<div class="col-sm-7 col-xs-12">
-			 <form method="post" action="topics.php" id="cat" style="display:none;">
-				<input type="text" name="cat_id">
-			 </form>
 			<?php while($row=mysql_fetch_array($cat))
 					{ ?>
-			<a class="category_post" href="JavaScript:void(0)" value="<?php echo $row['cat_id'];?>">
+			<a class="category_post" href="topics.php?cat_id=<?php echo $row['cat_id'];?>">
 				<div class=" imageicon col-sm-4 col-md-4 col-xs-6">
 					<img  src="images/<?php echo $row['cat_image'];?>" alt="<?php echo $row['cat_image'];?>"></img>
 					<h4><?php echo $row['category'];?></h4>

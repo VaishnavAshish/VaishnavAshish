@@ -287,12 +287,12 @@ $(document).on('click','.check-answer',function(){
 	}
 });	
 
-//Get category id and post to topics for categories on index page	
-$(document).on('click','.category_post',function(){
-	var cat_id=$(this).attr('value');
-	$('input[name=cat_id]').val(cat_id);
-	$('#cat').submit();
-});
+// //Get category id and post to topics for categories on index page	
+// $(document).on('click','.category_post',function(){
+// 	var cat_id=$(this).attr('value');
+// 	$('input[name=cat_id]').val(cat_id);
+// 	$('#cat').submit();
+// });
 
 //test checkbox check-uncheck
 // $("input[type='radio']").click(function()
