@@ -53,9 +53,6 @@ if(isset($_POST['subscription'])){
 <!--/NEWS-->
 <br><br>	
 
-<!--JavaScript File-->
-<script src="style/main.js"></script>
-
 <!--footer start-->
 <div class="footer">
 	<div class="container">			

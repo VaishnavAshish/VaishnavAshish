@@ -1,3 +1,30 @@
+		// Save user data to the database
+function saveUserData(userData,web){
+	var original = $('#modal').html();
+	var userData=JSON.stringify(userData);
+	var request={};
+	var successcall= function(response){
+		$('#modal').html('<div class="text-danger" style="text-align:center;"><h2>'+response.msg+'</h2></div>');
+			setTimeout(function(){
+					$('#modal').html(original);
+					$('#close-modal').click();
+					$("#header").load("header.php");
+					$('.modal-backdrop ,fade ,in').remove();
+				},2000);
+		}
+	request.method="POST";
+	request.url="register.php";
+	request.dataType='json';
+	request.success=successcall;
+	if(web=='GMAIL'){
+		request.data={'GMAIL':userData};
+	}else {
+		request.data={'userdata':userData};
+	}
+	$.ajax(request);
+		   
+}
+
 $(document).ready(function(){
 
 var original = $('#modal').html();
@@ -65,16 +92,6 @@ var valid=false;
 		return false;
 	});
 
-
-//google signin 
-function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  saveUserData(profile);
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-}
 	$(document).on('submit','.login_form',function(){
 	    $.ajax({
 				 type:'post',
@@ -177,28 +194,6 @@ $(document).on('click','#fbLink',function(){
 				console.log(userDetails);
 				
 			});
-		}
-
-		// Save user data to the database
-		function saveUserData(userData){
-			var userData=JSON.stringify(userData);
-			$.ajax({
-					method :'post',
-					url : 'register.php',
-					data : {'userdata':userData},
-					dataType:'json',
-					success : function(response){			
-															$('#modal').html('<div class="text-danger" style="text-align:center;"><h2>'+response.msg+'</h2></div>');
-															setTimeout(function(){
-																					$('#modal').html(original);
-																					$('#close-modal').click();
-																					$('.modal-backdrop ,fade ,in').remove();
-																					$("#header").load("header.php");
-																				},2000
-																		);
-												}
-				});
-		   
 		}
 
 		// Logout from facebook

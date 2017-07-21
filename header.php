@@ -4,8 +4,10 @@ require ('connection.php');
 ?>
 <!--<script src="style/js/google_login.js"></script>-->
 <meta name="google-signin-client_id" content="160094403010-g2bveq2fqcl2proet99fc660ivji0oj8.apps.googleusercontent.com">
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 
+<!--JavaScript File-->
+<script src="style/main.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 
 	<div class="row" style="position:fixed !important; top:0 !important; z-index:1000; background-color:white; width:100% !important; margin-left:0px; margin-right:0px; ">
@@ -143,8 +145,14 @@ require ('connection.php');
 												<div class="col-xs-12 col-md-12">
 													<h3 class="text-danger" style="text-align:center; font-weight:bold;">OR</h3>
 													<button class="social-button" onclick="fbLogin()" id="fbLink"><img src="images/fblogin.png" alt="Login with Facebook"></img></button>
-													<div class="g-signin2" data-onsuccess="onSignIn"></div>
-													
+													<div class="g-signin2" data-onsuccess="GSignin"></div>
+													<script>
+														//google signin 
+															function GSignin(googleUser) {
+															var profile = googleUser.getBasicProfile();
+															saveUserData(profile,"GMAIL");
+															}
+													</script>
 												</div>
 												
 											</div>
