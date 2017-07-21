@@ -18,14 +18,14 @@ if(isset($_POST['userdata'])){
 					if($numfb > 0){
 								$_SESSION['username']=$name;
 								$_SESSION['email']=$email;
-								$arr=['username'=>$name,'email'=>'$email','msg'=>'Logged in Successfully'];
+								$arr=['username'=>$name,'email'=>$email,'msg'=>'Logged in Successfully'];
 								echo json_encode($arr);
 					}
 					else if($numEmails > 0 AND $numfb < 0) {
 						@$query=mysql_query("UPDATE into `users` (fbid) values('$fbid')");
 						$_SESSION['username']=$name;
 						$_SESSION['email']=$email;
-						$arr=['username'=>$name,'email'=>'$email','msg'=>'Logged in Successfully'];
+						$arr=['username'=>$name,'email'=>$email,'msg'=>'Logged in Successfully'];
 						echo json_encode($arr);
 					}
 					else{
@@ -34,7 +34,7 @@ if(isset($_POST['userdata'])){
 							{
 								$_SESSION['username']=$name;
 								$_SESSION['email']=$email;
-								$arr=['username'=>$name,'email'=>'$email','msg'=>'Registered Successfully'];
+								$arr=['username'=>$name,'email'=>$email,'msg'=>'Registered Successfully'];
 								echo json_encode($arr);
 							}
 					}
@@ -57,7 +57,7 @@ else if(isset($_POST['GMAIL'])){
 					$arr=['username'=>$name,'email'=>$email,'msg'=>'Registered Successfully'];
 				echo json_encode($arr);
 			}else {
-				echo "Gmail Login Fail";
+				echo json_encode(['username'=>null,'email'=>null,'msg'=>'Gmail Fail']);
 			}
 	}else {
 		//no entry found for the email
@@ -72,7 +72,7 @@ else if(isset($_POST['GMAIL'])){
 						$arr=['username'=>$name,'email'=>$email,'msg'=>'Registered Successfully'];
 					echo json_encode($arr);
 			}else {
-				echo "Gmail Login Fail";
+				echo json_encode(['username'=>null,'email'=>null,'msg'=>'Gmail Fail']);
 			}
 	}
 }else
@@ -90,10 +90,10 @@ else if(isset($_POST['GMAIL'])){
 				@$rsEmails = mysql_query("SELECT * FROM `users` WHERE email = '".$email."'");
 				@$numEmails = mysql_num_rows($rsEmails);
 				if($numEmails > 0) {
-					echo "Email already exists";
+					echo json_encode(['username'=>null,'email'=>null,'msg'=>'Email already exists']);
 				}
 				else if($email==''){
-					echo "Something Went Wrong Please Try Again Later";
+					echo json_encode(['username'=>null,'email'=>null,'msg'=>'Something Went Wrong Please Try Again Later']);
 				}
 				else
 				{
@@ -107,12 +107,12 @@ else if(isset($_POST['GMAIL'])){
 						$arr=['username'=>$name,'email'=>$email,'msg'=>'Registered Successfully'];
 						echo json_encode($arr);
 					}
-					else echo "Registration Failed....please retry";
+					else echo json_encode(['username'=>null,'email'=>null,'msg'=>'Registration Failed....please retry']);
 				}
 				
 				
 			}
-			else echo "Password does not match";
+			else  echo json_encode(['username'=>null,'email'=>null,'msg'=>'Password does not match']);
 		 }
 	}		 
 ?>

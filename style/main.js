@@ -1,4 +1,4 @@
-		// Save user data to the database
+// Save user data to the database
 function saveUserData(userData,web){
 	var original = $('#modal').html();
 	var userData=JSON.stringify(userData);
