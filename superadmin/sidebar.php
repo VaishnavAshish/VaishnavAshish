@@ -103,6 +103,8 @@ session_start();
                      
                     </ul>
                   </li>
+                   <li><a href="add_folder.php"><i class="fa fa-edit"></i> Add Folder </a>
+                
                   <li><a><i class="fa fa-table"></i> Questions <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="view_question.php">View Questions</a></li>
