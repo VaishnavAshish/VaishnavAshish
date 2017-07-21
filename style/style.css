@@ -11,8 +11,10 @@ text-transform:uppercase !important;
 font-size: medium !important;
 position: relative !important;
 bottom: 3px !important;
-text-decoration:underline !important;
+text-decoration: !important;
 }
+
+
 
 .topnav {
   overflow: hidden;
@@ -485,6 +487,7 @@ input[type="radio"] {
     z-index: 1000;
     background: #e84c4c !important;
 	color:white !important;
+	
 }
 
 .fixed-pos  h5{
@@ -497,4 +500,26 @@ color:white !important;
 margin-top:5px;
  background: #e84c4c !important;
  border:none !important;
+ 
+}
+
+.fixed-pos .breadcrumb  a{
+color:white !important;
+}
+
+.fixed-pos .breadcrumb  .active{
+color:white !important;
+}
+
+.fixme{
+width:100% !important; 
+height: 45px !important; 
+margin-bottom: 1% !important; 
+
+margin-right: 0% !important; 
+
+}
+
+.breadcrumb{
+background-color:white !important;
 }

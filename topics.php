@@ -39,7 +39,7 @@ if(isset($_GET['cat_id']))
 <!--/Page Heading-->
 	
 <!--Breadcrumbs-->
-<div class="col-sm-12 col-xs-12 fixme" style="width:100%; height: 45px; margin-bottom: 1%; margin-left: 4%; margin-right: 0% !important; width:88%;">
+<div class="col-sm-12 col-xs-12 fixme">
 	<div class="col-sm-12 col-xs-12">
 		<ol class="breadcrumb">
 			<li><a href="#">Home</a></li>
