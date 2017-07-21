@@ -7,6 +7,13 @@ text-decoration:underline !important;
 text-transform:uppercase !important;
 }
 
+.glyphicon-forward{
+font-size: medium !important;
+position: relative !important;
+bottom: 3px !important;
+text-decoration:underline !important;
+}
+
 .topnav {
   overflow: hidden;
  background-color:#e84c4c;
