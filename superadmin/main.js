@@ -77,6 +77,37 @@ $(document).on('change','select[name="topic_id"]',function(){
 				});
 });	
 
+
+
+
+//Load the test heading according to test category 
+$(document).on('change','select[name="test_category"]',function(){
+	var tc_id=$('select[name="test_category"]').val();
+	$.ajax({
+		type:'post',
+		url:'get_test_heading.php',
+		data:{'tc_id':tc_id},
+		dataType:'json',
+		beforeSend:function(){
+								$('.heading').html('<option value="">Loading Heading....</option>');
+								},
+		success:function(response){
+			$('.heading').html('<option value="">Please select heading</option>');
+			if(response['data']!='NULL'){
+				for(var i=0;i<response['data'].length;i++)
+				{
+				var th_id = response['data'][i]['th_id'];
+				var th_name = response['data'][i]['th_name'];
+				$('.heading').append('<option value="'+th_id+'">'+th_name+'</option>');
+				}
+			}
+			
+			
+		}
+	});
+});
+
+
 });  //document.ready
 
 

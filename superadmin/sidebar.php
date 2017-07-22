@@ -151,9 +151,16 @@ session_start();
                       <li><a href="add_test_name.php">Add Test</a></li>
                       <li><a href="view_test_name.php">View Test</a></li>
                     </ul>
-                  </li>
-                                    
-                  <li><a href="upload_test_question.php"><i class="fa fa-laptop"></i>s </a></li>
+                   </li>
+                   
+				   <li><a><i class="fa fa-laptop"></i> Test Questions<span class="fa fa-chevron-down"></span></a>
+						<ul class="nav child_menu">
+						  <li><a href="add_test_question.php">Upload questions file</a></li>
+						  <li><a href="add_test_question.php">Add Test questions</a></li>
+						  <li><a href="view_test_question.php">View Test questions</a></li>
+						</ul>
+                   </li>
+                  
                 </ul>
               </div>
 
