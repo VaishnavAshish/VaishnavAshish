@@ -36,7 +36,7 @@ $cat=mysql_query("SELECT * FROM `category`");
 		<div class="col-sm-7 col-xs-12">
 			<?php while($row=mysql_fetch_array($cat))
 					{ ?>
-			<a class="category_post" href="topics.php?cat_id=<?php echo $row['cat_id'];?>">
+			<a class="category_post" href="<?php echo $row['page']."?cat_id=".$row['cat_id']?>">
 				<div class=" imageicon col-sm-4 col-md-4 col-xs-6">
 					<img  src="images/<?php echo $row['cat_image'];?>" alt="<?php echo $row['cat_image'];?>"></img>
 					<h4><?php echo $row['category'];?></h4>

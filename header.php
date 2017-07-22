@@ -82,14 +82,11 @@ require ('connection.php');
 				<div class="topnav" style="background-color:#e84c4c !important; padding-left:4%;" id="myTopnav">
 				  <a href="index.php">Home</a>
 				  <a href="index.php">About</a>
-				  <form method="post" action="topics.php" id="cat" style="display:none;">
-				  <input type="text" name="cat_id">
-				  </form>
 					 <?php 
 					 $cat=mysql_query("SELECT * FROM `category`");
 					 while($res=mysql_fetch_array($cat))
 						{  ?>
-					<a class="category_post" href="JavaScript:void(0)" value="<?php echo $res['cat_id'];?>"><?php echo $res['category'];?></a>	 
+					<a  href="<?php echo $res['page']."?cat_id=".$res['cat_id']?>" value="<?php echo $res['cat_id'];?>"><?php echo $res['category'];?></a>	 
 					<?php }  ?>
 				
 				 
