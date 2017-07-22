@@ -8,9 +8,10 @@ require('header.php');
 	if(isset($_POST['submit']))
 	{
 		$f_name=$_POST['folder_name'];
-		@$cat_id=$_POST['category'];
+		@$cat_id=$_POST['folderCategory'];
 		@$topic_id=$_POST['topic'];
-		$query=mysql_query("Insert into folder(f_name,cat_id,topic_id) values('$f_name','$cat_id','$topic_id')");
+		@$type=$_POST['type'];
+		$query=mysql_query("Insert into folder(f_name,cat_id,topic_id,type) values('$f_name','$cat_id','$topic_id','$type')");
 		if($query)
 		{
 			echo "<script>alert('successful');</script>";
@@ -32,25 +33,21 @@ require('header.php');
                   </div>
 <form id="demo-form2" data-parsley-validate method="POST"class="form-horizontal form-label-left">
 
-                     
-                      
                       <div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Category</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
-                          <select class="sel_val form-control" name="category" >
+                          <select class="sel_val form-control" name="folderCategory" >
 									<option value="">Select Category</option>
 									<?php 
 										$j = 0;
 										$query = mysql_query("Select * from category");
 										while($row=mysql_fetch_array($query))
 										{
-											
-										
 									?>
 									<option value="<?php echo $row['cat_id'];?>"><?php echo $row['category'];?></option>
 										<?php } ?>
-								</select>
+							</select>
                         </div>
                       </div>
 					  
@@ -60,16 +57,6 @@ require('header.php');
 							
                           <select class="sel_val topic-select form-control" name="topic" >
 									<option value="">Select Topic</option>
-									<?php 
-										$j = 0;
-										$que = mysql_query("Select * from topics");
-										while($ro=mysql_fetch_array($que))
-										{
-											
-										
-									?>
-									<option value="<?php echo $ro['topic_id'];?>"><?php echo $ro['topic'];?></option>
-										<?php } ?>
 								</select>
                         </div>
                       </div>
@@ -79,8 +66,21 @@ require('header.php');
 										<input type="text" required="required" name="folder_name" value="" placeholder="Enter Folder Name"class="form-control col-md-7 col-xs-12">
 									</div>
 								</div>
-                      
-                      
+
+					 <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Topic</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+							
+                          <select class="sel_val form-control" name="type" requires>
+										<option readonly>Select Type</option>
+										<option value="Question">Questions Page</option>
+										<option value="Basic">Basics Page</option>
+										<option value="Video">Video Page</option>
+									</select>
+                        </div>
+                      </div>
+
+
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">

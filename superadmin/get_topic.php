@@ -1,5 +1,25 @@
 <?php
+error_reporting(0);
 include("../connection.php");
+if(isset($_POST['data'])){
+	$data=$_POST['data'];
+	$query="SELECT * FROM `topics` where cat_id='".$data['cat_id']."'";
+	if($data['filter']){
+		 $query.=" AND type='".$data['filter']."'";
+	}
+	if($ress=mysql_query($query)){
+		while($row=mysql_fetch_array($ress)){
+			$a[]=$row;
+		}
+		echo json_encode(array('data'=> $a));
+	}else{
+		$a=["data"=>"{}"];
+		echo json_encode($a);
+	}
+}
+
+
+
 if(isset($_POST['cat_id'])){
 	$cat_id=$_POST['cat_id'];
 	$query=mysql_query("SELECT * FROM `topics` where cat_id='".$cat_id."'");
@@ -14,8 +34,6 @@ if(isset($_POST['cat_id'])){
 		$a=["data"=>"NULL"];
 		echo json_encode($a);
 	}
-	
-     
 	
 }
 ?>

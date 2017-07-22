@@ -1,6 +1,9 @@
+var original = $('#modal').html();
+var original_login_button = $('.user_info').html();
+var valid=false;
+
 // Save user data to the database
 function saveUserData(userData,web){
-	var original = $('#modal').html();
 	var userData=JSON.stringify(userData);
 	var request={};
 	var successcall= function(response){
@@ -21,15 +24,8 @@ function saveUserData(userData,web){
 	}else {
 		request.data={'userdata':userData};
 	}
-	$.ajax(request);
-		   
+	$.ajax(request);		   
 }
-
-$(document).ready(function(){
-
-var original = $('#modal').html();
-var original_login_button = $('.user_info').html();
-var valid=false;
 
 //Collapse the navbar in mobile version
 	function myFunction() {
@@ -40,6 +36,8 @@ var valid=false;
 			x.className = "topnav";
 		}
 	}
+
+$(document).ready(function(){
 
 	//password validation in register page
 	$(document).on('keypress','.password',function(){

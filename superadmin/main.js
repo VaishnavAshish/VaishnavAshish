@@ -1,5 +1,38 @@
 $(document).ready(function(){
 	
+
+
+
+
+$(document).on('change','select[name="folderCategory"]',function(){
+	var data={};
+	data.cat_id=$('select[name="folderCategory"]').val();
+	data.filter="Folder";
+	$.ajax({
+		type:'post',
+		url:'get_topic.php',
+		data:{'data':data},
+		dataType:'json',
+		beforeSend:function(){
+								$('.topic-select').html('<option value="">Loading Topics....</option>');
+								},
+		success:function(response){
+			$('.topic-select').html('<option value="">Please select topic</option>');
+			if(response['data']!='NULL'){
+				for(var i=0;i<response['data'].length;i++)
+				{
+				var topic = response['data'][i]['topic'];
+				var topic_id = response['data'][i]['topic_id'];
+				$('.topic-select').append('<option value="'+topic_id+'">'+topic+'</option>');
+				}
+			}
+			
+			
+		}
+	});
+});
+
+
 //change status of user				
 $(document).on('click','.change-status',function(){
 	    var uid=$(this).val();
