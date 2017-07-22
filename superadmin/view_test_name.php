@@ -28,7 +28,7 @@ $count = mysql_num_rows($query)-1;
              <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
 					<div class="x_title">
-						<h2>SubTopic</h2>
+						<h2>Test Name</h2>
 						<div class="clearfix"></div>
                     </div>
 				    <div class="x_content">
@@ -42,16 +42,9 @@ $count = mysql_num_rows($query)-1;
 									
 									<th class="column-title ">Test Heading</th>
 									<th class="column-title ">No. of Questions</th>
-									<th class="column-title ">Test Hours</th>
+									<th class="column-title ">Test Time</th>
 									
-									<th class="column-title no-link last tc"><span class="nobr">Action</span>
-									
-									</th>
-									
-											
-									<th class="bulk-actions" colspan="7">
-									  <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-									</th>
+									<th class="column-title no-link last tc "><span class="nobr">Action</span></th>
 								  </tr>
 								</thead>
 									<tbody>
@@ -69,8 +62,12 @@ $count = mysql_num_rows($query)-1;
 											<td><?php echo $row['tn_name']?></td>
 											<td><?php echo $row['th_name']?></td>
 											<td><?php echo $row['no_of_q']?></td>
-											<td><?php echo $row['hours']?></td>
-											<td class="a-right a-right tc">
+											<td><?php $a=explode(";",$row['time']);
+											      echo $a[0]." hours, ";
+												  echo $a[1]." Minutes, ";
+												  echo $a[2]." Seconds";
+												  ?></td>
+											<td class="a-right a-right tc content-center">
 												<form action="" method="post">
 													<button type="submit" name="delete_name" class="btn btn-primary" value="<?php echo $row['tn_id']?>">Delete</button>
 													

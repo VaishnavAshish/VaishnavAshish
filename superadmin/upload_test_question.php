@@ -2,37 +2,30 @@
 require('sidebar.php');
 require('header.php');
 
-
-	if(isset($_POST["submit"]))
-	{	$name = $_FILES["file"]["name"];
+if(isset($_POST["submit"]))
+	{	
+		$name = $_FILES["file"]["tmp_name"];
 		$csv=file_get_contents($name);
 		$array=array_map("str_getcsv",explode("\n",$csv));
-		$c = 0;
-		//print_r($array);
-		
+		$heading = $_POST['heading'];
+	    $test_name = $_POST['test_name'];
+		$test_category = $_POST['test_category'];
 		foreach($array as $filesop)
-		 {
-			@$question = $filesop[0];
-			@$opt1 = $filesop[1];
-			@$opt2 = $filesop[2];
-			@$opt3 = $filesop[3];
-			@$opt4 = $filesop[4];
-			@$answer = $filesop[5];
-		
-		@$category = $_POST['category'];
-		@$topic_id = $_POST['topic_id'];
-		@$sub_id = $_POST['sub_id'];
-		
-		$result = mysql_query("Insert into `question`(question,opt1,opt2,opt3,opt4,answer,cat_id,topic_id,sub_id) values('$question','$opt1','$opt2','$opt3','$opt4','$answer','$category','$topic_id','$sub_id')");
-		$c = $c + 1;
-		  }
-		if($result)
-		{
-			echo "<script>alert('Successful');</script>";
+		  { 
+			$question = $filesop[0];
+			$opt1 = $filesop[1];
+			$opt2 = $filesop[2];
+			$opt3 = $filesop[3];
+			$opt4 = $filesop[4];
+			$answer = $filesop[5];
+			$result = mysql_query("Insert into test_question(question,opt1,opt2,opt3,opt4,answer,tc_id,th_id,tn_id) values('$question','$opt1','$opt2','$opt3','$opt4','$answer','$test_category','$heading','$test_name')");
 		}
-		else echo "<script>alert('unsuccessful');</script>";
-	}
-	
+		if($result)
+				{
+					echo "<script>alert('Successful');</script>";
+				}
+		 else echo "<script>alert('unsuccessful');</script>";
+ }	
 ?>
 
 	
@@ -42,13 +35,13 @@ require('header.php');
         <div class="right_col" role="main">
 			<?php include("index_counter.php");?>
 			<div class="x_title">
-                    <h1>Upload CSV file of Questions:</h1>
+                    <h1>Upload CSV file of Test Questions:</h1>
                     <div class="clearfix"></div>
                   </div>
-			<form id="demo-form2" data-parsley-validate method="POST"class="form-horizontal form-label-left" enctype="multipart/form-data">
+			<form action="" id="demo-form2" data-parsley-validate method="POST" class="form-horizontal form-label-left" enctype="multipart/form-data">
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Choose File:<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Choose File:<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="file" name="file" /><br />
@@ -56,70 +49,44 @@ require('header.php');
                       </div>
 					  
 					  <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Category</label>
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Test Category</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
-                          <select class="sel_val form-control" name="category" >
+                          <select class="sel_val form-control" name="test_category" >
 									<option value="">Select Category</option>
 									<?php 
 										$j = 0;
-										$query = mysql_query("Select * from category");
-										while($row=mysql_fetch_array($query))
+										$query_cat = mysql_query("Select * from test_category");
+										while($row_cat=mysql_fetch_array($query_cat))
 										{
 											
 										
 									?>
-									<option value="<?php echo $row['cat_id'];?>"><?php echo $row['category'];?></option>
+									<option value="<?php echo $row_cat['tc_id'];?>"><?php echo $row_cat['tc_name'];?></option>
 										<?php } ?>
 								</select>
                         </div>
                       </div>
 					  
-					   <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Topic</label>
+                      <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Test Heading</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-							
-                          <select class="sel_val topic-select form-control" name="topic_id" >
-									<option value="">Select Topic</option>
-									<?php 
-										$j = 0;
-										$que = mysql_query("Select * from topics");
-										while($ro=mysql_fetch_array($que))
-										{
-											
-										
-									?>
-									<option value="<?php echo $ro['topic_id'];?>"><?php echo $ro['topic'];?></option>
-										<?php } ?>
+								<select class="sel_val form-control heading" name="heading" >
+									<option value="">Select Heading</option>
 								</select>
                         </div>
                       </div>
 					  
 					  <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select SubTopic</label>
-					  <div class="col-md-6 col-sm-6 col-xs-12">
-							
-                          <select class="sel_val topic-select form-control" name="sub_id" >
-									<option value="">Select SubTopic</option>
-									<?php 
-										$j = 0;
-										$que = mysql_query("Select * from subtopic");
-										while($ro=mysql_fetch_array($que))
-										{
-											
-										
-									?>
-									<option value="<?php echo $ro['sub_id'];?>"><?php echo $ro['subtopic'];?></option>
-										<?php } ?>
-								</select>
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Test Name</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<select class="sel_val  form-control test_name" name="test_name" >
+								<option value="">Select Test Name</option>
+							</select>
                         </div>
-						
-                      </div>
+					 </div>
 					  
-
-                      
-                      
-                      <div class="ln_solid"></div>
+					  <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                           
@@ -127,8 +94,7 @@ require('header.php');
                           <button type="submit" name="submit"class="btn btn-success">Submit</button>
                         </div>
                       </div>
-
-                    </form>
+					 </form>
 
     
 

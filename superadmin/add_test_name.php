@@ -17,38 +17,6 @@ require('header.php');
 		$arr=[$hours,$minutes,$seconds];
 		$time=implode(";",$arr);
 		$result = mysql_query("Insert into `test_name`(tn_name,th_id,tc_id,no_of_q,time) values('$name','$heading','$test_category','$question','$time')");
-		
-		// Question file upload
-							// if(isset($_POST["file"]))
-								// {	$name = $_FILES["file"]["name"];
-									// $csv=file_get_contents($name);
-									// $array=array_map("str_getcsv",explode("\n",$csv));
-									// $c = 0;
-									// print_r($array);
-									
-									// foreach($array as $filesop)
-									 // {
-										// $question = $filesop[0];
-										// $opt1 = $filesop[1];
-										// $opt2 = $filesop[2];
-										// $opt3 = $filesop[3];
-										// $opt4 = $filesop[4];
-										// $answer = $filesop[5];
-										// $category = $_POST['category'];
-										// $topic_id = $_POST['topic_id'];
-										// $sub_id = $_POST['sub_id'];
-									
-									// $result = mysql_query("Insert into `test_question`(question,opt1,opt2,opt3,opt4,answer) values('$question','$opt1','$opt2','$opt3','$opt4','$answer','$category','$topic_id','$sub_id')");
-									// $c = $c + 1;
-									  // }
-									// if($result)
-									// {
-										// echo "<script>alert('Successful');</script>";
-									// }
-									// else echo "<script>alert('unsuccessful');</script>";
-								// }
-		// questions file upload end
-		
 		if($result)
 		{
 			echo "<script>alert('successful');</script>";

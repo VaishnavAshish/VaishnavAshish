@@ -131,15 +131,15 @@ session_start();
               <div class="menu_section">
                 <h3>Online Test</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-bug"></i>Category<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-bug"></i>Test Category<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="add_cat.php">Add Category</a></li>
-                      <li><a href="view_cat.php">View Category</a></li>
+                      <li><a href="add_cat.php">Add Test Category</a></li>
+                      <li><a href="view_cat.php">View Test Category</a></li>
                       
                     
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-windows"></i> Heading <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-windows"></i>Test Heading <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="view_test_heading.php">View Test Headeing</a></li>
                       <li><a href="add_test_heading.php">Add Test Heading</a></li>
@@ -155,7 +155,7 @@ session_start();
                    
 				   <li><a><i class="fa fa-laptop"></i> Test Questions<span class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
-						  <li><a href="add_test_question.php">Upload questions file</a></li>
+						  <li><a href="upload_test_question.php">Upload questions file</a></li>
 						  <li><a href="add_test_question.php">Add Test questions</a></li>
 						  <li><a href="view_test_question.php">View Test questions</a></li>
 						</ul>

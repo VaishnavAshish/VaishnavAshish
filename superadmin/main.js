@@ -108,6 +108,34 @@ $(document).on('change','select[name="test_category"]',function(){
 });
 
 
+
+//Load the test Name according to test Heading
+$(document).on('change','select[name="heading"]',function(){
+	var th_id=$('select[name="heading"]').val();
+	$.ajax({
+		type:'post',
+		url:'get_test_name.php',
+		data:{'th_id':th_id},
+		dataType:'json',
+		beforeSend:function(){
+								$('.test_name').html('<option value="">Loading Test Names....</option>');
+								},
+		success:function(response){
+			$('.test_name').html('<option value="">Please Select Test Names</option>');
+			if(response['data']!='NULL'){
+				for(var i=0;i<response['data'].length;i++)
+				{
+				var tn_id = response['data'][i]['tn_id'];
+				var tn_name = response['data'][i]['tn_name'];
+				$('.test_name').append('<option value="'+tn_id+'">'+tn_name+'</option>');
+				}
+			}
+			
+			
+		}
+	});
+});
+
 });  //document.ready
 
 
