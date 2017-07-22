@@ -4,14 +4,14 @@ require('sidebar.php');
 require('header.php');
 if(isset($_POST['edit_name']))
 	{	@$tn_id = $_POST['edit_name'];
-		$result=mysql_query("Select * from `test_name` where tn_id='".$tn_id."'");
+		$result=mysql_query("Select * from `test_name` join `test_heading` on where tn_id='".$tn_id."'");
 		$row = mysql_fetch_array($result);
 		
 	}
 	if(isset($_POST['submit']))
 	{
-		@$name = $_POST['name'];
-		@$heading = $_POST['heading'];
+		$name = $_POST['name'];
+		$heading = $_POST['heading'];
 		$question=$_POST['nos'];
 		$hours=$_POST['hours'];
 		
@@ -46,22 +46,31 @@ if(isset($_POST['edit_name']))
                         </div>
                       </div>
                       
-                      <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Test Heading</label>
+                     <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Test Category</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
-                          <select class="sel_val form-control" name="heading" >
-									<option value="">Select Heading</option>
+                          <select class="sel_val form-control" name="test_category" >
+									<option value="">Select Category</option>
 									<?php 
 										$j = 0;
-										$query = mysql_query("Select * from test_heading");
-										while($row=mysql_fetch_array($query))
+										$query_cat = mysql_query("Select * from test_category");
+										while($row_cat=mysql_fetch_array($query_cat))
 										{
 											
 										
 									?>
-									<option value="<?php echo $row['th_id'];?>"><?php echo $row['th_name'];?></option>
+									<option value="<?php echo $row_cat['tc_id'];?>"><?php echo $row_cat['tc_name'];?></option>
 										<?php } ?>
+								</select>
+                        </div>
+                      </div>
+					  
+                      <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Test Heading</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+								<select class="sel_val form-control heading" name="heading" >
+									<option value="">Select Heading</option>
 								</select>
                         </div>
                       </div>
@@ -69,21 +78,25 @@ if(isset($_POST['edit_name']))
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">No. Of Questions<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" id="first-name" required="required" name="nos" value="<?php echo $row['no_of_q']?>"class="form-control col-md-7 col-xs-12">
+                          <input type="number" id="first-name" required="required" name="nos" value=""class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 					  
 					   <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">No. Of Hours<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Test Time<span class="required">*</span>
                         </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" id="first-name" required="required" name="hours" value="<?php echo $row['hours']?>"class="form-control col-md-7 col-xs-12">
+                        <div class="col-md-1 col-sm-1 col-xs-3">
+                          <input type="number"  required="required" placeholder="Hrs." name="hours" value=""class="form-control col-md-7 col-xs-12">
+                        </div>
+						<div class="col-md-1 col-sm-1 col-xs-3">
+                          <input type="number" required="required"  placeholder="Min." name="minutes" value=""class="form-control col-md-7 col-xs-12">
+                        </div>
+						<div class="col-md-1 col-sm-1 col-xs-3">
+                          <input type="number"  required="required" placeholder="Sec." name="seconds" value=""class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 					  
-                      
-                      
-                      <div class="ln_solid"></div>
+					  <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                           

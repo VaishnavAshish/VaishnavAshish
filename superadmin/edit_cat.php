@@ -5,7 +5,6 @@ require_once('header.php');
 if(isset($_POST['edit_category']))
 {
 	$category_id = $_POST['edit_category'];
-	echo "<script>alert('".$category_id."');</script>";
 	$query=mysql_query("Select * from test_category where tc_id = '".$category_id."'");
 	$res=mysql_fetch_array($query);
 }
@@ -20,7 +19,7 @@ else if(isset($_POST["submit"])) {
 	   }
 	   else
 	   {
-		   echo "<script>alert('Unsuccess');</script>";
+		   echo "<script>alert('Unsuccessful');</script>";
 	   }
     
 }

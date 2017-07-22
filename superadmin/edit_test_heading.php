@@ -41,7 +41,7 @@ require('header.php');
 			<form method="POST"id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Topic Name <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Test Heading <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="first-name" required="required" name="topic" value="<?php echo $row['th_name'];?>" class="form-control col-md-7 col-xs-12">
@@ -50,7 +50,7 @@ require('header.php');
                       </div>
                       
                       <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Category</label>
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Test Category</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
                           <select class="sel_val form-control" name="category" >

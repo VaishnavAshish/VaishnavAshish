@@ -38,9 +38,9 @@ $count = mysql_num_rows($query)-1;
 								  <tr class="headings">
 									
 									<th class="column-title">S.No.</th>
-									<th class="column-title ">Test Name</th>
-									
+									<th class="column-title ">Test Category</th>
 									<th class="column-title ">Test Heading</th>
+									<th class="column-title ">Test Name</th>
 									<th class="column-title ">No. of Questions</th>
 									<th class="column-title ">Test Time</th>
 									
@@ -50,7 +50,7 @@ $count = mysql_num_rows($query)-1;
 									<tbody>
 								<?php 
 										$i=0;
-										$result = mysql_query("Select * from `test_name` join `test_heading` on test_name.th_id=test_heading.th_id");
+										$result = mysql_query("Select * from `test_name` join `test_heading` on test_name.th_id=test_heading.th_id join `test_category` on test_name.tc_id=test_category.tc_id ");
 										while($row=mysql_fetch_array($result))
 										{
 											$i+=1;
@@ -58,9 +58,10 @@ $count = mysql_num_rows($query)-1;
 									?>
 								
 								  <tr class="even pointer">
-									<td><?php echo $i;?></td>
-											<td><?php echo $row['tn_name']?></td>
+											<td><?php echo $i;?></td>
+											<td><?php echo $row['tc_name']?></td>
 											<td><?php echo $row['th_name']?></td>
+											<td><?php echo $row['tn_name']?></td>
 											<td><?php echo $row['no_of_q']?></td>
 											<td><?php $a=explode(";",$row['time']);
 											      echo $a[0]." hours, ";

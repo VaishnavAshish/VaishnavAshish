@@ -6,7 +6,7 @@ if(isset($_POST['delete_heading'])){
    $delete = mysql_query("DELETE FROM test_heading WHERE th_id = '".$check."' ");
    if($delete)
    {
-	   echo "<script>alert('User Deleted Successfully');</script>";
+	   echo "<script>alert('Deleted Successfully');</script>";
    }
    else
 	    echo "<script>alert('Unsuccessful');</script>";
@@ -53,7 +53,7 @@ if(isset($_POST['delete_heading'])){
 									<td class=" "><?php echo $i;?></td>
 									<td class=" "><?php echo $row['th_name']?></td>
 									<td class="a-right a-right "><?php echo $row['tc_name']?></td>
-									<td class="a-right a-right tc">
+									<td class="a-right a-right tc content-center">
 										<form action="" method="post">
 											<button type="submit" name="delete_heading" class="btn btn-primary" value="<?php echo $row['th_id'];?>">Delete</button>
 											

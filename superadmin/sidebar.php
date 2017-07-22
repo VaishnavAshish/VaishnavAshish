@@ -141,7 +141,7 @@ session_start();
                   </li>
                   <li><a><i class="fa fa-windows"></i>Test Heading <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="view_test_heading.php">View Test Headeing</a></li>
+                      <li><a href="view_test_heading.php">View Test Heading</a></li>
                       <li><a href="add_test_heading.php">Add Test Heading</a></li>
                     </ul>
                   </li>

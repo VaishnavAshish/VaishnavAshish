@@ -1,23 +1,7 @@
 <?php 
 require('sidebar.php');
 require('header.php');  
-if(isset($_POST["submit"])) {
-	$name = $_POST['category'];
-	$imageFileType = pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION);
-	$target_dir = "images/".$name.".".$imageFileType;
-	$img_name = $name.".".$imageFileType;
-        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir);
-       $result = mysql_query("Insert into `category`(category,cat_image) values('$name','$img_name')");
-	   if($result)
-	   {
-		   echo "<script>alert('Success');</script>";
-	   }
-	   else
-	   {
-		   echo "<script>alert('Unsuccess');</script>";
-	   }
-    
-}
+
 if(isset($_POST['delete_category']))
 {	$id = $_POST['delete_category'];
 	$delete = mysql_query("Delete from `test_category` where tc_id='".$id."'");
@@ -74,7 +58,7 @@ $count = mysql_num_rows($query)-1;
 									<td class=" "><?php echo $i;?></td>
 									<td><?php echo $row['tc_name']?></td>
 									
-									<td class="a-right a-right tc">
+									<td class="a-right a-right tc content-center">
 										<form action="" method="post">
 											<button type="submit" name="delete_category" class="btn btn-primary" value="<?php echo $row['tc_id']?>">Delete</button>
 											
