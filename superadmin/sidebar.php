@@ -2,9 +2,9 @@
 require('../connection.php');
 ob_start();
 session_start();
-	if(isset($_SESSION['username']) )
+	if(isset($_SESSION['Adminusername']) )
 	{
-		if(!($_SESSION['status']=='0'))
+		if(!($_SESSION['Adminstatus']=='0'))
 		{
 			header('Location:login.php');
 		}

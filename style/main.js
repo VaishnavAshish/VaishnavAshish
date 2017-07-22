@@ -127,8 +127,8 @@ $(document).ready(function(){
 
 	
 	$(document).on('click','.logout',function(){
-		
-		$.ajax({
+		 var auth2 = gapi.auth2.getAuthInstance();
+		 var logout={
 				type:'post',
 				cache:false,
 				url:'logout.php',
@@ -138,7 +138,12 @@ $(document).ready(function(){
 					$("#header").load("header.php");
 					}
 				}
-		})
+		};
+    	auth2.signOut().then(function () {
+      			$.ajax(logout);
+    	});
+
+	
 	});
 	
 	

@@ -9,9 +9,9 @@ if(isset($_POST['login']))
 		if($count>0)
 		{
 			session_start();
-			$_SESSION['username'] = $username;
-			$_SESSION['status'] = '0';
-			$_SESSION['uid'] ='1';
+			$_SESSION['Adminusername'] = $username;
+			$_SESSION['Adminstatus'] = '0';
+			$_SESSION['Adminuid'] ='1';
 			header('Location:index.php');
 		}
 		else

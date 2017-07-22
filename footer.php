@@ -75,7 +75,7 @@ if(isset($_POST['subscription'])){
 										</div>
 									  </form>
 							</div>
-							<div class="col-md-3 col-sm-6 col-xs-12"><h3 style="margin-left:15px; margin-bottom:15px;">Contact Us</h3>
+							<div class="col-md-4 col-sm-6 col-xs-12"><h3 style="margin-left:15px; margin-bottom:15px;">Contact Us</h3>
 								<!--Contact Us form-->
 								<form class="foot" action="" method="POST">
 										<div class="form-group">
@@ -96,7 +96,7 @@ if(isset($_POST['subscription'])){
 										</div>
 								</form>
 							</div>
-							<div class="col-md-3 col-sm-6 col-xs-12" style="text-align:left; margin-bottom:15px;"><h3>Questions and Answers</h3>
+							<div class="col-md-4 col-sm-6 col-xs-12" style="text-align:left; margin-bottom:15px;"><h3>Questions and Answers</h3>
 								<ul style="list-style-position: inside;">
 									 <form method="post" action="topics.php" id="cat" style="display:none;">
 										<input type="text" name="cat_id">
@@ -112,21 +112,6 @@ if(isset($_POST['subscription'])){
 									<?php } ?>
 								</ul>
 							</div>
-							<div class=" col-md-3 col-sm-6 col-xs-12" style="text-align:left; margin-bottom:15px;"><h3>Interview Questions</h3>
-								<ul style="list-style-position: inside;">	
-									<li><a style="color:white;" href="#">Apptitude</a> </li>
-									<li><a style="color:white;" href="#">Apptitude</a></li>
-									<li><a style="color:white;" href="#">Apptitude</a></li>
-									<li><a style="color:white;" href="#">Apptitude</a></li>
-									<li><a style="color:white;" href="#">Apptitude</a></li>
-									<li><a style="color:white;" href="#">Apptitude</a></li>
-									<li><a style="color:white;" href="#">Apptitude</a></li>
-									<li><a style="color:white;" href="#">Apptitude</a></li>
-									<li><a style="color:white;" href="#">Apptitude</a></li>
-							</div>
-				</div>
 			</div>	
-	   </div>
-	</div>
 </div>
  <script src="style/js/google_login.js" async defer></script>
