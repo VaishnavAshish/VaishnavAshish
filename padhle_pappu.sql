@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 22, 2017 at 06:35 PM
+-- Generation Time: Jul 23, 2017 at 05:20 AM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `cat_id` int(11) NOT NULL AUTO_INCREMENT,
   `category` varchar(255) NOT NULL,
   `cat_image` text NOT NULL,
+  `page` text,
   PRIMARY KEY (`cat_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
 
@@ -61,16 +62,16 @@ CREATE TABLE IF NOT EXISTS `category` (
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`cat_id`, `category`, `cat_image`) VALUES
-(23, 'Maths', 'Maths.png'),
-(24, 'Reasoning', 'Reasoning.png'),
-(25, 'English', 'English.png'),
-(26, 'G.K.', 'G.K..png'),
-(27, 'Medical', 'Medical.png'),
-(28, 'Engineering', 'Engineering.png'),
-(29, 'Online Test', 'Online Test.png'),
-(30, 'Exam Paper', 'Exam Paper.png'),
-(31, 'Interview', 'Interview.png');
+INSERT INTO `category` (`cat_id`, `category`, `cat_image`, `page`) VALUES
+(23, 'Maths', 'Maths.png', 'topics.php'),
+(24, 'Reasoning', 'Reasoning.png', 'topics.php'),
+(25, 'English', 'English.png', 'topics.php'),
+(26, 'G.K.', 'G.K..png', 'topics.php'),
+(27, 'Medical', 'Medical.png', 'topics.php'),
+(28, 'Engineering', 'Engineering.png', 'topics.php'),
+(29, 'Online Test', 'Online Test.png', 'testTopics.php'),
+(30, 'Exam Paper', 'Exam Paper.png', 'topics.php'),
+(31, 'Interview', 'Interview.png', 'testTopics.php');
 
 -- --------------------------------------------------------
 

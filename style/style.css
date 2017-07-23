@@ -497,10 +497,9 @@ input[type="radio"] {
     top: 0;
     height: 46px !important;
     width: 100% !important;
-   
     margin-left: 0px !important;
     margin-top: 93px;
-    z-index: 1000;
+    z-index: 100;
     background: #e84c4c !important;
 	color:white !important;
 	

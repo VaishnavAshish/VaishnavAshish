@@ -290,32 +290,6 @@ $(document).on('click','.check-answer',function(){
 	}
 });	
 
-// //Get category id and post to topics for categories on index page	
-// $(document).on('click','.category_post',function(){
-// 	var cat_id=$(this).attr('value');
-// 	$('input[name=cat_id]').val(cat_id);
-// 	$('#cat').submit();
-// });
-
-//test checkbox check-uncheck
-// $("input[type='radio']").click(function()
-// { 
-  // var previousValue = $(this).attr('previousValue');
-  // var name = $(this).attr('name');
-  // if (previousValue =='checked')
-  // {
-    // $().prop('checked');
-    // $(this).attr('previousValue', false);
-  // }
-  // else
-  // {
-    // $("input[name="+name+"]:radio").attr('previousValue', false);
-    // $(this).attr('previousValue', 'checked');
-  // }
-// });
-
-
-
 //Timer for test
 
 var d1 = new Date ();
