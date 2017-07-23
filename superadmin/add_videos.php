@@ -7,7 +7,7 @@ require('header.php');
 	{	
 		$video_name = $_POST['video_name'];
 		$youtube_id = $_POST['youtube_id'];
-		$category = $_POST['category'];
+		$category = $_POST['category-videos'];
 		$topic_id = $_POST['topic_id'];
 		$sub_id = $_POST['sub_id'];
 		$result = mysql_query("Insert into `videos`(video_name,youtube_id,cat_id,topic_id,sub_id) values('$video_name','$youtube_id','$category','$topic_id','$sub_id')");
@@ -52,7 +52,7 @@ require('header.php');
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Category</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
-                          <select class="sel_val form-control" name="category" >
+                          <select class="sel_val form-control" name="category-videos" >
 									<option value="">Select Category</option>
 									<?php 
 										$j = 0;
@@ -72,7 +72,7 @@ require('header.php');
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Topic</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
-                          <select class="sel_val topic-select form-control" name="topic_id" >
+                          <select class="sel_val topic-select topic-type-video form-control" name="topic_id" >
 									<option value="">Select Topic</option>
 						  </select>
                         </div>
