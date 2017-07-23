@@ -46,7 +46,7 @@ if(isset($_GET['topic_id']))
 	<div class="col-sm-12 col-xs-12">
 		<ol class="breadcrumb">
 			<li><a href="index.php">Home</a></li>
-			<?php if($_GET['cat_id']){?><li><a href="topics.php?cat_id=<?php echo $_GET['cat_id'];?>"><?php echo $category['category'];?></a></li><?php }?>    
+			<?php if($_GET['cat_id']){?><li><?php echo $category['category'];?></li><?php }?>    
             <?php if(@$_GET['topic_id']){?><li class="active"><?php echo $topic['topic'];?></li><?php }?>    
 		 </ol>
 	</div>
@@ -69,7 +69,7 @@ if(isset($_GET['topic_id']))
                    $qu = mysql_query("SELECT * FROM `test_heading` WHERE tc_id=".$row['tc_id']);
                    while($r=mysql_fetch_array($qu)){    
                 ?>
-					<a href="test_names.php?tc_id=<?php echo $r['tc_id'];?>&&th_id=<?php echo $r['th_id'];?>">
+					<a href="test_names.php?tc_id=<?php echo $r['tc_id'];?>&&th_id=<?php echo $r['th_id'];?>&&cat_id=<?php echo $_GET['cat_id'];?>">
                         <div class="col-xs-12 image-subtopics" style="" >
 							<img  src="images/file.png">
 							<h6 class="subtopics-heading" ><?php echo $r['th_name'];?></h6>

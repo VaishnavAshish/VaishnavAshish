@@ -428,14 +428,11 @@ display: block;
 
 .subtopics-heading{
 font-size:16px !important;
-margin-left:11% !important;
+margin-left:40px !important;
 margin-top:6px !important;
 }
 
-.testname-heading{
-margin-left:11% !important;
-margin-top:6px !important;
-}
+
 
 .image-testname img{
 float:left !important;
