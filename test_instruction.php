@@ -21,7 +21,22 @@
 <?php include("header.php");
 ?>	
 <!--/Header-->
-
+<!--Page heading-->
+<div class="col-sm-12 col-xs-12 page-heading">
+	<h3>HOME <span class="glyphicon glyphicon-forward"></span><span class="text-success">Online Test</span><h3>
+</div>	
+<!--/Page Heading-->
+	
+<!--Breadcrumbs-->
+<div class="col-sm-12 col-xs-12 fixme">
+	<div class="col-sm-12 col-xs-12">
+		<ol class="breadcrumb">
+			<li><a href="index.php">Home</a></li>  
+			<li><a href="index.php"><?php echo $test_heading['tc_name'];?></a></li> 	
+		 </ol>
+	</div>
+</div>	
+<!--/Breadcrumbs-->
 <br><br>
 <!--Page Content-->
 <div class = "container" style="padding-left:3%; padding-right:3%;" >			
