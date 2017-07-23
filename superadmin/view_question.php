@@ -2,7 +2,7 @@
 ob_start();
 require('sidebar.php');
 require('header.php');
- 
+
 $limit=15;
 if(isset($_GET['page'])){
 	$page=$_GET['page'];
@@ -57,6 +57,10 @@ if(isset($_POST['delete_question']))
 									?>
 									<option value="<?php echo $row_cat['cat_id'];?>"><?php echo $row_cat['category'];?></option>
 									<?php }
+									else{ ?>
+									<option value="">Select Category</option>
+										<?php
+									}
 										$j = 0;
 										$query = mysql_query("Select * from category");
 										while($row=mysql_fetch_array($query))
@@ -83,8 +87,11 @@ if(isset($_POST['delete_question']))
 									?>
 										<option value="<?php echo $row_topic['topic_id'];?>"><?php echo $row_topic['topic'];?></option>
 									<?php }
+									   else{ ?>
+										  <option value="">Select Topic</option> 
+									  <?php  }
 										$j = 0;
-										$query = mysql_query("Select * from topics where cat_id='".$_GET['cat_id']."'");
+										$query = mysql_query("Select * from topics where cat_id='".$_GET['cat_id']."' AND type='Question' ");
 										while($row=mysql_fetch_array($query))
 										{ ?>
 											<option value="<?php echo $row['topic_id'];?>"><?php echo $row['topic'];?></option>
@@ -106,6 +113,10 @@ if(isset($_POST['delete_question']))
 									?>
 									<option value="<?php echo $row_subtopic['sub_id'];?>"><?php echo $row_subtopic['subtopic'];?></option>
 									<?php }
+									 else{
+										?> 
+									<option value="">Select Subtopic</option> 	
+									 <?php }
 										$j = 0;
 										$query = mysql_query("Select * from subtopic where topic_id='".$_GET['topic_id']."'");
 										while($row=mysql_fetch_array($query))
@@ -153,22 +164,22 @@ if(isset($_POST['delete_question']))
 								<?php 
 										$i=$start;
 										//start of query
+											$query="select * from `question` ";
+											if(isset($_GET['cat_id'])){
+												$query.=" where cat_id='".$_GET['cat_id']."'";
+											}
+											if(isset($_GET['topic_id'])){
+												$query.=" AND topic_id='".$_GET['topic_id']."' ";
+											}
+											if(isset($_GET['sub_id'])){
+												$query.=" AND sub_id='".$_GET['sub_id']."' ";
+											}
+											$query1=$query;
+											$query.=" limit $start,$limit";
 										
-											$query="select * from `question`" ;
-											if($_GET['cat_id']!=''){
-												$query.= "where cat_id=".$_GET['cat_id']."";
-											}
-											if($_GET['topic_id']!=''){
-												$query.=" AND topic_id=".$_GET['topic_id']."";
-											}
-											if($_GET['sub_id']!=''){
-												$query.=" AND sub_id=".$_GET['sub_id']."";
-											}
-											$query.="limit $start,$end";
-										//end of query
 										$result=mysql_query($query);
 										//$result = mysql_query("Select * from `question` limit $start,$end");
-										$page_count=mysql_num_rows(mysql_query("Select * from `question`"))/$limit;
+										$page_count=mysql_num_rows(mysql_query($query1))/$limit;
 										while($row=mysql_fetch_array($result))
 										{
 											$i+=1;
@@ -194,16 +205,33 @@ if(isset($_POST['delete_question']))
 								 <?php } ?>
 								</tbody>
 							  </table>
+							 
+							 <?php
+							 $cat_page='';
+							 $topic_page='';
+							 $sub_page='';
+							  if(isset($_GET['cat_id'])){
+									$cat_page="&cat_id=".$_GET['cat_id'];
+								}
+								if(isset($_GET['topic_id'])){
+									$topic_page="&topic_id=".$_GET['topic_id'];
+								}
+								if(isset($_GET['sub_id'])){
+									$sub_page="&sub_id=".$_GET['sub_id'];
+								}
+							  ?>
+							  
 								<ul class="pagination pagination-lg">
-								<li> <a  href="view_question.php?page=<?php if($page>0) echo $page+1; else echo "#";?>">&laquo;</a></li>
+								<li> <a  href="view_question.php?page=<?php if($page>0) echo ($page-1).$cat_page.$topic_page.$sub_page; else echo "0".$cat_page.$topic_page.$sub_page;?>">&laquo;</a></li>
 								<?php $j=0;
+								
 								 while($j<$page_count){
 									if($j==$page){ $class="active";} else $class='';
 								 ?>
-										<li class="<?php echo $class;?>" ><a  href="view_question.php?page=<?php echo $j; ?>"><?php echo $j+1; ?></a></li>
+										<li class="<?php echo $class;?>" ><a  href="view_question.php?page=<?php echo $j.$cat_page.$topic_page.$sub_page;  ?>"><?php echo $j+1; ?></a></li>
 								<?php $j++; 
 								      }  ?>
-							      <li><a href="view_question.php?page=<?php if($page<$page_count-1) echo $page+1; else echo "#"; ?>">&raquo;</a></li>	  
+							      <li><a href="view_question.php?page=<?php if($page<$page_count-1) echo ($page+1).$cat_page.$topic_page.$sub_page; else echo "0".$cat_page.$topic_page.$sub_page;?>"; >&raquo;</a></li>	  
 							    </ul>
 								
 						</div>

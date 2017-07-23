@@ -169,20 +169,34 @@ $(document).on('change','select[name="heading"]',function(){
 	});
 });
 
+
+
 //filtering the questions on view_question page
+var cat_id,topic_id,sub_id,link;
+
+//reset topic and subtopic when change the category
+$(document).on('change','select[name="category_filer"]',function(){
+$('[name=topic_filter]').val( '' );	
+$('[name=subtopic_filter]').val( '' );
+});
+
+//reset  subtopic when change the topic
+$(document).on('change','select[name="topic_filter"]',function(){
+$('[name=subtopic_filter]').val( '' );
+});
+
 $(document).on('change','.select-question',function(){
-	var cat_id=$('select[name="category_filer"]').val();
-	var topic_id=$('select[name="topic_filter"]').val();
-	var sub_id=$('select[name="subtopic_filter"]').val();
+	 cat_id=$('select[name="category_filer"]').val();
+	 topic_id=$('select[name="topic_filter"]').val();
+	 sub_id=$('select[name="subtopic_filter"]').val();
 	
     if(cat_id){
-		var link="view_question.php?cat_id="+cat_id;
+	   link="view_question.php?cat_id="+cat_id;
 		}
 	if(topic_id){
-		
 		link+="&topic_id="+topic_id;
 	}
-    if(topic_id){
+    if(sub_id){
 		
 		link+="&sub_id="+sub_id;
 		
@@ -190,6 +204,8 @@ $(document).on('change','.select-question',function(){
 	window.location=link;
 	
 });
+
+
 
 });  //document.ready
 

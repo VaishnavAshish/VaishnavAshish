@@ -6,16 +6,16 @@ session_start();
 
 if(isset($_POST['userdata'])){
 					$data=json_decode($_POST['userdata'], true);
-					@$name=$data['first_name']." ".$data['last_name'];
-					@$email=$data['email'];
-					@$fbid=$data['id'];
+					$name=$data['first_name']." ".$data['last_name'];
+					$email=$data['email'];
+					$fbid=$data['id'];
 					
-					@$rsEmails = mysql_query("SELECT * FROM `users` WHERE email = '".$email."'");
-					@$numEmails = mysql_num_rows($rsEmails);
-					@$rsfb = mysql_query("SELECT * FROM `users` WHERE fbid = '".$fbid."'");
-					@$numfb = mysql_num_rows($rsfb);
+					$rsEmails = mysql_query("SELECT * FROM `users` WHERE email = '".$email."'");
+					$numEmails = mysql_num_rows($rsEmails);
+					$rsfb = mysql_query("SELECT * FROM `users` WHERE fbid = '".$fbid."'");
+					$numfb = mysql_num_rows($rsfb);
 					
-					if($numfb > 0){
+					if($numfb > 0 && $numEmails==0){
 								$_SESSION['username']=$name;
 								$_SESSION['email']=$email;
 								$arr=['username'=>$name,'email'=>$email,'msg'=>'Logged in Successfully'];
@@ -79,8 +79,7 @@ else if(isset($_POST['GMAIL'])){
 	{
 		//normal email Login
 		 if(isset($_POST))
-		 { 
-			 print_r($_POST);
+		 {
 		    @$name=$_POST['name'];
 			@$email=$_POST['email'];
 			@$password=$_POST['password'];
