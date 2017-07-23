@@ -9,7 +9,7 @@ require('header.php');
 		$csv=file_get_contents($name);
 		$array=array_map("str_getcsv",explode("\n",$csv));
 		$c = 0;
-		$category = $_POST['category'];
+		$category = $_POST['category-question'];
 		$topic_id = $_POST['topic_id'];
 		$sub_id = $_POST['sub_id'];
 		$random=mt_rand(1,1000);
@@ -58,7 +58,7 @@ require('header.php');
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Category</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
-                          <select class="sel_val form-control" name="category" >
+                          <select class="sel_val form-control" name="category-question" >
 									<option value="">Select Category</option>
 									<?php 
 										$j = 0;
@@ -78,7 +78,7 @@ require('header.php');
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Topic</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
-                          <select class="sel_val topic-select form-control" name="topic_id" >
+                          <select class="sel_val topic-select topic-type-question form-control" name="topic_id" >
 									<option value="">Select Topic</option>
 						  </select>
                         </div>
