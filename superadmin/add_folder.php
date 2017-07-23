@@ -68,7 +68,7 @@ require('header.php');
 								</div>
 
 					 <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Topic</label>
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Type</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
                           <select class="sel_val form-control" name="type" requires>

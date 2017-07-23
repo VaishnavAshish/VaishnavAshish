@@ -37,6 +37,68 @@ if(isset($_POST['delete_question']))
          <div class="row">
              <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
+<!--Filter question-->
+		<div class="x_title">
+                    <h1>Filter Question</h1>
+                    <div class="clearfix"></div>
+                  </div>
+			<form id="demo-form2" data-parsley-validate method="POST"class="form-horizontal form-label-left">
+
+                      <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Category</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+							
+                          <select class="sel_val form-control select-question" name="category_filer" >
+							     <?php if(isset($_GET['cat_id']))
+								        {  
+									$cat_query=mysql_query("Select * from `category` where cat_id='".$_GET['cat_id']."'");
+									$row_cat=mysql_fetch_array($cat_query);
+									?>
+									<option value="<?php echo $row_cat['cat_id'];?>"><?php echo $row_cat['category'];?></option>
+										<?php } else {?>
+										 <option value="">Select Category</option>
+										<?php}
+										$j = 0;
+										$query = mysql_query("Select * from `category`");
+										while($row1=mysql_fetch_array($query))
+										{ ?>
+									<option value="<?php echo $row1['cat_id'];?>"><?php echo $row1['category'];?></option>
+										<?php } ?>
+										
+								</select>
+                        </div>
+                      </div>
+					  
+					   <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Topic</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+							
+                          <select class="sel_val topic-select form-control select-question" name="topic_filter" >
+						           <option value="">Select Topic</option>
+									<?php if(isset($_GET['cat_id'])){
+										$topic_query=mysql_query("Select * from `topics` where cat_id='".$_GET['cat_id']."'");
+										while($row_topic=mysql_fetch_array($topic_query)){
+										?>
+										<option value="<?php echo $row_topic['topic_id'];?>"><?php echo $row_topic['topic'];?></option>
+									<?php  }} ?>
+						  </select>
+                        </div>
+                      </div>
+					  
+					  <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select SubTopic</label>
+					  <div class="col-md-6 col-sm-6 col-xs-12">
+							
+                          <select class="sel_val sub_topic-select form-control select-question" name="subtopic_filter" >
+									<option value="">Select SubTopic</option>
+						  </select>
+                        </div>
+					  </div>
+					 
+                    </form>
+<!--//filter question-->
+
+
 					<div class="x_title">
 						<h1>Questions</h1>
 						<div class="clearfix"></div>
@@ -65,7 +127,7 @@ if(isset($_POST['delete_question']))
 									</th>
 								  </tr>
 								</thead>
-									<tbody>
+									<tbody class="view-question">
 								<?php 
 										$i=$start;
 										$result = mysql_query("Select * from `question` limit $start,$end");
