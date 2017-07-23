@@ -49,22 +49,23 @@ if(isset($_POST['delete_question']))
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
                           <select class="sel_val form-control select-question" name="category_filer" >
+						 
 							     <?php if(isset($_GET['cat_id']))
 								        {  
 									$cat_query=mysql_query("Select * from `category` where cat_id='".$_GET['cat_id']."'");
 									$row_cat=mysql_fetch_array($cat_query);
 									?>
 									<option value="<?php echo $row_cat['cat_id'];?>"><?php echo $row_cat['category'];?></option>
-										<?php } else {?>
-										 <option value="">Select Category</option>
-										<?php}
+									<?php }
 										$j = 0;
-										$query = mysql_query("Select * from `category`");
-										while($row1=mysql_fetch_array($query))
+										$query = mysql_query("Select * from category");
+										while($row=mysql_fetch_array($query))
 										{ ?>
-									<option value="<?php echo $row1['cat_id'];?>"><?php echo $row1['category'];?></option>
-										<?php } ?>
+											<option value="<?php echo $row['cat_id'];?>"><?php echo $row['category'];?></option>
+										<?php } 
 										
+										?>
+									
 								</select>
                         </div>
                       </div>
@@ -74,13 +75,21 @@ if(isset($_POST['delete_question']))
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
                           <select class="sel_val topic-select form-control select-question" name="topic_filter" >
-						           <option value="">Select Topic</option>
-									<?php if(isset($_GET['cat_id'])){
-										$topic_query=mysql_query("Select * from `topics` where cat_id='".$_GET['cat_id']."'");
-										while($row_topic=mysql_fetch_array($topic_query)){
-										?>
+						          
+									<?php if(isset($_GET['topic_id']))
+								        {  
+									$topic_query=mysql_query("Select * from `topics` where topic_id='".$_GET['topic_id']."'");
+									$row_topic=mysql_fetch_array($topic_query);
+									?>
 										<option value="<?php echo $row_topic['topic_id'];?>"><?php echo $row_topic['topic'];?></option>
-									<?php  }} ?>
+									<?php }
+										$j = 0;
+										$query = mysql_query("Select * from topics where cat_id='".$_GET['cat_id']."'");
+										while($row=mysql_fetch_array($query))
+										{ ?>
+											<option value="<?php echo $row['topic_id'];?>"><?php echo $row['topic'];?></option>
+										<?php } ?>
+										
 						  </select>
                         </div>
                       </div>
@@ -90,8 +99,21 @@ if(isset($_POST['delete_question']))
 					  <div class="col-md-6 col-sm-6 col-xs-12">
 							
                           <select class="sel_val sub_topic-select form-control select-question" name="subtopic_filter" >
-									<option value="">Select SubTopic</option>
+								<?php if(isset($_GET['sub_id']))
+								        {  
+									$subtopic_query=mysql_query("Select * from `subtopic` where topic_id='".$_GET['topic_id']."'");
+									$row_subtopic=mysql_fetch_array($subtopic_query);
+									?>
+									<option value="<?php echo $row_subtopic['sub_id'];?>"><?php echo $row_subtopic['subtopic'];?></option>
+									<?php }
+										$j = 0;
+										$query = mysql_query("Select * from subtopic where topic_id='".$_GET['topic_id']."'");
+										while($row=mysql_fetch_array($query))
+										{ ?>
+											<option value="<?php echo $row['sub_id'];?>"><?php echo $row['subtopic'];?></option>
+										<?php } ?>
 						  </select>
+						  
                         </div>
 					  </div>
 					 
@@ -130,7 +152,22 @@ if(isset($_POST['delete_question']))
 									<tbody class="view-question">
 								<?php 
 										$i=$start;
-										$result = mysql_query("Select * from `question` limit $start,$end");
+										//start of query
+										
+											$query="select * from `question`" ;
+											if($_GET['cat_id']!=''){
+												$query.= "where cat_id=".$_GET['cat_id']."";
+											}
+											if($_GET['topic_id']!=''){
+												$query.=" AND topic_id=".$_GET['topic_id']."";
+											}
+											if($_GET['sub_id']!=''){
+												$query.=" AND sub_id=".$_GET['sub_id']."";
+											}
+											$query.="limit $start,$end";
+										//end of query
+										$result=mysql_query($query);
+										//$result = mysql_query("Select * from `question` limit $start,$end");
 										$page_count=mysql_num_rows(mysql_query("Select * from `question`"))/$limit;
 										while($row=mysql_fetch_array($result))
 										{
