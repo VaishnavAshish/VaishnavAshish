@@ -1,3 +1,11 @@
+<?php 
+if(isset($_GET['tn_id']))
+{ 
+	$testQuery="SELECT * FROM `test_name` where tn_id='".$_GET['tn_id']."' ";
+	$test_query=mysql_query($testQuery);
+	$test=mysql_fetch_array($test_query);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -32,7 +40,7 @@
 	<div class="col-sm-12 col-xs-12">
 		<ol class="breadcrumb">
 			<li><a href="index.php">Home</a></li>  
-			<li><a href="index.php"><?php echo $test_heading['tc_name'];?></a></li> 	
+			<li><a href="test_name.php?"><?php echo $test['tn_name'];?></a></li> 	
 		 </ol>
 	</div>
 </div>	
@@ -43,9 +51,9 @@
 	
 		<div class="instruction col-sm-8 col-xs-12" style="padding-left:0%; padding-right:0%;" >
 			<div class="col-sm-6 col-xs-12">
-				<h3>Instructions<h3>
+				<h3 style="">Instructions<h3>
 				<ul>
-					<li><span>Total No. of questions : 20</span></li>
+					<li><span>Total No. of questions : <?php echo $test['no_of_q'];?></span></li>
 					<li><span>Total Time Allotted    : 1 hr.</span></li>
 				<ul>
 			</div>
