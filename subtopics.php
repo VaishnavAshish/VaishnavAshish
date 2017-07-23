@@ -63,7 +63,7 @@ if(isset($_GET['topic_id']))
 				if(mysql_num_rows($query)>0){
 				while($row=mysql_fetch_array($query)){
 			?>
-					<a href="#">
+					<a href="questions.php?sub_id=<?php echo $row['sub_id']?>">
 						<div class="col-xs-12 col-sm-6 image-subtopics" style="" >
 							<img  src="images/file.png">
 							<h6 class="subtopics-heading" ><?php echo $row['subtopic'];?></h6>

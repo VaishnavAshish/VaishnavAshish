@@ -49,16 +49,15 @@
 		
 	</div>	
 <div class = "container" style="padding-left:0; padding-right:0;" >		
- <form method="POST" >
 	<div ng-app="test" ng-controller="testCtrl as test"  class="media_div col-sm-7 col-xs-12 question-outer " >
 
-			<div ng-repeat="TestQ in test.data" class="col-sm-8 col-xs-12 question-display">
-							<p><b>{{$index}} {{TestQ.question}}</p>
+			<div ng-if="!test.resultView" ng-repeat="TestQ in test.data track by $index" class="col-sm-8 col-xs-12 question-display">
+							<p><b>Q{{$index+1}} {{TestQ.question}}</p>
 							
 									<ul class="options clearfix">
 										<li>
 											<span>
-											    <input  type="checkbox" name="A{{$index}}"  value="A" ng-checked="{TestQ.userOption=='A'?true:false}">
+											    <input  type="checkbox" ng-click="TestQ.userOption='A';test.checkAnswer(TestQ.userOption==TestQ.answer,$index)"  value="A" ng-checked="TestQ.userOption=='A'">
 												<a href="JavaScript:void(0)">A.
 												{{TestQ.opt1}}
 												</a>
@@ -66,7 +65,7 @@
 										</li>
 										<li>
 											<span>
-												 <input  type="checkbox" name="A{{$index}}" value="B">
+												 <input  type="checkbox" ng-click="TestQ.userOption='B';test.checkAnswer(TestQ.userOption==TestQ.answer,$index)" value="B" ng-checked="TestQ.userOption=='B'">
 												<a href="JavaScript:void(0)">B.
 												{{TestQ.opt2}}
 												</a>
@@ -74,7 +73,7 @@
 										</li>
 										<li>
 											<span>
-												 <input  type="checkbox" name="A{{$index}}" value="C">
+												 <input  type="checkbox" ng-click="TestQ.userOption='C';test.checkAnswer(TestQ.userOption==TestQ.answer,$index)" value="C" ng-checked="TestQ.userOption=='C'">
 												<a href="JavaScript:void(0)">C.
 												{{TestQ.opt3}}
 												</a>
@@ -82,7 +81,7 @@
 										</li>
 										<li>
 											<span>
-												 <input  type="checkbox" name="A{{$index}}" value="D">
+												 <input  type="checkbox" ng-click="TestQ.userOption='D';test.checkAnswer(TestQ.userOption==TestQ.answer,$index)" value="D" ng-checked="TestQ.userOption=='D'">
 												<a href="JavaScript:void(0)">D.
 												{{TestQ.opt4}}
 												</a>
@@ -113,8 +112,21 @@
 							</section>
 							<div class="clear"></div>
 						</div> <br> <br> <br>
+						<div ng-if="!test.resultView" class="Submit" style="padding:0px 30px;">
+							<button ng-click="test.showResult()" class="btn btn-info col-xs-12">Submit</button>
+						</div>
+
+						<div ng-if="test.resultView" class="col-xs-12">
+							<!--Result to be Displayed Here-->
+							<p>Correct Answer: <Span>{{test.correstCount}}</span></p>
+							<p>Wrong Answer: <Span>{{test.wrongCount}}</span></p>
+							<p>Un-Attempedr: <Span >{{test.UnCount}}</span></p>
+						</div>
+
+
+
 	</div>
-  </form>
+	
 
 
 <!--Footer-->	
