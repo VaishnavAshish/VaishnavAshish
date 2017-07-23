@@ -6,7 +6,7 @@ require('header.php');
 	if(isset($_POST["submit"]))
 	{	
         $heading = $_POST['heading'];
-		$category = $_POST['category'];
+		$category = $_POST['category-basics'];
 	    $topic_id = $_POST['topic_id'];
 		$sub_id = $_POST['sub_id'];
 		$pdf=$heading.$sub_id.".pdf";
@@ -48,11 +48,11 @@ require('header.php');
                         </div>
                       </div>
 					  
-					  <div class="form-group">
+					 <div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Category</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
-                          <select class="sel_val form-control" name="category" >
+                          <select class="sel_val form-control" name="category-basics" >
 									<option value="">Select Category</option>
 									<?php 
 										$j = 0;
@@ -72,11 +72,12 @@ require('header.php');
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Topic</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
-                          <select class="sel_val topic-select form-control" name="topic_id" >
+                          <select class="sel_val topic-select topic-type-basic form-control" name="topic_id" >
 									<option value="">Select Topic</option>
 						  </select>
                         </div>
                       </div>
+
 					  
 					  <div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select SubTopic</label>
