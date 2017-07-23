@@ -1,6 +1,6 @@
 .page-heading{
 height: 59px !important;
-margin-left: 4% !important; 
+margin-left: 2% !important; 
 margin-right: 0% !important; 
 width:88% !important;
 text-decoration:underline !important;
@@ -430,6 +430,23 @@ display: block;
 font-size:16px !important;
 margin-left:11% !important;
 margin-top:6px !important;
+}
+
+.testname-heading{
+margin-left:11% !important;
+margin-top:6px !important;
+}
+
+.image-testname img{
+float:left !important;
+width:24px; 
+margin-top:auto !important;
+margin-bottom:auto !important;
+max-width:100%; 
+max-height:100%; 
+margin-left: auto; 
+margin-right: auto; 
+display: block;
 }
 
 .image-subtopics img{
