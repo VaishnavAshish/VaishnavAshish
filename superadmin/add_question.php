@@ -12,7 +12,7 @@ require('header.php');
 		@$opt4 = $_POST['opt4'];
 		@$answer = $_POST['answer'];
 		
-		@$category = $_POST['category'];
+		@$category = $_POST['category-question'];
 		@$topic_id = $_POST['topic_id'];
 		@$sub_id = $_POST['sub_id'];
 		$result = mysql_query("Insert into `question`(question,opt1,opt2,opt3,opt4,answer,cat_id,topic_id,sub_id) values('$question','$opt1','$opt2','$opt3','$opt4','$answer','$category','$topic_id','$sub_id')");
@@ -89,7 +89,7 @@ require('header.php');
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Category</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
-                          <select class="sel_val form-control" name="category" >
+                          <select class="sel_val form-control" name="category-question" >
 									<option value="">Select Category</option>
 									<?php 
 										$j = 0;
@@ -109,7 +109,7 @@ require('header.php');
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Topic</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
-                          <select class="sel_val topic-select form-control" name="topic_id" >
+                          <select class="sel_val topic-select topic-type-question form-control" name="topic_id" >
 									<option value="">Select Topic</option>
 						  </select>
                         </div>

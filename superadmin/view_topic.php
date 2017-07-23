@@ -60,10 +60,7 @@ if(isset($_POST['delete_topic'])){
 									<td class=" "><?php echo $row['topic']?></td>
 									<td class="a-right a-right "><?php echo $row['category']?></td>
 									<td class="a-right a-right "><?php 
-									   if($row['type']=='0'){ echo "Folder";}
-									   else if($row['type']=='1'){ echo "Questions Page";}
-									   else if($row['type']=='2'){ echo "Basics";}
-									   else{ echo "Videos Page";}
+										echo $row['type'];
 									   ?>
 									</td>
 									<td class="tc content-center">

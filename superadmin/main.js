@@ -32,6 +32,38 @@ $(document).on('change','select[name="folderCategory"]',function(){
 	});
 });
 
+//topic type question
+$(document).on('change','select[name="category-question"]',function(){
+	var data={};
+	data.cat_id=$('select[name="category-question"]').val();
+	data.filter="Question";
+	$.ajax({
+		type:'post',
+		url:'get_topic.php',
+		data:{'data':data},
+		dataType:'json',
+		beforeSend:function(){
+								$('.topic-type-question').html('<option value="">Loading Topics....</option>');
+								},
+		success:function(response){
+			$('.topic-type-question').html('<option value="">Please select topic</option>');
+			if(response['data']!='NULL'){
+				for(var i=0;i<response['data'].length;i++)
+				{
+				var topic = response['data'][i]['topic'];
+				var topic_id = response['data'][i]['topic_id'];
+				$('.topic-select').append('<option value="'+topic_id+'">'+topic+'</option>');
+				}
+			}
+			
+			
+		}
+	});
+});
+
+//end topic type question
+
+
 
 //change status of user				
 $(document).on('click','.change-status',function(){
