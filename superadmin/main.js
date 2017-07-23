@@ -64,6 +64,68 @@ $(document).on('change','select[name="category-question"]',function(){
 //end topic type question
 
 
+//select topic type videos
+$(document).on('change','select[name="category-videos"]',function(){
+	var data={};
+	data.cat_id=$('select[name="category-videos"]').val();
+	data.filter="Video";
+	$.ajax({
+		type:'post',
+		url:'get_topic.php',
+		data:{'data':data},
+		dataType:'json',
+		beforeSend:function(){
+								$('.topic-type-video').html('<option value="">Loading Topics....</option>');
+								},
+		success:function(response){
+			$('.topic-type-video').html('<option value="">Please select topic</option>');
+			if(response['data']!='NULL'){
+				for(var i=0;i<response['data'].length;i++)
+				{
+				var topic = response['data'][i]['topic'];
+				var topic_id = response['data'][i]['topic_id'];
+				$('.topic-select').append('<option value="'+topic_id+'">'+topic+'</option>');
+				}
+			}
+			
+			
+		}
+	});
+});
+//end ..select topic type videos
+
+
+
+//select topic type videos
+$(document).on('change','select[name="category-basics"]',function(){
+	var data={};
+	data.cat_id=$('select[name="category-basics"]').val();
+	data.filter="Basic";
+	$.ajax({
+		type:'post',
+		url:'get_topic.php',
+		data:{'data':data},
+		dataType:'json',
+		beforeSend:function(){
+								$('.topic-type-basic').html('<option value="">Loading Topics....</option>');
+								},
+		success:function(response){
+			$('.topic-type-basic').html('<option value="">Please select topic</option>');
+			if(response['data']!='NULL'){
+				for(var i=0;i<response['data'].length;i++)
+				{
+				var topic = response['data'][i]['topic'];
+				var topic_id = response['data'][i]['topic_id'];
+				$('.topic-select').append('<option value="'+topic_id+'">'+topic+'</option>');
+				}
+			}
+			
+			
+		}
+	});
+});
+//end ..select topic type videos
+
 
 //change status of user				
 $(document).on('click','.change-status',function(){
