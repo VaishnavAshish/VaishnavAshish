@@ -169,6 +169,28 @@ $(document).on('change','select[name="heading"]',function(){
 	});
 });
 
+//filtering the questions on view_question page
+$(document).on('change','.select-question',function(){
+	var cat_id=$('select[name="category_filer"]').val();
+	var topic_id=$('select[name="topic_filter"]').val();
+	var sub_id=$('select[name="subtopic_filter"]').val();
+	
+    if(cat_id){
+		var link="view_question.php?cat_id="+cat_id;
+		}
+	if(topic_id){
+		
+		link+="&topic_id="+topic_id;
+	}
+    if(topic_id){
+		
+		link+="&sub_id="+sub_id;
+		
+	}	
+	window.location=link;
+	
+});
+
 });  //document.ready
 
 

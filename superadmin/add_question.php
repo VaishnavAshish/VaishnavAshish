@@ -32,7 +32,7 @@ require('header.php');
         <div class="right_col" role="main">
 			<?php include("index_counter.php");?>
 			<div class="x_title">
-                    <h1>Add SubTopic</h1>
+                    <h1>Add Question</h1>
                     <div class="clearfix"></div>
                   </div>
 			<form id="demo-form2" data-parsley-validate method="POST"class="form-horizontal form-label-left">
