@@ -40,7 +40,7 @@ require('header.php');
                         </div>
                       </div>
                       
-                      <div class="form-group">
+                     <div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Category</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
@@ -57,21 +57,27 @@ require('header.php');
 									<option value="<?php echo $row['cat_id'];?>"><?php echo $row['category'];?></option>
 										<?php } ?>
 								</select>
-								
                         </div>
                       </div>
-                      
+					  
 					  <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select type</label>
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Topic</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-						   <select class="sel_val form-control" name="type" >
-									<option value="">Select Type</option>
-									<option value="Folder">Folder</option>
-									<option value="Question">Questions Page</option>
-									<option value="Basic">Basics Page</option>
-									<option value="Video">Video Page</option>
-						   </select>
-						</div>
+							
+                          <select class="sel_val topic-select form-control" name="type" >
+									<option value="">Select Topic</option>
+									<?php 
+										$j = 0;
+										$que = mysql_query("Select * from topics");
+										while($ro=mysql_fetch_array($que))
+										{
+											
+										
+									?>
+									<option value="<?php echo $ro['topic_id'];?>"><?php echo $ro['topic'];?></option>
+										<?php } ?>
+								</select>
+                        </div>
                       </div>
                       
                       <div class="ln_solid"></div>

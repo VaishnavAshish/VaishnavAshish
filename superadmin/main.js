@@ -96,7 +96,7 @@ $(document).on('change','select[name="category-videos"]',function(){
 
 
 
-//select topic type videos
+//select topic type Basics
 $(document).on('change','select[name="category-basics"]',function(){
 	var data={};
 	data.cat_id=$('select[name="category-basics"]').val();
@@ -124,7 +124,7 @@ $(document).on('change','select[name="category-basics"]',function(){
 		}
 	});
 });
-//end ..select topic type videos
+//end ..select topic type Basics
 
 
 //change status of user				
@@ -299,7 +299,16 @@ $(document).on('change','.select-question',function(){
 	
 });
 
-
+//starts basics view table filter
+$(document).on('change','select[name="basic-filter"]',function(){
+var subtopic_id = $('select[name="basic-filter"]').val();
+if(subtopic_id)
+	{
+		link="view_basics.php?sub_id="+subtopic_id;
+	}
+	window.location=link;
+});
+//ends basics view table filter
 
 });  //document.ready
 
