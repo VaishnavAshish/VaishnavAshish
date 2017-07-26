@@ -4,24 +4,34 @@ require('sidebar.php');
 require('header.php');
 if(isset($_POST['edit_name']))
 	{	@$tn_id = $_POST['edit_name'];
-		$result=mysql_query("Select * from `test_name` join `test_heading` on where tn_id='".$tn_id."'");
+		$result=mysql_query("Select * from test_name join test_heading on test_name.th_id=test_heading.th_id where tn_id='".$tn_id."'");
 		$row = mysql_fetch_array($result);
 		
 	}
 	if(isset($_POST['submit']))
 	{
-		$name = $_POST['name'];
+		
+
+    		$name = $_POST['name'];
+        $tn_id=$_POST['tn_id'];
+		$test_category = $_POST['test_category'];
 		$heading = $_POST['heading'];
 		$question=$_POST['nos'];
 		$hours=$_POST['hours'];
-		
-		$result = mysql_query("Update `test_name` set tn_name='".$name."',th_id='".$heading."',no_of_q='".$question."',hours='".$hours."' where tn_id='".$tn_id."'");
+		$minutes=$_POST['minutes'];
+		$seconds=$_POST['seconds'];
+		$arr=[$hours,$minutes,$seconds];
+		$time=implode(";",$arr);
+		 
+		$result = mysql_query("Update `test_name` set tn_name='".$name."',th_id='".$heading."',tc_id='".$test_category."',no_of_q='".$question."',time='".$time."'");
 		if($result)
 		{
 			echo "<script>alert('successful');</script>";
+      header('Location:view_test_name.php');
 		}
 		else echo "<script>alert('unsuccessful');</script>";
 	}
+  
 	
 ?>
 
@@ -78,21 +88,22 @@ if(isset($_POST['edit_name']))
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">No. Of Questions<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" id="first-name" required="required" name="nos" value=""class="form-control col-md-7 col-xs-12">
+                          <input type="number" id="first-name" required="required" name="nos" value="<?php echo $row['no_of_q'];?>"class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
-					  
+					  <?php $time= explode(";",$row['time']);?>
+            
 					   <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Test Time<span class="required">*</span>
                         </label>
                         <div class="col-md-1 col-sm-1 col-xs-3">
-                          <input type="number"  required="required" placeholder="Hrs." name="hours" value=""class="form-control col-md-7 col-xs-12">
+                          <input type="number"  required="required" placeholder="Hrs." name="hours" value="<?php echo $time[0];?>"class="form-control col-md-7 col-xs-12">
                         </div>
 						<div class="col-md-1 col-sm-1 col-xs-3">
-                          <input type="number" required="required"  placeholder="Min." name="minutes" value=""class="form-control col-md-7 col-xs-12">
+                          <input type="number" required="required"  placeholder="Min." name="minutes" value="<?php echo $time[1];?>" class="form-control col-md-7 col-xs-12">
                         </div>
 						<div class="col-md-1 col-sm-1 col-xs-3">
-                          <input type="number"  required="required" placeholder="Sec." name="seconds" value=""class="form-control col-md-7 col-xs-12">
+                          <input type="number"  required="required" placeholder="Sec." name="seconds" value="<?php echo $time[2];?>" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 					  
