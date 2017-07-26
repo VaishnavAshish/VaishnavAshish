@@ -1,9 +1,11 @@
 <?php 
+include 'connection.php';
 if(isset($_GET['tn_id']))
-{ 
-	$testQuery="SELECT * FROM `test_name` where tn_id='".$_GET['tn_id']."' ";
+{  
+	$testQuery="SELECT * FROM `test_name` join `test_heading` on test_name.th_id=test_heading.th_id join `test_category` on test_name.tc_id=test_category.tc_id where test_name.tn_id='".$_GET['tn_id']."' ";
 	$test_query=mysql_query($testQuery);
 	$test=mysql_fetch_array($test_query);
+	
 }
 ?>
 <!DOCTYPE html>
@@ -40,7 +42,10 @@ if(isset($_GET['tn_id']))
 	<div class="col-sm-12 col-xs-12">
 		<ol class="breadcrumb">
 			<li><a href="index.php">Home</a></li>  
-			<li><a href="test_name.php?"><?php echo $test['tn_name'];?></a></li> 	
+			<li><a href="testTopics.php?cat_id=<?php if(isset($_GET['cat_id'])) echo $_GET['cat_id']; ?>">Online Test</a></li> 
+			<li><a href="test_names.php?th_id=<?php echo $test['th_id'];?>&tc_id=<?php echo $test['tc_id'];?>"><?php echo $test['tc_name']; ?></a></li>
+			<li><a href="test_names.php?th_id"><?php echo $test['th_name']; ?></a></li>
+			<li><a href="test_names.php?"><?php echo $test['tn_name'];?></a></li> 	
 		 </ol>
 	</div>
 </div>	
@@ -54,16 +59,22 @@ if(isset($_GET['tn_id']))
 				<h3 style="">Instructions<h3>
 				<ul>
 					<li><span>Total No. of questions : <?php echo $test['no_of_q'];?></span></li>
-					<li><span>Total Time Allotted    : 1 hr.</span></li>
+					<li><span>Total Time Allotted    : <?php $a=explode(";",$test['time']); echo $a[0]." hrs ".$a[1]."  min ".$a[2]." sec";?></span></li>
+					<li><span>Each question carry 1 marks</span></li>
+					<li><span>No Negative marking is there</span></li>
+					<li><span>All questions are Multiple choice questions</span></li>
 				<ul>
 			</div>
 			<div class="col-sm-6 col-xs-12">
 				<h3>Important Note<h3>
 				<ul>
-					<li><span>Total No. of questions : 20</span></li>
-					<li><span>Total Time Allotted    : 1 hr.</span></li>
+					<li><span>Do not refresh the page</span></li>
+					<li><span>Test will be automatically submitted if time is over</span></li>
 				<ul>
-			</div>	
+			</div>
+			<div class="col-sm-12 col-xs-12" style="margin-top:30px; display: flex; align-items: center; justify-content: center; margin-bottom:40px;">
+			     <a href="test.php?tn_id=<?php echo $test['tn_id'];?>"><button type="button" class="btn btn-success">Start test</button></a>
+			</div>
 		</div>
 		
 <!--/-Page Content-->		

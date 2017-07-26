@@ -63,7 +63,7 @@ if(isset($_GET['tc_id']))
 				while($row=mysql_fetch_array($query)){
 			?>      
 			       
-					    <a href="test_instruction.php?tn_id=<?php echo $row['tn_id'];?>">
+					    <a href="test_instruction.php?tn_id=<?php echo $row['tn_id'];?>&cat_id=<?php echo $_GET['cat_id'];?>">
 						<div class="col-xs-12 col-sm-12 image-testname">
 							<img  src="images/test_icon.png">
 							<h4 style="margin-top:6px; margin-left:50px;" ><?php echo $row['tn_name'];?></h4>
