@@ -1,9 +1,5 @@
 $(document).ready(function(){
 	
-
-
-
-
 $(document).on('change','select[name="folderCategory"]',function(){
 	var data={};
 	data.cat_id=$('select[name="folderCategory"]').val();

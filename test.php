@@ -1,4 +1,13 @@
-<?php include("connection.php");?>
+<?php include("connection.php");
+
+if(isset($_GET['tn_id']))
+{  
+	$testQuery="SELECT * FROM `test_name` join `test_heading` on test_name.th_id=test_heading.th_id join `test_category` on test_name.tc_id=test_category.tc_id where test_name.tn_id='".$_GET['tn_id']."' ";
+	$test_query=mysql_query($testQuery);
+	$test=mysql_fetch_array($test_query);
+	
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,16 +39,16 @@
 
 <!--Icons-->
 	<div class="col-sm-12 col-xs-12" style="height: 59px;padding-left:25px;">
-		<u><h3>Online test ::  <span style="color:green;">Online Aptitude Test<span><h3> </u>
+		<u><h3>Online test <span class="glyphicon glyphicon-forward"></span> <span style="color:green;"><?php echo $test['tc_name'];?><span><h3> </u>
 	</div>	
 
 	<div class="col-sm-12 col-xs-12 fixme" style="height: 45px; margin-bottom: 1%;">
 		<div class="col-sm-8 col-xs-8">
 			<ol class="breadcrumb">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Private</a></li>
-				<li><a href="#">Pictures</a></li>
-				<li class="active">Vacation</li>        
+			    <li><a href="index.php">Home</a></li>  
+				<li><a href="test_names.php?th_id=<?php echo $test['th_id'];?>&tc_id=<?php echo $test['tc_id'];?>"><?php echo $test['tc_name']; ?></a></li>
+				<li><a href="test_names.php?th_id"><?php echo $test['th_name']; ?></a></li>
+				<li><a href="test_names.php?"><?php echo $test['tn_name'];?></a></li> 	       
 			 </ol>
 		</div>
 		
@@ -112,8 +121,8 @@
 							</section>
 							<div class="clear"></div>
 						</div> <br> <br> <br>
-						<div ng-if="!test.resultView" class="Submit" style="padding:0px 30px;">
-							<button ng-click="test.showResult()" class="btn btn-info col-xs-12">Submit</button>
+						<div ng-if="!test.resultView" class="Submit" style="padding:0px 30px; ">
+							<button style="margin-top:30px;" ng-click="test.showResult()" class="btn btn-info col-xs-12">Submit</button>
 						</div>
 
 						<div ng-if="test.resultView" class="col-xs-12">

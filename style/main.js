@@ -291,11 +291,12 @@ $(document).on('click','.check-answer',function(){
 });	
 
 //Timer for test
-
+function timer(hrs,min,sec){
 var d1 = new Date ();
 var d2 = new Date ( d1 );
-d2.setHours ( d1.getHours() + 2);
-d2.setMinutes(d1.getMinutes() + 0);
+d2.setHours (hrs);
+d2.setMinutes(min);
+d2.setSeconds(sec);
 
 // Update the count down every 1 second
 var x = setInterval(function() {
@@ -312,8 +313,7 @@ var x = setInterval(function() {
     var seconds = Math.floor((difference % (1000 * 60)) / 1000);
     
     // Output the result in an element with id="demo"
-    // document.getElementById("timer").innerHTML = hours + "h "
-    // + minutes + "m " + seconds + "s ";
+     document.getElementById("timer").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
     
     // If the count down is over, write some text 
     if (difference < 0) {
@@ -322,7 +322,7 @@ var x = setInterval(function() {
     }
 }, 1000);
 
-
+}
 
 //fixed breadcrumbs to top
 
