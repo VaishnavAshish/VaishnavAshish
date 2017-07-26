@@ -5,8 +5,16 @@ if(isset($_POST['delete_heading'])){
    $check = $_POST['delete_heading'];
    $delete = mysql_query("DELETE FROM test_heading WHERE th_id = '".$check."' ");
    if($delete)
-   {
-	   echo "<script>alert('Deleted Successfully');</script>";
+   {	$delete_test_name=mysql_query("Delete from test_name where th_id = '".$check."'");
+	 		if($delete_test_name)
+			 {
+				 $delete_test_question=mysql_query("Delete from test_question where th_id = '".$check."'");
+				 if($delete_test_question)
+				 {
+						 echo "<script>alert('Successfully Deleted');</script>";
+				 }
+			 }
+	  
    }
    else
 	    echo "<script>alert('Unsuccessful');</script>";
