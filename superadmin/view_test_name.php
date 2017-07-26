@@ -7,7 +7,7 @@ if(isset($_POST['delete_name']))
 	$id=$_POST['delete_name'];
 	$delete = mysql_query("Delete from `test_name` where tn_id='".$id."'");
 	if($delete)
-	{
+	{	$delete_question=mysql_query("Delete from test_question where tn_id='".$id."'");
 		echo "<script>alert('Deleted Successfully');</script>";
 	}
 }
