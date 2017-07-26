@@ -6,8 +6,17 @@ if(isset($_POST['delete_category']))
 {	$id = $_POST['delete_category'];
 	$delete = mysql_query("Delete from `test_category` where tc_id='".$id."'");
 	if($delete)
-	{
-		echo "<script>alert('Deleted Successfully');</script>";
+	{		$delete_heading=mysql_query("Delete from test_heading where tc_id='".$id."'");
+			if($delete_heading)
+				{
+					$delete_test_name=mysql_query("Delete from test_name where tc_id='".$id."'");
+					if($delete_test_name)
+					{
+						$delete_test_question=mysql_query("Delete from test_question where tc_id='".$id."'");
+						echo "<script>alert('Deleted Successfully');</script>";
+					}
+				}
+		
 	}
 }
 	
