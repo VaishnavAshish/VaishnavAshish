@@ -15,13 +15,13 @@ if(isset($_POST['userdata'])){
 					$rsfb = mysql_query("SELECT * FROM `users` WHERE fbid = '".$fbid."'");
 					$numfb = mysql_num_rows($rsfb);
 					
-					if($numfb > 0 && $numEmails==0){
+					if($numfb > 0){
 								$_SESSION['username']=$name;
 								$_SESSION['email']=$email;
 								$arr=['username'=>$name,'email'=>$email,'msg'=>'Logged in Successfully'];
 								echo json_encode($arr);
 					}
-					else if($numEmails > 0 AND $numfb < 0) {
+					else if($numEmails > 0 AND $numfb == 0) {
 						@$query=mysql_query("UPDATE into `users` (fbid) values('$fbid')");
 						$_SESSION['username']=$name;
 						$_SESSION['email']=$email;
@@ -75,7 +75,8 @@ else if(isset($_POST['GMAIL'])){
 				echo json_encode(['username'=>null,'email'=>null,'msg'=>'Gmail Fail']);
 			}
 	}
-}else
+}
+else
 	{
 		//normal email Login
 		 if(isset($_POST))

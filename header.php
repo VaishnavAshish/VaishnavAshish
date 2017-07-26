@@ -72,7 +72,7 @@ require ('connection.php');
 			
 				<div style="padding-top:90px;">	
               	<div class="col-xm-12 search-mobile">
-					<form class="navbar-form search-form" style="margin-left:15px; margin-right:auto;">
+					<form class="navbar-form search-form" style="margin: 0px;margin-left: auto;margin-right: auto;">
 						<div class=" form-group" style=" border-style:solid; border-width:thin; width:80%; float:left;">
 						     <input type="text" class="form-control" placeholder="Search" style=" border-width: 0 !important;">
 						 </div>	

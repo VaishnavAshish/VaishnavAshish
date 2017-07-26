@@ -54,8 +54,7 @@ if(isset($_POST['subscription'])){
 <br><br>	
 
 <!--footer start-->
-<div class="row">
-	<div class="container">
+
 		<div class="footer">
 			<div class="container">			
 				<div class="row footer-row">
@@ -113,5 +112,6 @@ if(isset($_POST['subscription'])){
 								</ul>
 							</div>
 			</div>	
+      </div>
 </div>
  <script src="style/js/google_login.js" async defer></script>
