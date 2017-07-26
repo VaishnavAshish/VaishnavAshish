@@ -36,6 +36,56 @@ if(isset($_POST['delete_video']))
          <div class="row">
              <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
+								<!--Filter question-->
+		<div class="x_title">
+                    <h1>Filter Videos</h1>
+                    <div class="clearfix"></div>
+                  </div>
+			<form id="demo-form2" data-parsley-validate method="POST"class="form-horizontal form-label-left">
+
+         <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Category</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+							
+                          <select class="sel_val form-control" name="category-videos" >
+									<option value="">Select Category</option>
+									<?php 
+										$j = 0;
+										$query = mysql_query("Select * from category");
+										while($row=mysql_fetch_array($query))
+										{
+											
+										
+									?>
+									<option value="<?php echo $row['cat_id'];?>"><?php echo $row['category'];?></option>
+										<?php } ?>
+								</select>
+                        </div>
+                      </div>
+					  
+					    <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Topic</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+							
+                          <select class="sel_val topic-select topic-type-video form-control" name="topic_id" >
+									<option value="">Select Topic</option>
+						  </select>
+                        </div>
+                      </div>
+					  
+					  <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select SubTopic</label>
+					  <div class="col-md-6 col-sm-6 col-xs-12">
+							
+                          <select class="sel_val sub_topic-select form-control" name="videos-filter" >
+									<option value="">Select SubTopic</option>
+						  </select>
+                        </div>
+					  </div>
+					 
+                    </form>
+<!--//filter question-->
+
 					<div class="x_title">
 						<h1>Videos</h1>
 						<div class="clearfix"></div>
@@ -52,18 +102,25 @@ if(isset($_POST['delete_video']))
 									<th class="column-title ">Youtube Video Id</th>
 									<th class="column-title no-link last tc"><span class="nobr">Action</span></th>
 								  </tr>
-								</thead>
+								 </thead>
 									<tbody>
 								<?php 
 										$i=$start;
-										$result = mysql_query("Select * from `videos` limit $start,$end");
-										$page_count=mysql_num_rows(mysql_query("Select * from `videos`"))/$limit;
+										$query="Select * from videos";
+										if(isset($_GET['subtopic_id']))
+										{
+											$query.="where sub_id='".$_GET['subtopic_id']."'";
+										}
+										$query1=$query;
+										$query.=" limit $start,$limit";
+							//			$result = mysql_query("Select * from `videos` limit $start,$end");
+								$result=mysql_query($query);
+									
+										$page_count=mysql_num_rows(mysql_query($query1))/$limit;
 										while($row=mysql_fetch_array($result))
 										{
 											$i+=1;
-										
-										
-									?>
+										?>
 								
 								  <tr class="even pointer">
 									<td><?php echo $i;?></td>

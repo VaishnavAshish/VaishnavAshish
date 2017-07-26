@@ -310,6 +310,17 @@ if(subtopic_id)
 });
 //ends basics view table filter
 
+//starts videos filter
+$(document).on('change','select[name="videos-filter"]',function(){
+var subtopic_id=$('select[name="videos-filter"]').val();
+if(subtopic_id)
+	{
+		link="view_videos.php?sub_id="+subtopic_id;	
+	}
+	window.location=link;
+});
+//ends videos filter
+
 });  //document.ready
 
 
