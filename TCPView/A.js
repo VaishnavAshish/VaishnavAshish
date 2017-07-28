@@ -40,9 +40,8 @@ function checkNiven(nu) {
 }
 
 function found(nu) {
-    for (var i = nu; i < nu + N; i++) {
-        print(i);
-    }
+
+    print(nu);
 }
 
 
