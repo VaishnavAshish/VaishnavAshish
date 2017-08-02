@@ -99,7 +99,7 @@ session_start();
 				   <li><a><i class="fa fa-desktop"></i> SubTopic <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="add_subtopic.php">Add Subtopic</a></li>
-                      <li><a href="view_subtopic.php">view Subtopic</a></li>
+                       <li><a href="view_subtopic.php">view Subtopic</a></li>
                      
                     </ul>
                   </li>

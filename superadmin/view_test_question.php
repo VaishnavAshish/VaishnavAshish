@@ -87,7 +87,7 @@ if(isset($_POST['delete_question']))
 											<form action="" method="post">
 												<button type="submit" name="delete_question" class="btn btn-primary" value="<?php echo $row['tq_id']?>">Delete</button>
 											</form>
-											<form action="edit_question.php" method="POST">
+											<form action="edit_test_question.php" method="POST">
 												<button type="submit" name="edit_question" class="btn btn-primary" value="<?php echo $row['tq_id']?>">Edit</button>
 											</form>
 										</td>
