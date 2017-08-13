@@ -94,7 +94,11 @@ if(isset($_GET['tc_id']))
                     </div>
         	<?php }?>
 		</div>
-		
+
+<!--News-->
+<?php include('news.php');?>
+<!--/News-->
+</div>		
 <!--/-Page Content-->		
 
 

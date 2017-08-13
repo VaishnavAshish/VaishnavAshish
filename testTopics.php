@@ -92,9 +92,12 @@ if(isset($_GET['topic_id']))
         	<?php }?>
 		</div>
 		
-<!--/-Page Content-->		
-
-
+	
+<!--News-->
+<?php include('news.php');?>
+<!--/News-->
+</div>
+<!--/-Page Content-->	
 <!--Footer-->	
 <?php include("footer.php");?>	
 <!--/Footer-->

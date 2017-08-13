@@ -142,7 +142,10 @@
 							    </ul>
 	</div>
 	
-
+<!--News-->
+<?php include('news.php');?>
+<!--/News-->
+</div>
 
 <!--Footer-->	
 <?php include("footer.php");?>	

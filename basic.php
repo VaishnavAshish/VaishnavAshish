@@ -82,7 +82,10 @@ if(isset($_GET['cat_id']))
         <?php }?>
 		</div>
         
-	
+<!--News-->
+<?php include('news.php');?>
+<!--/News-->
+</div>	
 		
 <!--/Page Content-->
 

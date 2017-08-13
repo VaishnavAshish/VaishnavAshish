@@ -24,41 +24,13 @@ if(isset($_POST['subscription'])){
 	
 }
 ?>
-
-
-
-<!--NEWS-->
-<div class="col-sm-4 col-xs-12" style="max-width:100%; ">
-			<div class="col-xs-4" style="border:solid; background-color:white; height:560px; padding:0px; border:1; width:100%; margin-left:2%;"> 
-				<div  class="col-xs-12"  style="background-color:#031658; height:35px; width:100%; color:white;">
-					<h4  style="text-align:center;">Latest News<h4>
-				</div>
-				<marquee direction="up" style="height:520px;">
-					<?php 
-						$homepage = file_get_contents('http://newsapi.org/v1/articles?source=the-times-of-india&sortBy=top&apiKey=aac20ad4883a41e0b8d8f4874e8168e1');
-						$news=json_decode($homepage,true);
-						foreach($news['articles'] as $value)
-						{ 
-					?>
-							<div class="col-xs-12" >
-							<a href="<?php echo $value['url'];?>" target="_blank"
-							<h4 class="text-primary"><?php echo $value['title'];?></h4></a>
-							<p class="text-default"><?php echo $value['description'];?></p>
-							</div>
-						<?php } ?>
-				</marquee>
-			</div>
-		</div>
-</div>
-<!--/NEWS-->
 <br><br>	
-
 <!--footer start-->
 
 		<div class="footer">
 			<div class="container">			
 				<div class="row footer-row">
-							<div class="col-md-3 col-sm-6 col-xs-12 " style="height:100;">
+							<div class="col-sm-4 col-xs-12 " style="height:100; padding:0 30px 0 30px;">
 								<h3 style="margin-left:15px; margin-bottom:15px;">Subscription</h3>
 								<!--Subscription form-->
 									  <form class="foot" action=""  method="POST" >
@@ -74,7 +46,8 @@ if(isset($_POST['subscription'])){
 										</div>
 									  </form>
 							</div>
-							<div class="col-md-4 col-sm-6 col-xs-12"><h3 style="margin-left:15px; margin-bottom:15px;">Contact Us</h3>
+							<div class="col-sm-4 col-xs-12" style="padding:0 30px 0 30px;">
+							    <h3 style="margin-left:15px; margin-bottom:15px; ">Contact Us</h3>
 								<!--Contact Us form-->
 								<form class="foot" action="" method="POST">
 										<div class="form-group">
@@ -95,7 +68,7 @@ if(isset($_POST['subscription'])){
 										</div>
 								</form>
 							</div>
-							<div class="col-md-4 col-sm-6 col-xs-12" style="text-align:left; margin-bottom:15px;"><h3>Questions and Answers</h3>
+							<div class="col-sm-4 col-xs-12" style="text-align:left; margin-bottom:15px; padding:0 30px 0 30px;"><h3>Questions and Answers</h3>
 								<ul style="list-style-position: inside;">
 									 <form method="post" action="topics.php" id="cat" style="display:none;">
 										<input type="text" name="cat_id">
