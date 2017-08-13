@@ -76,7 +76,11 @@ if(isset($_GET['tn_id']))
 			     <a href="test.php?tn_id=<?php echo $test['tn_id'];?>"><button type="button" class="btn btn-success">Start test</button></a>
 			</div>
 		</div>
-		
+
+<!--News-->
+<?php include('news.php');?>
+<!--/News-->
+</div>		
 <!--/-Page Content-->		
 
 

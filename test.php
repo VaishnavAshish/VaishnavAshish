@@ -135,7 +135,10 @@ if(isset($_GET['tn_id']))
 
 
 	</div>
-	
+<!--News-->
+<?php include('news.php');?>
+<!--/News-->
+</div>	
 
 
 <!--Footer-->	

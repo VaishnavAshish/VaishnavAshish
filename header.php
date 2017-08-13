@@ -81,7 +81,7 @@ require ('connection.php');
 				</div>				
 				<div class="topnav" style="background-color:#e84c4c !important; padding-left:4%;" id="myTopnav">
 				  <a href="index.php">Home</a>
-				  <a href="index.php">About</a>
+				  <a href="about.php">About</a>
 					 <?php 
 					 $cat=mysql_query("SELECT * FROM `category`");
 					 while($res=mysql_fetch_array($cat))
@@ -122,7 +122,21 @@ require ('connection.php');
 												<div class="col-xs-12 col-md-12">
 													<h2 style="color:#031658">Login</h2><br>
 													<!-- Login form-->
-													<form class="login_form">
+													 <?php if(isset($_SESSION['login_msg']))
+															 { ?>
+														    <script>$("#signup").modal("show");</script>
+															<div  class="alert alert-danger fade in">
+																<a href="#" class="close" data-dismiss="alert">×</a>
+																<strong>
+																	
+																		
+																	<?php  echo $_SESSION['login_msg'];?>
+																</strong>
+															</div>
+														<?php session_unset($_SESSION['login_msg']); 
+														      }
+															?>
+													<form method="post" action="login.php" class="login_form">
 														<div class="form-group">
 														  <label>Email:</label>
 														  <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
@@ -131,10 +145,7 @@ require ('connection.php');
 															<label for="pwd">Password:</label>
 															<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" required>
 														</div>
-														<div class="checkbox">
-														  <label><input type="checkbox" name="remember"> Remember me</label>
-														</div>
-														<button type="submit" id="login" class="btn btn-default" style="background-color:#031658; color:white;">Login</button>
+														<button type="submit" name="login" id="login" class="btn btn-default" style="background-color:#031658; color:white;">Login</button>
 													</form>
 												</div>
 												
@@ -158,8 +169,22 @@ require ('connection.php');
 										<div class="col-xs-12 col-md-6 login" >
 											<!-- Register form-->
 											<h2 style="color:#031658;">Register</h2><br>
-											<form class="register_form" method="post">
-												<div class="form-group">
+											<form action="register.php" method="post">
+											    <?php if(isset($_SESSION['msg']))
+															 { ?>
+														    <script>$("#signup").modal("show");</script>
+															<div  class="alert alert-danger fade in">
+																<a href="#" class="close" data-dismiss="alert">×</a>
+																<strong>
+																	
+																		
+																	<?php  echo $_SESSION['msg'];?>
+																</strong>
+															</div>
+														<?php session_unset($_SESSION['msg']); 
+														      }
+															?>
+											   <div class="form-group">
 												  <label>User Name:</label>
 												  <input type="text" class="form-control"  placeholder="Enter Your Name" name="name" required>
 												</div>
@@ -182,7 +207,7 @@ require ('connection.php');
 												  <label><input type="checkbox" class="tnc" name="remember" required checked><a href="">I agree term & Conditions</a></label>
 												</div>
 												<div id="register_result"></div>
-												<button  type="submit" id="register" class="btn btn-default" style="background-color:#031658; color:white;">Register</button>
+												<button  type="submit" name="register" id="register" class="btn btn-default" style="background-color:#031658; color:white;">Register</button>
 											</form>
 										</div>
 									</div>	

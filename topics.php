@@ -99,7 +99,10 @@ if(!isset($_GET['folder'])){
                     	</div>
 					<?php }?>
 		</div>
-	
+<!--News-->
+<?php include('news.php');?>
+<!--/News-->
+</div>	
 		
 <!--/Page Content-->
 

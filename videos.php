@@ -76,7 +76,10 @@ if(isset($_GET['topic_id']))
                     </div>
         	<?php }?>
 		</div>
-		
+<!--News-->
+<?php include('news.php');?>
+<!--/News-->
+</div>		
 <!--/-Page Content-->		
 
 

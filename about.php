@@ -24,32 +24,17 @@
 <?php include("header.php");?>	
 </div>
 <!--/Header-->
-
-<?php 
-$cat=mysql_query("SELECT * FROM `category`");
-?>
-
-<!--Category Icons-->
 <br><br>
 
-<div class="container cont-width" >			
-		<div class="col-sm-7 col-xs-12">
-			<?php while($row=mysql_fetch_array($cat))
-					{ ?>
-			<a class="category_post" href="<?php echo $row['page']."?cat_id=".$row['cat_id']?>">
-				<div class=" imageicon col-sm-4 col-md-4 col-xs-6">
-					<img  src="images/<?php echo $row['cat_image'];?>" alt="<?php echo $row['cat_image'];?>"></img>
-					<h4><?php echo $row['category'];?></h4>
-				</div>
-			</a>
-					<?php } ?>
-		</div>
-		
-<!--/Category Icons-->
-
-<!--News-->
-<?php include('news.php');?>
-<!--/News-->
+<div class="container" >			
+	<div style="padding:0 70px 0 70px;">
+       <h1 style="text-align:center; color:#031658; text-decoration:underline;">About Us</h1>
+	   <br>
+	   <p style="font-size:25px;" >
+			We at padhlepappu.com believe in hard work and dedication and we want to provide platform to those students who have the dream to get the government jobs through their own preparation. 
+			We have tried to make our website easy, appropriate and relevant so that we can fulfill the aspiration of all the candidates who are looking for an ultimate solution of their all problems related to written exams. 
+	   </p>
+	</div>
 </div>
 
 
