@@ -168,16 +168,35 @@ function timer(hr,min,sec) {
 							</section>
 
 							<div class="clear"></div>
-						</div> <br> <br> <br>
+						</div> 
 						<div ng-if="!test.resultView" class="Submit" style="padding:0px 30px; ">
+							<br> <br> <br>
 							<button id="submit" style="margin-top:30px;" ng-click="test.showResult()" class="btn btn-info col-xs-12">Submit</button>
 						</div>
 
 						<div ng-if="test.resultView" class="col-xs-12">
 							<!--Result to be Displayed Here-->
-							<p>Correct Answer: <Span>{{test.correstCount}}</span></p>
+							<!--<p>Correct Answer: <Span>{{test.correstCount}}</span></p>
 							<p>Wrong Answer: <Span>{{test.wrongCount}}</span></p>
-							<p>Un-Attempedr: <Span >{{test.UnCount}}</span></p>
+							<p>Un-Attempedr: <Span >{{test.UnCount}}</span></p>-->
+		<table class="ib-dgray" cellspacing="0" cellpadding="4" style="padding:10px;margin:10px;font-size:12px; border:2px solid #ddf8c2; background-color:#fafafa;" width="100%">
+            <tbody><tr><td align="center" bgcolor="#ddf8c2" colspan="3"><b>Marks : <Span>{{test.correstCount}}</span>/{{test.correstCount+test.wrongCount+test.UnCount}} </b></td></tr>
+            <tr>
+                <td>Total number of questions</td>
+                <td width="1%">:</td>
+                <td width="10%" nowrap="nowrap" align="right" style="padding-right:40px"><b>{{test.correstCount+test.wrongCount+test.UnCount}}</b></td>
+            </tr>
+            <tr>
+                <td>Number of answered questions</td>
+                <td width="1%">:</td>
+                <td align="right" style="padding-right:40px"><b>{{test.correstCount+test.wrongCount}}</b></td>
+            </tr>
+            <tr>
+                <td>Number of unanswered questions</td>
+                <td width="1%">:</td>
+                <td align="right" style="padding-right:40px"><b>{{test.UnCount}}</b></td>
+            </tr>
+            </tbody></table>
 						</div>
 
 
