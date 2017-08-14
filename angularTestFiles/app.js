@@ -1,6 +1,7 @@
 angular.module("test",[])
     .controller("testCtrl",function($http,$timeout,$window){
         var test=this;
+            test.resultView='instructions';
             test.resultArr=[];
         var params = window.location.search;
         var config={
@@ -14,7 +15,9 @@ angular.module("test",[])
             }
             $timeout(function(){d[q]=!d[q];},20); 
         }
-
+        test.startTest=function(){
+            test.resultView="test";
+        }
         test.checkAnswer=function(result,index){
             test.resultArr[index]=result;
             console.log(test.resultArr);
@@ -35,7 +38,7 @@ angular.module("test",[])
                     wrong++;
                 }
             }
-            test.resultView=true;
+            test.resultView="result";
             test.correstCount=correct;
             test.wrongCount=wrong;
 			test.UnCount=un;
