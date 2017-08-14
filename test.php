@@ -153,16 +153,10 @@ function timer(hr,min,sec) {
 									</ul>
 							
 							<div class="col-xs-6 col-sm-3 under-option">
-								<a class="workspace" ng-click="test.toggel(TestQ,'Hanswer')" >&nbsp;Workspace</a>
-							</div>
-							<div class="col-xs-6 col-sm-3 under-option">
 								<a class="report" ng-click="test.toggel(TestQ,'Hreport')" >&nbsp;Report</a>
 							</div>
 
-							<section style="margin:20px 0px" ng-show="TestQ.Hanswer==true">
-								<p style="margin-left:5%;" class="text-danger">Correct answer is {{TestQ.answer}}</p>
-							</section>
-							<section style="margin:20px 0px" ng-show="TestQ.Hreport==true">
+							<section style="position: relative;top: 20px;margin:20px;" ng-show="TestQ.Hreport==true">
 								<form action="" method="post">
 									<div class="form-group">
 										<textarea style="border:1px solid #ccc; width:100%; color: #555;" name="question" style="overflow: auto; resize:none; width:100%;" cols="15" placeholder="Please tell us what's wrong with this question" required></textarea>
@@ -172,6 +166,7 @@ function timer(hr,min,sec) {
 									 <button type="submit" name="subscription" class="btn btn-default button-blue">Report</button>
 								</form>
 							</section>
+
 							<div class="clear"></div>
 						</div> <br> <br> <br>
 						<div ng-if="!test.resultView" class="Submit" style="padding:0px 30px; ">
