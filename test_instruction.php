@@ -57,7 +57,7 @@ if(isset($_GET['tn_id']))
 		$sec=$a[2];
 		?>
 		<div class="col-sm-4 col-xs-4 text-danger" style="float:right; ">
-			<h5 style="float:right;">Time Left: <span id="timer"></span></h5>
+			<h5 style="float:right;"><span id="timer"></span></h5>
 		</div>
 		
 	</div>	

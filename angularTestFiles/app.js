@@ -4,9 +4,17 @@ angular.module("test", [])
         test.resultView = 'instructions';
         test.resultArr = [];
         var params = window.location.search;
-        var config = {
-            method: 'GET',
-            url: 'angularTestFiles/testFetch.php' + params
+        init();
+        function init() {
+            var config = {
+                method: 'GET',
+                url: 'angularTestFiles/testFetch.php' + params
+            }
+            $http(config).then(
+                function (success) {
+                    test.data = success.data;
+                }
+            );
         }
 
         test.toggel = function (d, q) {
@@ -23,54 +31,6 @@ angular.module("test", [])
             test.resultArr[index] = result;
             // console.log(test.resultArr);
         }
-
-        function timer(hr, min, sec) {
-            if (test.stop != true) {
-                if (parseInt(sec) > 0) {
-                    sec = parseInt(sec) - 1;
-                    document.getElementById("timer").innerHTML = hr + " Hr " + min + " Min " + sec + " Sec";
-                    document.getElementById("title").innerHTML = hr + " Hr " + min + " Min " + sec + " Sec";
-                    setTimeout(function () {
-                        timer(hr, min, sec);
-                    }, 1000);
-                }
-                else {
-                    if (parseInt(sec) == 0) {
-                        // min = parseInt(min) - 1;
-
-                        if (parseInt(min) == 0 && parseInt(hr) > 0) {
-                            hr = parseInt(hr) - 1;
-                            min = 60;
-                            sec = 60;
-                            document.getElementById("timer").innerHTML = hr + " Hr " + min + " Min " + sec + " Sec";
-                            document.getElementById("title").innerHTML = hr + " Hr " + min + " Min " + sec + " Sec";
-                            setTimeout(function () {
-                                timer(hr, min, sec);
-                            }, 1000);
-                        }
-
-                        else if (parseInt(min) == 0 && parseInt(hr) == 0) {
-                            alert("Timeout Click ok to submit");
-                            setTimeout(function () {
-                                test.showResult();
-                            }, 1000);
-                        }
-                        else {
-                            min = parseInt(min) - 1;
-                            sec = 60;
-                            document.getElementById("timer").innerHTML = hr + " Hr " + min + " Min " + sec + " Sec";
-                            document.getElementById("title").innerHTML = hr + " Hr " + min + " Min " + sec + " Sec";
-                            setTimeout(function () {
-                                timer(hr, min, sec);
-                            }, 1000);
-                        }
-                    }
-
-                }
-            }
-        }
-
-
         test.showResult = function () {
             test.stop = true;
             var un = 0;
@@ -93,10 +53,52 @@ angular.module("test", [])
             //Scroll to the Result
             $window.scrollTo(0, 0);
         }
-        $http(config).then(
-            function (success) {
-                test.data = success.data;
+
+
+        function timer(hr, min, sec) {
+            if (test.stop != true) {
+                if (parseInt(sec) > 0) {
+                    sec = parseInt(sec) - 1;
+                    document.getElementById("timer").innerHTML = "Time Left: " + hr + " Hr " + min + " Min " + sec + " Sec";
+                    document.getElementById("title").innerHTML = hr + " Hr " + min + " Min " + sec + " Sec";
+                    setTimeout(function () {
+                        timer(hr, min, sec);
+                    }, 1000);
+                }
+                else {
+                    if (parseInt(sec) == 0) {
+                        // min = parseInt(min) - 1;
+
+                        if (parseInt(min) == 0 && parseInt(hr) > 0) {
+                            hr = parseInt(hr) - 1;
+                            min = 60;
+                            sec = 60;
+                            document.getElementById("timer").innerHTML = "Time Left: " + hr + " Hr " + min + " Min " + sec + " Sec";
+                            document.getElementById("title").innerHTML = hr + " Hr " + min + " Min " + sec + " Sec";
+                            setTimeout(function () {
+                                timer(hr, min, sec);
+                            }, 1000);
+                        }
+
+                        else if (parseInt(min) == 0 && parseInt(hr) == 0) {
+                            alert("Timeout Click ok to submit");
+                            setTimeout(function () {
+                                test.showResult();
+                            }, 1000);
+                        }
+                        else {
+                            min = parseInt(min) - 1;
+                            sec = 60;
+                            document.getElementById("timer").innerHTML = "Time Left: " + hr + " Hr " + min + " Min " + sec + " Sec";
+                            document.getElementById("title").innerHTML = hr + " Hr " + min + " Min " + sec + " Sec";
+                            setTimeout(function () {
+                                timer(hr, min, sec);
+                            }, 1000);
+                        }
+                    }
+
+                }
             }
-        );
+        }
 
     })
