@@ -52,7 +52,7 @@ if(isset($_GET['topic_id']))
 	</div>
 </div>	
 <!--/Breadcrumbs-->
-<br><br>
+
 <!--Page Content-->
 <div class = "container" style="margin-top:100px;margin-bottom:100px;padding-left:3%; padding-right:3%;" >			
 		<div class="media_div col-sm-8 col-xs-12 " >
