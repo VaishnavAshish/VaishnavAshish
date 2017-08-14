@@ -26,7 +26,9 @@ if(isset($_GET['tn_id']))
 	   <script src="angularTestFiles/app.js"></script>
 <script>
 var t;
+var stop;
 function timer(hr,min,sec) {
+	if(stop!=true){
             if (parseInt(sec) > 0) {
                 sec = parseInt(sec) - 1;
                 document.getElementById("timer").innerHTML = hr+" Hr "+min+" Min " + sec+" Sec";
@@ -65,7 +67,8 @@ function timer(hr,min,sec) {
                 }
                
             }
-        }
+		}
+    }
   
 
 </script>
@@ -171,7 +174,7 @@ function timer(hr,min,sec) {
 						</div> 
 						<div ng-if="!test.resultView" class="Submit" style="padding:0px 30px; ">
 							<br> <br> <br>
-							<button id="submit" style="margin-top:30px;" ng-click="test.showResult()" class="btn btn-info col-xs-12">Submit</button>
+							<button id="submit" style="margin-top:30px;" onClick="stop=true;" ng-click="test.showResult()" class="btn btn-info col-xs-12">Submit</button>
 						</div>
 
 						<div ng-if="test.resultView" class="col-xs-12">
