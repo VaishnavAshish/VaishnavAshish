@@ -24,57 +24,6 @@ if(isset($_GET['tn_id']))
 	  
 	  <script src="angularTestFiles/angular/angular.min.js"></script>
 	   <script src="angularTestFiles/app.js"></script>
-<script>
-var t;
-var stop;
-function timer(hr,min,sec) {
-	if(stop!=true){
-            if (parseInt(sec) > 0) {
-                sec = parseInt(sec) - 1;
-                document.getElementById("timer").innerHTML = hr+" Hr "+min+" Min " + sec+" Sec";
-				document.getElementById("title").innerHTML = hr+" Hr "+min+" Min " + sec+" Sec";
-                 t=setTimeout(function(){
-				 timer(hr,min,sec);
-				 },1000);
-            }
-            else { 
-                if (parseInt(sec) == 0) {
-                   // min = parseInt(min) - 1;
-                    
-					if(parseInt(min)==0 && parseInt(hr)>0){
-						hr=parseInt(hr)-1;
-						min=60;
-						sec=60;
-						document.getElementById("timer").innerHTML = hr+" Hr "+min+" Min " + sec+" Sec";
-						document.getElementById("title").innerHTML = hr+" Hr "+min+" Min " + sec+" Sec";
-                        t= setTimeout(function(){
-				          timer(hr,min,sec);
-				          },1000);
-					}
-					
-					else if (parseInt(min)==0 && parseInt(hr)==0) {
-                       alert("Timeout Click ok to submit");
-					   setTimeout(function(){
-				          $('#submit').click();
-				          },1000);
-					 }
-                    else {
-						min = parseInt(min) - 1;
-                        sec = 60;
-                        document.getElementById("timer").innerHTML = hr+" Hr "+min+" Min " + sec+" Sec";
-						document.getElementById("title").innerHTML = hr+" Hr "+min+" Min " + sec+" Sec";
-                       t= setTimeout(function(){
-				          timer(hr,min,sec);
-				          },1000);
-                    }
-                }
-               
-            }
-		}
-    }
-  
-
-</script>
 	</head>
 
 <body>
@@ -134,13 +83,7 @@ function timer(hr,min,sec) {
 							<ul>
 						</div>
 						<div class="col-sm-12 col-xs-12" style="margin-top:30px; display: flex; align-items: center; justify-content: center; margin-bottom:40px;">
-							<script>
-								var hr="<?php echo $hr;?>";
-								var min="<?php echo $min;?>";
-								var sec="<?php echo $sec;?>";
-								
-							</script>
-							<button type="button" onClick="timer(hr,min,sec);" ng-click="test.startTest()" class="btn btn-success">Start test</button>
+							<button type="button" ng-click="test.startTest(<?php echo $hr;?>,<?php echo $min;?>,<?php echo $sec;?>)" class="btn btn-success">Start test</button>
 						</div>
 					</div>
 			</div>
@@ -203,7 +146,7 @@ function timer(hr,min,sec) {
 						</div> 
 						<div ng-if="test.resultView=='test'" class="Submit" style="padding:0px 30px; ">
 							<br> <br> <br>
-							<button id="submit" style="margin-top:30px;" onClick="stop=true;" ng-click="test.showResult()" class="btn btn-info col-xs-12">Submit</button>
+							<button id="submit" style="margin-top:30px;" ng-click="test.showResult()" class="btn btn-info col-xs-12">Submit</button>
 						</div>
 
 						<div ng-if="test.resultView=='result'" class="col-xs-12">
