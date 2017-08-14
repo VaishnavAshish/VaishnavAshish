@@ -24,7 +24,51 @@ if(isset($_GET['tn_id']))
 	  
 	  <script src="angularTestFiles/angular/angular.min.js"></script>
 	   <script src="angularTestFiles/app.js"></script>
+<script>
+var t;
+function timer(hr,min,sec) {
+            if (parseInt(sec) > 0) {
+                sec = parseInt(sec) - 1;
+                document.getElementById("timer").innerHTML = hr+" Hr "+min+" Min " + sec+" Sec";
+                 t=setTimeout(function(){
+				 timer(hr,min,sec);
+				 },1000);
+            }
+            else { 
+                if (parseInt(sec) == 0) {
+                   // min = parseInt(min) - 1;
+                    
+					if(parseInt(min)==0 && parseInt(hr)>0){
+						hr=parseInt(hr)-1;
+						min=60;
+						sec=60;
+						document.getElementById("timer").innerHTML = hr+" Hr "+min+" Min " + sec+" Sec";
+                        t= setTimeout(function(){
+				          timer(hr,min,sec);
+				          },1000);
+					}
+					
+					else if (parseInt(min)==0 && parseInt(hr)==0) {
+                       alert("Timeout Click ok to submit");
+					   setTimeout(function(){
+				          $('#submit').click();
+				          },1000);
+					 }
+                    else {
+						min = parseInt(min) - 1;
+                        sec = 60;
+                        document.getElementById("timer").innerHTML = hr+" Hr "+min+" Min " + sec+" Sec";
+                       t= setTimeout(function(){
+				          timer(hr,min,sec);
+				          },1000);
+                    }
+                }
+               
+            }
+        }
+  
 
+</script>
 	</head>
 
 <body>
@@ -51,9 +95,18 @@ if(isset($_GET['tn_id']))
 				<li><a href="test_names.php?"><?php echo $test['tn_name'];?></a></li> 	       
 			 </ol>
 		</div>
-		
+		<?php $time=$test['time']; 
+		$a=explode(';',$time);
+		$hr=$a[0];
+		$min=$a[1];
+		$sec=$a[2];
+		?>
 		<div class="col-sm-4 col-xs-4 text-danger" style="float:right; ">
-			<h5 style="float:right;">Time Left: <span id="timer"></span></h5>
+			<h5 style="float:right;">Time Left: <span id="timer"><script>
+			var hr="<?php echo $hr;?>";
+			var min="<?php echo $min;?>";
+			var sec="<?php echo $sec;?>";
+			timer(hr,min,sec);</script></span></h5>
 		</div>
 		
 	</div>	
@@ -122,7 +175,7 @@ if(isset($_GET['tn_id']))
 							<div class="clear"></div>
 						</div> <br> <br> <br>
 						<div ng-if="!test.resultView" class="Submit" style="padding:0px 30px; ">
-							<button style="margin-top:30px;" ng-click="test.showResult()" class="btn btn-info col-xs-12">Submit</button>
+							<button id="submit" style="margin-top:30px;" ng-click="test.showResult()" class="btn btn-info col-xs-12">Submit</button>
 						</div>
 
 						<div ng-if="test.resultView" class="col-xs-12">
