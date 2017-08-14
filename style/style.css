@@ -169,7 +169,7 @@ display:block !important;
 .imageicon img{
 		
 	max-width:100% !important;
-	max-height:100% !important;
+	/* max-height:100% !important; */
 	width:110px !important;
 	height:120px !important;
 	margin-left:auto !important;
@@ -179,6 +179,12 @@ display:block !important;
 	display:block;
 	}
 	
+@media (max-width:467px)	{
+.imageicon img{
+height:70px !important;
+
+}
+}
 	
 .imageicon h4{
 max-width:100% !important;
@@ -489,7 +495,7 @@ input[type="radio"] {
 }
 
 .fixed-pos {
-    display:block !important;
+    display:table !important;
     position: fixed !important;
     top: 0;
     height: 46px !important;
