@@ -20,7 +20,7 @@ angular.module("test",[])
         }
         test.checkAnswer=function(result,index){
             test.resultArr[index]=result;
-            console.log(test.resultArr);
+           // console.log(test.resultArr);
         }
 
         test.showResult=function(){
