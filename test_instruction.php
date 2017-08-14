@@ -12,7 +12,7 @@ if(isset($_GET['tn_id']))
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-	  <title>Navigation</title>
+	  <title id="title">Navigation</title>
 	  <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
 	   <link rel="stylesheet" href="style/style.css">
@@ -32,6 +32,7 @@ function timer(hr,min,sec) {
             if (parseInt(sec) > 0) {
                 sec = parseInt(sec) - 1;
                 document.getElementById("timer").innerHTML = hr+" Hr "+min+" Min " + sec+" Sec";
+				document.getElementById("title").innerHTML = hr+" Hr "+min+" Min " + sec+" Sec";
                  t=setTimeout(function(){
 				 timer(hr,min,sec);
 				 },1000);
@@ -45,6 +46,7 @@ function timer(hr,min,sec) {
 						min=60;
 						sec=60;
 						document.getElementById("timer").innerHTML = hr+" Hr "+min+" Min " + sec+" Sec";
+						document.getElementById("title").innerHTML = hr+" Hr "+min+" Min " + sec+" Sec";
                         t= setTimeout(function(){
 				          timer(hr,min,sec);
 				          },1000);
@@ -60,6 +62,7 @@ function timer(hr,min,sec) {
 						min = parseInt(min) - 1;
                         sec = 60;
                         document.getElementById("timer").innerHTML = hr+" Hr "+min+" Min " + sec+" Sec";
+						document.getElementById("title").innerHTML = hr+" Hr "+min+" Min " + sec+" Sec";
                        t= setTimeout(function(){
 				          timer(hr,min,sec);
 				          },1000);
