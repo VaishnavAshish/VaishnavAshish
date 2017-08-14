@@ -155,6 +155,14 @@ function timer(hr,min,sec) {
 							<div class="col-xs-6 col-sm-3 under-option">
 								<a class="report" ng-click="test.toggel(TestQ,'Hreport')" >&nbsp;Report</a>
 							</div>
+							
+							<div class="col-xs-6 col-sm-3 under-option">
+								<a class="workspace" ng-click="test.toggel(TestQ,'Hanswer')" >&nbsp;Workspace</a>
+							</div>
+
+							<section  class="hidden-workspace" ng-show="TestQ.Hanswer==true">
+								<textarea  class="ckeditor editor{{$index}}" id="editor{{$index}}" name="editor{{$index}}"></textarea>
+							</section>
 
 							<section style="position: relative;top: 20px;margin:20px;" ng-show="TestQ.Hreport==true">
 								<form action="" method="post">
