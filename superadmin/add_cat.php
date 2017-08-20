@@ -5,7 +5,7 @@ require('header.php');
 
 <?php  
 if(isset($_POST["submit"])) {
-	$tc_name = $_POST['category'];
+	$tc_name = htmlspecialchars($_POST['category'],ENT_QUOTES);
 	
        $result = mysql_query("Insert into `test_category`(tc_name) values('$tc_name')");
 	   if($result)

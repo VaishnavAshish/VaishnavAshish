@@ -4,13 +4,13 @@ require_once('sidebar.php');
 require_once('header.php');
 if(isset($_POST['edit_category']))
 {
-	$category_id = $_POST['edit_category'];
+	$category_id = htmlspecialchars($_POST['edit_category'],ENT_QUOTES);
 	$query=mysql_query("Select * from test_category where tc_id = '".$category_id."'");
 	$res=mysql_fetch_array($query);
 }
 else if(isset($_POST["submit"])) {
-	$tc_name = $_POST['category'];
-	$tc_id=  $_POST['category_id'];
+	$tc_name = htmlspecialchars($_POST['category'],ENT_QUOTES);
+	$tc_id =  htmlspecialchars($_POST['category_id'],ENT_QUOTES);
 	
        $resu = mysql_query("UPDATE `test_category` set tc_name='".$tc_name."' where tc_id = '".$tc_id."'");
 	   if($resu)
@@ -70,8 +70,8 @@ $count = mysql_num_rows($query)-1;
 								<div class="form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Category Name <span class="required">*</span></label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input type="text" required="required" name="category" value="<?php echo $res['tc_name'];?>" class="form-control col-md-7 col-xs-12">
-										<input style="display:none;" type="text" required="required" name="category_id" value="<?php echo $res['tc_id'];?>" class="form-control col-md-7 col-xs-12">
+										<input type="text" required="required" name="category" value="<?php echo htmlspecialchars($res['tc_name'],ENT_QUOTES);?>" class="form-control col-md-7 col-xs-12">
+										<input style="display:none;" type="text" required="required" name="category_id" value="<?php echo htmlspecialchars($res['tc_id'],ENT_QUOTES);?>" class="form-control col-md-7 col-xs-12">
 									</div>
 								</div>
 								

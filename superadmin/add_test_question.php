@@ -5,15 +5,15 @@ require('header.php');
 
 		if(isset($_POST['submit']))
 	{ 	
-		$question = $_POST['question'];
-		$opt1 = $_POST['opt1'];
-		$opt2 = $_POST['opt2'];
-		$opt3 = $_POST['opt3'];
-		$opt4 = $_POST['opt4'];
-		$answer = $_POST['answer'];
-		$heading = $_POST['heading'];
-	    $test_name = $_POST['test_name'];
-		$test_category = $_POST['test_category'];
+		$question = htmlspecialchars($_POST['question'],ENT_QUOTES);
+		$opt1 = htmlspecialchars($_POST['opt1'],ENT_QUOTES);
+		$opt2 = htmlspecialchars($_POST['opt2'],ENT_QUOTES);
+		$opt3 = htmlspecialchars($_POST['opt3'],ENT_QUOTES);
+		$opt4 = htmlspecialchars($_POST['opt4'],ENT_QUOTES);
+		$answer = htmlspecialchars($_POST['answer'],ENT_QUOTES);
+		$heading = htmlspecialchars($_POST['heading'],ENT_QUOTES);
+	    $test_name = htmlspecialchars($_POST['test_name'],ENT_QUOTES);
+		$test_category = htmlspecialchars($_POST['test_category'],ENT_QUOTES);
 		$result = mysql_query("Insert into test_question(question,opt1,opt2,opt3,opt4,answer,tc_id,th_id,tn_id) values('$question','$opt1','$opt2','$opt3','$opt4','$answer','$test_category','$heading','$test_name')");
 		if($result)
 		{
@@ -97,7 +97,7 @@ require('header.php');
 											
 										
 									?>
-									<option value="<?php echo $row_cat['tc_id'];?>"><?php echo $row_cat['tc_name'];?></option>
+									<option value="<?php echo htmlspecialchars($row_cat['tc_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row_cat['tc_name'],ENT_QUOTES);?></option>
 										<?php } ?>
 								</select>
                         </div>

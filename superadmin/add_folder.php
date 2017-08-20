@@ -7,11 +7,13 @@ require('header.php');
 <?php
 	if(isset($_POST['submit']))
 	{
-		$f_name=$_POST['folder_name'];
-		@$cat_id=$_POST['folderCategory'];
-		@$topic_id=$_POST['topic'];
-		@$type=$_POST['type'];
-		$query=mysql_query("Insert into folder(f_name,cat_id,topic_id,type) values('$f_name','$cat_id','$topic_id','$type')");
+		$f_name = htmlspecialchars($_POST['folder_name'],ENT_QUOTES);
+	
+		$cat_id = htmlspecialchars($_POST['folderCategory'],ENT_QUOTES);
+		$topic_id = htmlspecialchars($_POST['topic'],ENT_QUOTES);
+		$type = htmlspecialchars($_POST['type'],ENT_QUOTES);
+		
+		$query = mysql_query("Insert into folder(f_name,cat_id,topic_id,type) values('$f_name','$cat_id','$topic_id','$type')");
 		if($query)
 		{
 			echo "<script>alert('successful');</script>";
@@ -45,7 +47,7 @@ require('header.php');
 										while($row=mysql_fetch_array($query))
 										{
 									?>
-									<option value="<?php echo $row['cat_id'];?>"><?php echo $row['category'];?></option>
+									<option value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES);?>"><?php echo $row['category'];?></option>
 										<?php } ?>
 							</select>
                         </div>

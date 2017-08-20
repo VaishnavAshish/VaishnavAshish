@@ -4,7 +4,7 @@ require_once('sidebar.php');
 require_once('header.php');
 if(isset($_POST['edit_category']))
 {
-	$category_id = $_POST['edit_category'];
+	$category_id = htmlspecialchars($_POST['edit_category'],ENT_QUOTES);
 	$query=mysql_query("Select * from category where cat_id = '".$category_id."'");
 	$res=mysql_fetch_array($query);
 	$old = getcwd();  // Save the current directory
@@ -15,8 +15,8 @@ if(isset($_POST['edit_category']))
 	
 }
 else if(isset($_POST["submit"])) {
-	$name = $_POST['category'];
-	$category_id=  $_POST['category_id'];
+	$name = htmlspecialchars($_POST['category'],ENT_QUOTES);
+	$category_id=  htmlspecialchars($_POST['category_id'],ENT_QUOTES);
 	$imageFileType = pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION);
 	$target_dir = "../images/".$name.".".$imageFileType;
 	$img_name = $name.".".$imageFileType;
@@ -52,8 +52,8 @@ else if(isset($_POST["submit"])) {
 								<div class="form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Category Name <span class="required">*</span></label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input type="text" required="required" name="category" value="<?php echo $res['category'];?>" class="form-control col-md-7 col-xs-12">
-										<input style="display:none;" type="text" required="required" name="category_id" value="<?php echo $res['cat_id'];?>" class="form-control col-md-7 col-xs-12">
+										<input type="text" required="required" name="category" value="<?php echo htmlspecialchars($res['category'],ENT_QUOTES);?>" class="form-control col-md-7 col-xs-12">
+										<input style="display:none;" type="text" required="required" name="category_id" value="<?php echo htmlspecialchars($res['cat_id'],ENT_QUOTES);?>" class="form-control col-md-7 col-xs-12">
 									</div>
 								</div>
 								<div class="form-group">
