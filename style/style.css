@@ -1,3 +1,14 @@
+.newsdiv{
+    text-align: justify;
+    padding: 9px;
+    border: double 4px #011B38;
+    border-radius: 12px;
+    font-size: 12px;
+   
+    height: 300px;
+
+}
+
 .page-heading{
 height: 59px !important;
 margin-left: 2% !important; 
@@ -29,6 +40,12 @@ text-decoration: !important;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  font-weight:bold;
+}
+
+.topnav a:hover {
+text-decoration:none !important;
+
 }
 
 .topnav a:hover {
@@ -155,7 +172,7 @@ width:100% !important;
 	
 	
 .imageicon{
-box-shadow: 2px 2px 10px #888888 !important;
+box-shadow: 12px 5px 10px #888888 !important;
 
 margin:0 auto 4% 7% !important;	
 width:25% !important;
@@ -540,4 +557,27 @@ margin-right: 0% !important;
 
 .breadcrumb{
 background-color:white !important;
+}
+
+.gsearch tr{
+height:70px !important;
+
+}
+
+:host([direction="up"]), :host([direction="down"]) {
+    overflow: initial;
+    overflow-y: hidden;
+    white-space: initial;
+}
+
+:host {
+    display: inline-block;
+    overflow: hidden;
+    text-align: initial;
+    white-space: nowrap;
+}
+
+marquee {
+    display: inline-block;
+    width: -webkit-fill-available;
 }
