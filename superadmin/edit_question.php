@@ -3,7 +3,7 @@ require('sidebar.php');
 require('header.php');
      if(isset($_POST['edit_question']))
 	{	
-		$qid = $_POST['edit_question']; 
+		$qid = htmlspecialchars($_POST['edit_question'],ENT_QUOTES); 
 		$res = mysql_query("SELECT * FROM `question` WHERE qid='".$qid."'");
 		$row = mysql_fetch_array($res);
 	}
@@ -12,16 +12,16 @@ require('header.php');
 		if(isset($_POST['submit']))
 	{	 
         
-		$qid=$_POST['qid'];
-		$question = $_POST['question'];
-		$opt1 = $_POST['opt1'];
-		$opt2 = $_POST['opt2'];
-		$opt3 = $_POST['opt3'];
-		$opt4 = $_POST['opt4'];
-		$answer = $_POST['answer'];
-		$category = $_POST['category'];
-		$topic_id = $_POST['topic_id'];
-		$sub_id = $_POST['sub_id'];
+		$qid = htmlspecialchars($_POST['qid'],ENT_QUOTES);
+		$question = htmlspecialchars($_POST['question'],ENT_QUOTES);
+		$opt1 = htmlspecialchars($_POST['opt1'],ENT_QUOTES);
+		$opt2 = htmlspecialchars($_POST['opt2'],ENT_QUOTES);
+		$opt3 = htmlspecialchars($_POST['opt3'],ENT_QUOTES);
+		$opt4 = htmlspecialchars($_POST['opt4'],ENT_QUOTES);
+		$answer = htmlspecialchars($_POST['answer'],ENT_QUOTES);
+		$category = htmlspecialchars($_POST['category'],ENT_QUOTES);
+		$topic_id = htmlspecialchars($_POST['topic_id'],ENT_QUOTES);
+		$sub_id = htmlspecialchars($_POST['sub_id'],ENT_QUOTES);
 		 echo "<script>alert('".$category.$topic_id.$sub_id."');</script>";
 		$result = mysql_query("UPDATE `question` set question='".$question."',opt1='".$opt1."',opt2='".$opt2."',opt3='".$opt3."',opt4='".$opt4."',answer='".$answer."',cat_id='".$category."',topic_id='".$topic_id."',sub_id='".$sub_id."' WHERE qid='".$qid."' ");
 		if($result)
@@ -50,8 +50,8 @@ require('header.php');
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Question:<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea class="form-control"  placeholder="Enter Question here" name="question"><?php echo $row['question'];?></textarea>
-						  <input style="display:none;" type="text" required="required" name="qid" value="<?php echo $row['qid'];?>" class="form-control col-md-7 col-xs-12">
+                          <textarea class="form-control"  placeholder="Enter Question here" name="question"><?php echo htmlspecialchars($row['question'],ENT_QUOTES);?></textarea>
+						  <input style="display:none;" type="text" required="required" name="qid" value="<?php echo htmlspecialchars($row['qid'],ENT_QUOTES);?>" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       
@@ -59,7 +59,7 @@ require('header.php');
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Option 1: <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" class="form-control class="form-control col-md-7 col-xs-12"" value="<?php echo $row['opt1'];?>" placeholder="Enter First Option" name="opt1">
+                          <input type="text" class="form-control class="form-control col-md-7 col-xs-12"" value="<?php echo htmlspecialchars($row['opt1'],ENT_QUOTES);?>" placeholder="Enter First Option" name="opt1">
                         </div>
                       </div>
 
@@ -67,7 +67,7 @@ require('header.php');
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Option 2: <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" class="form-control"  placeholder="Enter Second Option" name="opt2" value="<?php echo $row['opt2'];?>">
+                          <input type="text" class="form-control"  placeholder="Enter Second Option" name="opt2" value="<?php echo htmlspecialchars($row['opt2'],ENT_QUOTES);?>">
                         </div>
                       </div>
 
@@ -75,7 +75,7 @@ require('header.php');
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Option 3: <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" class="form-control" value="<?php echo $row['opt3'];?>" placeholder="Enter Third Option" name="opt3">
+                          <input type="text" class="form-control" value="<?php echo htmlspecialchars($row['opt3'],ENT_QUOTES);?>" placeholder="Enter Third Option" name="opt3">
                         </div>
                       </div>
 
@@ -83,7 +83,7 @@ require('header.php');
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Option 4: <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" class="form-control" value="<?php echo $row['opt4'];?>" placeholder="Enter Fourth Option" name="opt4">
+                          <input type="text" class="form-control" value="<?php echo htmlspecialchars($row['opt4'],ENT_QUOTES);?>" placeholder="Enter Fourth Option" name="opt4">
                         </div>
                       </div>
 					  
@@ -91,7 +91,7 @@ require('header.php');
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Answer:<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" class="form-control" value="<?php echo $row['answer'];?>" placeholder="Enter Answer" name="answer">
+                          <input type="text" class="form-control" value="<?php echo htmlspecialchars($row['answer'],ENT_QUOTES);?>" placeholder="Enter Answer" name="answer">
                         </div>
                       </div>
 					  

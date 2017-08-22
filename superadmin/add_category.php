@@ -5,7 +5,7 @@ require('header.php');
 
 <?php  
 if(isset($_POST["submit"])) {
-	$name = ucwords($_POST['category']);
+	$name = ucwords(htmlspecialchars($_POST['category'],ENT_QUOTES));
 	$imageFileType = pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION);
 	$target_dir = "../images/".$name.".".$imageFileType;
 	$img_name = $name.".".$imageFileType;

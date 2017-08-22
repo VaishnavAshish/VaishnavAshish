@@ -7,15 +7,15 @@ require('header.php');
 
 	if(isset($_POST['submit']))
 	{
-		$name = $_POST['name'];
-		$test_category = $_POST['test_category'];
-		$heading = $_POST['heading'];
-		$question=$_POST['nos'];
-		$hours=$_POST['hours'];
-		$minutes=$_POST['minutes'];
-		$seconds=$_POST['seconds'];
-		$arr=[$hours,$minutes,$seconds];
-		$time=implode(";",$arr);
+		$name = htmlspecialchars($_POST['name'],ENT_QUOTES);
+		$test_category = htmlspecialchars($_POST['test_category'],ENT_QUOTES);
+		$heading = htmlspecialchars($_POST['heading'],ENT_QUOTES);
+		$question= htmlspecialchars($_POST['nos',ENT_QUOTES)];
+		$hours = htmlspecialchars($_POST['hours'],ENT_QUOTES);
+		$minutes = htmlspecialchars($_POST['minutes'],ENT_QUOTES);
+		$seconds = htmlspecialchars($_POST['seconds'],ENT_QUOTES);
+		$arr = [$hours,$minutes,$seconds];
+		$time = implode(";",$arr);
 		$result = mysql_query("Insert into `test_name`(tn_name,th_id,tc_id,no_of_q,time) values('$name','$heading','$test_category','$question','$time')");
 		if($result)
 		{
@@ -63,7 +63,7 @@ require('header.php');
 											
 										
 									?>
-									<option value="<?php echo $row_cat['tc_id'];?>"><?php echo $row_cat['tc_name'];?></option>
+									<option value="<?php echo htmlspecialchars($row_cat['tc_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row_cat['tc_name'],ENT_QUOTES);?></option>
 										<?php } ?>
 								</select>
                         </div>

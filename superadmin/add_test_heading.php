@@ -7,8 +7,8 @@ require('header.php');
 
 	if(isset($_POST['submit']))
 	{
-		@$heading =ucwords($_POST['heading']);
-		@$category = $_POST['category'];
+		@$heading =ucwords(htmlspecialchars($_POST['heading'],ENT_QUOTES));
+		@$category = htmlspecialchars($_POST['category'],ENT_QUOTES);
 		$result = mysql_query("Insert into `test_heading`(th_name,tc_id) values('$heading','$category')");
 		if($result)
 		{
@@ -53,7 +53,7 @@ require('header.php');
 											
 										
 									?>
-									<option value="<?php echo $row['tc_id'];?>"><?php echo $row['tc_name'];?></option>
+									<option value="<?php echo htmlspecialchars($row['tc_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row['tc_name'],ENT_QUOTES);?></option>
 										<?php } ?>
 								</select>
                         </div>

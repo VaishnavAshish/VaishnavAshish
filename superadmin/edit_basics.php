@@ -4,7 +4,7 @@ require('header.php');
 
 if(isset($_POST['edit_basics']))
 	{	
-		$basics_id = $_POST['edit_basics']; 
+		$basics_id = htmlspecialchars($_POST['edit_basics'],ENT_QUOTES); 
 		$res = mysql_query("SELECT * FROM `basics` WHERE basics_id='".$basics_id."'");
 		$row_basics = mysql_fetch_array($res);
 		$old = getcwd();  // Save the current directory
@@ -16,11 +16,11 @@ if(isset($_POST['edit_basics']))
 
 if(isset($_POST["submit"]))
 	{	
-		$basics_id = $_POST['basics_id']; 
-        $heading = $_POST['heading'];
-		$category = $_POST['category'];
-	    $topic_id = $_POST['topic_id'];
-		$sub_id = $_POST['sub_id'];
+		$basics_id = htmlspecialchars($_POST['basics_id'],ENT_QUOTES); 
+        $heading = htmlspecialchars($_POST['heading'],ENT_QUOTES);
+		$category = htmlspecialchars($_POST['category'],ENT_QUOTES);
+	    $topic_id = htmlspecialchars($_POST['topic_id'],ENT_QUOTES);
+		$sub_id = htmlspecialchars($_POST['sub_id'],ENT_QUOTES);
 		$pdf=$heading.$sub_id.".pdf";
 		$result = mysql_query("UPDATE `basics` set heading='".$heading."',pdf='".$pdf."',cat_id='".$category."',topic_id='".$topic_id."',sub_id='".$sub_id."' WHERE basics_id='".$basics_id."' ");
 		  
@@ -66,11 +66,11 @@ if(isset($_POST["submit"]))
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
                           <select class="sel_val form-control" name="category" >
-									<?php $cat_id=$row_basics['cat_id'];
+									<?php $cat_id = htmlspecialchars($row_basics['cat_id'],ENT_QUOTES);
 									$cat=mysql_query("SELECT * FROM `category` WHERE cat_id='".$cat_id."'");
 									$cat_res=mysql_fetch_array($cat);
 									?>
-									<option value="<?php echo $cat_res['cat_id'];?>"><?php echo $cat_res['category'];?></option>
+									<option value="<?php echo htmlspecialchars($cat_res['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($cat_res['category'],ENT_QUOTES);?></option>
 									<?php 
 										$j = 0;
 										$query = mysql_query("Select * from category");
@@ -79,7 +79,7 @@ if(isset($_POST["submit"]))
 											
 										
 									?>
-									<option value="<?php echo $row['cat_id'];?>"><?php echo $row['category'];?></option>
+									<option value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row['category'],ENT_QUOTES);?></option>
 										<?php } ?>
 								</select>
                         </div>
@@ -95,7 +95,7 @@ if(isset($_POST["submit"]))
 								$topic=mysql_query("SELECT * FROM `topics` WHERE topic_id='".$topic_id."'");
 								$topic_res=mysql_fetch_array($topic);
 							?>
-							<option value="<?php echo $topic_res['topic_id'];?>"><?php echo $topic_res['topic'];?></option>
+							<option value="<?php echo htmlspecialchars($topic_res['topic_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($topic_res['topic'],ENT_QUOTES);?></option>
 						  </select>
                         </div>
                       </div>
@@ -106,11 +106,11 @@ if(isset($_POST["submit"]))
 							
                           <select class="sel_val sub_topic-select form-control" name="sub_id" >
 							<?php 
-							    $sub_id=$row_basics['sub_id'];
+							    $sub_id = htmlspecialchars($row_basics['sub_id'],ENT_QUOTES);
 								$subtopic=mysql_query("SELECT * FROM `subtopic` WHERE sub_id='".$sub_id."'");
 								$subtopic_res=mysql_fetch_array($subtopic);
 							?>
-							<option value="<?php echo $subtopic_res['sub_id'];?>"><?php echo $subtopic_res['subtopic'];?></option>
+							<option value="<?php echo htmlspecialchars($subtopic_res['sub_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($subtopic_res['subtopic'],ENT_QUOTES);?></option>
 						  </select>
                         </div>
 						

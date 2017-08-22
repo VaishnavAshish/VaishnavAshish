@@ -5,7 +5,7 @@ require('header.php');
 
 	if(isset($_POST["submit"]))
 	{	
-        $heading = $_POST['heading'];
+        $heading = htmlspecialchars($_POST['heading'],ENT_QUOTES);
 		$category = $_POST['category-basics'];
 	    $topic_id = $_POST['topic_id'];
 		$sub_id = $_POST['sub_id'];

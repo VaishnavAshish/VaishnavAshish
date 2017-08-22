@@ -7,9 +7,9 @@ require('header.php');
 
 	if(isset($_POST['submit']))
 	{
-		$topic = ucwords($_POST['topic']);
-		$category = $_POST['category'];
-		$type = $_POST['type'];
+		$topic = ucwords(htmlspecialchars($_POST['topic'],ENT_QUOTES));
+		$category = htmlspecialchars($_POST['category'],ENT_QUOTES);
+		$type = htmlspecialchars($_POST['type'],ENT_QUOTES);
 		$result = mysql_query("Insert into `topics`(topic,cat_id,type) values('$topic','$category','$type')");
 		if($result)
 		{
@@ -54,7 +54,7 @@ require('header.php');
 											
 										
 									?>
-									<option value="<?php echo $row['cat_id'];?>"><?php echo $row['category'];?></option>
+									<option value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row['category'],ENT_QUOTES);?></option>
 										<?php } ?>
 								</select>
                         </div>
@@ -74,7 +74,7 @@ require('header.php');
 											
 										
 									?>
-									<option value="<?php echo $ro['topic_id'];?>"><?php echo $ro['topic'];?></option>
+									<option value="<?php echo htmlspecialchars($ro['topic_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($ro['topic'],ENT_QUOTES);?></option>
 										<?php } ?>
 								</select>
                         </div>

@@ -4,17 +4,17 @@ require('sidebar.php');
 require('header.php');
 	
 		if(isset($_POST['edit_folder']))
-	{	$f_id = $_POST['edit_folder'];
+	{	$f_id = htmlspecialchars($_POST['edit_folder'],ENT_QUOTES);
 		$result=mysql_query("select * from `folder` where f_id='".$f_id."'" );
 		$row = mysql_fetch_array($result);
 		
 	}
 	if(isset($_POST['submit']))
 	{
-		@$subtopic = $_POST['subtopic'];
-		@$category = $_POST['category'];
-		$topic_id = $_POST['topic'];
-		$sub_id = $_POST['sub_id'];
+		@$subtopic = htmlspecialchars($_POST['subtopic'],ENT_QUOTES);
+		@$category = htmlspecialchars($_POST['category'],ENT_QUOTES);
+		$topic_id = htmlspecialchars($_POST['topic'],ENT_QUOTES);
+		$sub_id = htmlspecialchars($_POST['sub_id'],ENT_QUOTES);
 		$result = mysql_query("Update `subtopic` set subtopic='".$subtopic."',cat_id='".$category."',topic_id='".$topic_id."' where sub_id='".$sub_id."'");
 		if($result)
 		{
@@ -53,7 +53,7 @@ require('header.php');
 										while($ro=mysql_fetch_array($query))
 										{
 									?>
-									<option value="<?php echo $ro['cat_id'];?>"><?php echo $row['category'];?></option>
+									<option value="<?php echo htmlspecialchars($ro['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row['category'],ENT_QUOTES);?></option>
 										<?php } ?>
 							</select>
                         </div>
@@ -71,7 +71,7 @@ require('header.php');
 					  <div class="form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Folder Name <span class="required">*</span></label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-										<input type="text" required="required" name="folder_name" value="<?php $row['f_name'];?>" placeholder="Enter Folder Name"class="form-control col-md-7 col-xs-12">
+										<input type="text" required="required" name="folder_name" value="<?php htmlspecialchars($row['f_name'],ENT_QUOTES);?>" placeholder="Enter Folder Name"class="form-control col-md-7 col-xs-12">
 									</div>
 								</div>
 
