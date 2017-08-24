@@ -100,11 +100,11 @@ require('header.php');
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
                           <select class="sel_val form-control" name="category" >
-									<?php $cat_id=$row['cat_id'];
+									<?php $cat_id= htmlspecialchars($row['cat_id'],ENT_QUOTES);
 									$cat=mysql_query("SELECT * FROM `category` WHERE cat_id='".$cat_id."'");
 									$cat_res=mysql_fetch_array($cat);
 									?>
-									<option value="<?php echo $cat_res['cat_id'];?>"><?php echo $cat_res['category'];?></option>
+									<option value="<?php echo htmlspecialchars($cat_res['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($cat_res['category'],ENT_QUOTES);?></option>
 									<?php 
 										$j = 0;
 										$query_cat = mysql_query("Select * from category");
@@ -113,7 +113,7 @@ require('header.php');
 											
 										
 									?>
-									<option value="<?php echo $row_cat['cat_id'];?>"><?php echo $row_cat['category'];?></option>
+									<option value="<?php echo htmlspecialchars($row_cat['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row_cat['category'],ENT_QUOTES);?></option>
 										<?php } ?>
 							</select>
                         </div>
@@ -122,12 +122,12 @@ require('header.php');
 					   <div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Topic</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-							<?php $topic_id=$row['topic_id'];
+							<?php $topic_id=htmlspecialchars($row['topic_id'];
 									$topic=mysql_query("SELECT * FROM `topics` WHERE topic_id='".$topic_id."'");
 									$topic_res=mysql_fetch_array($topic);
 									?>
                           <select class="sel_val topic-select form-control" name="topic_id" >
-									<option value="<?php echo $topic_res['topic_id'];?>"><?php echo $topic_res['topic'];?></option>
+									<option value="<?php echo htmlspecialchars($topic_res['topic_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($topic_res['topic'],ENT_QUOTES);?></option>
 						  </select>
                         </div>
                       </div>
@@ -137,11 +137,11 @@ require('header.php');
 					  <div class="col-md-6 col-sm-6 col-xs-12">
 							
                           <select class="sel_val sub_topic-select form-control" name="sub_id" >
-						  <?php $sub_id=$row['sub_id'];
+						  <?php $sub_id=htmlspecialchars($row['sub_id'],ENT_QUOTES);
 								$subtopic=mysql_query("SELECT * FROM `subtopic` WHERE sub_id='".$sub_id."'");
 								$subtopic_res=mysql_fetch_array($subtopic);
 							?>
-									<option value="<?php echo $subtopic_res['sub_id'];?>"><?php echo $subtopic_res['subtopic'];?></option>
+									<option value="<?php echo htmlspecialchars($subtopic_res['sub_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($subtopic_res['subtopic'],ENT_QUOTES);?></option>
 						  </select>
                         </div>
 					  </div>

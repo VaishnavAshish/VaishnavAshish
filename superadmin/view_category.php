@@ -2,7 +2,7 @@
 require('sidebar.php');
 require('header.php'); 
 if(isset($_POST["submit"])) {
-	$name = $_POST['category'];
+	$name = htmlspecialchars($_POST['category'],ENT_QUOTES);
 	$imageFileType = pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION);
 	$target_dir = "images/".$name.".".$imageFileType;
 	$img_name = $name.".".$imageFileType;
@@ -19,7 +19,7 @@ if(isset($_POST["submit"])) {
     
 }
 if(isset($_POST['delete_category']))
-{	$id = $_POST['delete_category'];
+{	$id = htmlspecialchars($_POST['delete_category'];
     $img=mysql_fetch_array(mysql_query("SELECT cat_image FROM `category` where cat_id='".$id."' "));
 	$delete = mysql_query("Delete from `category` where cat_id='".$id."'");
 	 $old = getcwd();  // Save the current directory
@@ -83,17 +83,17 @@ if(isset($_POST['delete_category']))
 								
 								  <tr class="even pointer">
 									<td class=" "><?php echo $i;?></td>
-									<td><?php echo $row['category']?></td>
+									<td><?php echo htmlspecialchars($row['category'],ENT_QUOTES)?></td>
 									<td>
-										<img width="70px" height="70px" src="<?php echo $image;?>" alt="<?php echo $image;?>"></img>
+										<img width="70px" height="70px" src="<?php echo htmlspecialchars($image,ENT_QUOTES);?>" alt="<?php echo htmlspecialchars($image,ENT_QUOTES);?>"></img>
 									</td>
 									<td class="a-right a-right tc content-center">
 										<form action="" method="post">
-											<button type="submit" name="delete_category" class="btn btn-primary" value="<?php echo $row['cat_id']?>">Delete</button>
+											<button type="submit" name="delete_category" class="btn btn-primary" value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES)?>">Delete</button>
 											
 										</form>
 										<form action="edit_category.php" method="POST">
-											<button type="submit" name="edit_category" class="btn btn-primary" value="<?php echo $row['cat_id']?>">Edit</button>
+											<button type="submit" name="edit_category" class="btn btn-primary" value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES)?>">Edit</button>
 										</form>
 									</td>
 									

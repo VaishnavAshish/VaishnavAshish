@@ -3,7 +3,7 @@ require('sidebar.php');
 require('header.php');
 
 if(isset($_POST['delete_subtopic']))
-{	$id = $_POST['delete_subtopic'];
+{	$id = htmlspecialchars($_POST['delete_subtopic'],ENT_QUOTES);
 	$delete = mysql_query("Delete from `subtopic` where sub_id='".$id."'");
 	if($delete)
 	{	
@@ -54,16 +54,16 @@ if(isset($_POST['delete_subtopic']))
 								
 								  <tr class="even pointer">
 									<td><?php echo $i;?></td>
-											<td><?php echo $row['category']?></td>
-											<td><?php echo $row['topic']?></td>
-											<td><?php echo $row['subtopic']?></td>
+											<td><?php echo htmlspecialchars($row['category'],ENT_QUOTES)?></td>
+											<td><?php echo htmlspecialchars($row['topic'],ENT_QUOTES)?></td>
+											<td><?php echo htmlspecialchars($row['subtopic'],ENT_QUOTES)?></td>
 									<td class="a-right a-right tc content-center">
 										<form action="" method="post">
-											<button type="submit" name="delete_subtopic" class="btn btn-primary" value="<?php echo $row['sub_id']?>">Delete</button>
+											<button type="submit" name="delete_subtopic" class="btn btn-primary" value="<?php echo htmlspecialchars($row['sub_id'],ENT_QUOTES);?>">Delete</button>
 											
 										</form>
 										<form action="edit_subtopic.php" method="POST">
-											<button type="submit" name="edit_subtopic" class="btn btn-primary" value="<?php echo $row['sub_id']?>">Edit</button>
+											<button type="submit" name="edit_subtopic" class="btn btn-primary" value="<?php echo htmlspecialchars($row['sub_id'],ENT_QUOTES);?>">Edit</button>
 										</form>
 									</td>
 									

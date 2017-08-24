@@ -5,22 +5,22 @@ require('header.php');
 
 	if(isset($_POST["submit"]))
 	{	
-		$name = $_FILES["file"]["tmp_name"];
-		$csv=file_get_contents($name);
+		$name = htmlspecialchars($_FILES["file"]["tmp_name"],ENT_QUOTES);
+		$csv=htmlspecialchars(file_get_contents($name),ENT_QUOTES);
 		$array=array_map("str_getcsv",explode("\n",$csv));
 		$c = 0;
-		$category = $_POST['category-question'];
-		$topic_id = $_POST['topic_id'];
-		$sub_id = $_POST['sub_id'];
+		$category = htmlspecialchars($_POST['category-question'],ENT_QUOTES);
+		$topic_id = htmlspecialchars($_POST['topic_id'],ENT_QUOTES);
+		$sub_id = htmlspecialchars($_POST['sub_id'],ENT_QUOTES);
 		$random=mt_rand(1,1000);
 		foreach($array as $filesop)
 		 {
 			$question = $filesop[0];
-			@$opt1 = $filesop[1];
-			@$opt2 = $filesop[2];
-			@$opt3 = $filesop[3];
-			@$opt4 = $filesop[4];
-			@$answer = $filesop[5];
+			$opt1 = $filesop[1];
+			$opt2 = $filesop[2];
+			$opt3 = $filesop[3];
+			$opt4 = $filesop[4];
+			$answer = $filesop[5];
 		$result = mysql_query("Insert into `question`(question,opt1,opt2,opt3,opt4,answer,cat_id,topic_id,sub_id) values('$question','$opt1','$opt2','$opt3','$opt4','$answer','$category','$topic_id','$sub_id')");
 		$c = $c + 1;
 		  }
@@ -68,7 +68,7 @@ require('header.php');
 											
 										
 									?>
-									<option value="<?php echo $row['cat_id'];?>"><?php echo $row['category'];?></option>
+									<option value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row['category'],ENT_QUOTES);?></option>
 										<?php } ?>
 								</select>
                         </div>

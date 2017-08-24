@@ -4,12 +4,12 @@ require('header.php');
 
 if(isset($_POST["submit"]))
 	{	
-		$name = $_FILES["file"]["tmp_name"];
-		$csv=file_get_contents($name);
+		$name = htmlspecialchars($_FILES["file"]["tmp_name"],ENT_QUOTES);
+		$csv=htmlspecialchars(file_get_contents($name),ENT_QUOTES);
 		$array=array_map("str_getcsv",explode("\n",$csv));
-		$heading = $_POST['heading'];
-	    $test_name = $_POST['test_name'];
-		$test_category = $_POST['test_category'];
+		$heading = htmlspecialchars($_POST['heading'],ENT_QUOTES);
+	    $test_name = htmlspecialchars($_POST['test_name'],ENT_QUOTES);
+		$test_category = htmlspecialchars($_POST['test_category'],ENT_QUOTES);
 		foreach($array as $filesop)
 		  { 
 			$question = $filesop[0];
@@ -62,7 +62,7 @@ if(isset($_POST["submit"]))
 											
 										
 									?>
-									<option value="<?php echo $row_cat['tc_id'];?>"><?php echo $row_cat['tc_name'];?></option>
+									<option value="<?php echo htmlspecialchars($row_cat['tc_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row_cat['tc_name'],ENT_QUOTES);?></option>
 										<?php } ?>
 								</select>
                         </div>

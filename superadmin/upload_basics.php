@@ -6,10 +6,10 @@ require('header.php');
 	if(isset($_POST["submit"]))
 	{	
         $heading = htmlspecialchars($_POST['heading'],ENT_QUOTES);
-		$category = $_POST['category-basics'];
-	    $topic_id = $_POST['topic_id'];
-		$sub_id = $_POST['sub_id'];
-		$pdf=$heading.$sub_id.".pdf";
+		$category = htmlspecialchars($_POST['category-basics'],ENT_QUOTES);
+	    $topic_id = htmlspecialchars($_POST['topic_id'],ENT_QUOTES);
+		$sub_id = htmlspecialchars($_POST['sub_id'],ENT_QUOTES);
+		$pdf=htmlspecialchars(($heading.$sub_id.".pdf"),ENT_QUOTES);
 		$result = mysql_query("Insert into `basics`(heading,pdf,cat_id,topic_id,sub_id) values('$heading','$pdf','$category','$topic_id','$sub_id')");
 		  
 		if($result)
@@ -62,7 +62,7 @@ require('header.php');
 											
 										
 									?>
-									<option value="<?php echo $row['cat_id'];?>"><?php echo $row['category'];?></option>
+									<option value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row['category'],ENT_QUOTES);?></option>
 										<?php } ?>
 								</select>
                         </div>

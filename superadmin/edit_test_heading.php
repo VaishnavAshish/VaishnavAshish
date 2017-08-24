@@ -5,7 +5,7 @@ require('header.php');
 
 
 	if(isset($_POST['edit_heading']))
-	{	@$tid = $_POST['edit_heading'];
+	{	@$tid = htmlspecialchars($_POST['edit_heading'];
 		$result=mysql_query("select * from `test_heading` where th_id = '".$tid."'");
 		$row = mysql_fetch_array($result);
 		
@@ -14,9 +14,9 @@ require('header.php');
 
 	if(isset($_POST['submit']))
 	{
-		@$topic = $_POST['topic'];
-		@$category = $_POST['category'];
-		$topic_id = $_POST['topic_id'];
+		@$topic = htmlspecialchars($_POST['topic'],ENT_QUOTES);
+		@$category = htmlspecialchars($_POST['category'],ENT_QUOTES);
+		$topic_id = htmlspecialchars($_POST['topic_id'],ENT_QUOTES);
 		$result = mysql_query("Update `test_heading` set th_name='".$topic."',tc_id='".$category."' where th_id='".$topic_id."'");
 		if($result)
 		{
@@ -44,8 +44,8 @@ require('header.php');
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Test Heading <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" required="required" name="topic" value="<?php echo $row['th_name'];?>" class="form-control col-md-7 col-xs-12">
-						  <input style="display:none;" type="text" required="required" name="topic_id" value="<?php echo $row['th_id'];?>" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="first-name" required="required" name="topic" value="<?php echo htmlspecialchars($row['th_name'],ENT_QUOTES);?>" class="form-control col-md-7 col-xs-12">
+						  <input style="display:none;" type="text" required="required" name="topic_id" value="<?php echo htmlspecialchars($row['th_id'],ENT_QUOTES);?>" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       
@@ -63,7 +63,7 @@ require('header.php');
 										
 									?>		
 									
-									<option value="<?php echo $row['tc_id'];?>"><?php echo $row['tc_name'];?></option>
+									<option value="<?php echo htmlspecialchars($row['tc_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row['tc_name'],ENT_QUOTES);?></option>
 										<?php } ?>
 								</select>
                         </div>

@@ -5,9 +5,9 @@ require('header.php');
 
 $limit=15;
 if(isset($_GET['page'])){
-	$page=$_GET['page'];
-	$start=$page*$limit;
-	$end=$start+$limit;
+	$page = htmlspecialchars($_GET['page'],ENT_QUOTES);
+	$start = $page*$limit;
+	$end = $start+$limit;
 }
 else {
 	$page=0;
@@ -16,7 +16,7 @@ else {
 }	
 
 if(isset($_POST['delete_question']))
-{	$id = $_POST['delete_question'];
+{	$id = htmlspecialchars($_POST['delete_question'],ENT_QUOTES);
 	$delete = mysql_query("Delete from `question` where qid='".$id."'");
 	if($delete)
 	{	
@@ -55,7 +55,7 @@ if(isset($_POST['delete_question']))
 									$cat_query=mysql_query("Select * from `category` where cat_id='".$_GET['cat_id']."'");
 									$row_cat=mysql_fetch_array($cat_query);
 									?>
-									<option value="<?php echo $row_cat['cat_id'];?>"><?php echo $row_cat['category'];?></option>
+									<option value="<?php echo htmlspecialchars($row_cat['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row_cat['category'],ENT_QUOTES);?></option>
 									<?php }
 									else{ ?>
 									<option value="">Select Category</option>
@@ -65,7 +65,7 @@ if(isset($_POST['delete_question']))
 										$query = mysql_query("Select * from category");
 										while($row=mysql_fetch_array($query))
 										{ ?>
-											<option value="<?php echo $row['cat_id'];?>"><?php echo $row['category'];?></option>
+											<option value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row['category'],ENT_QUOTES);?></option>
 										<?php } 
 										
 										?>
@@ -85,7 +85,7 @@ if(isset($_POST['delete_question']))
 									$topic_query=mysql_query("Select * from `topics` where topic_id='".$_GET['topic_id']."'");
 									$row_topic=mysql_fetch_array($topic_query);
 									?>
-										<option value="<?php echo $row_topic['topic_id'];?>"><?php echo $row_topic['topic'];?></option>
+										<option value="<?php echo htmlspecialchars($row_topic['topic_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row_topic['topic'],ENT_QUOTES);?></option>
 									<?php }
 									   else{ ?>
 										  <option value="">Select Topic</option> 
@@ -94,7 +94,7 @@ if(isset($_POST['delete_question']))
 										$query = mysql_query("Select * from topics where cat_id='".$_GET['cat_id']."' AND type='Question' ");
 										while($row=mysql_fetch_array($query))
 										{ ?>
-											<option value="<?php echo $row['topic_id'];?>"><?php echo $row['topic'];?></option>
+											<option value="<?php echo htmlspecialchars($row['topic_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row['topic'],ENT_QUOTES);?></option>
 										<?php } ?>
 										
 						  </select>
@@ -111,7 +111,7 @@ if(isset($_POST['delete_question']))
 									$subtopic_query=mysql_query("Select * from `subtopic` where topic_id='".$_GET['topic_id']."'");
 									$row_subtopic=mysql_fetch_array($subtopic_query);
 									?>
-									<option value="<?php echo $row_subtopic['sub_id'];?>"><?php echo $row_subtopic['subtopic'];?></option>
+									<option value="<?php echo htmlspecialchars($row_subtopic['sub_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row_subtopic['subtopic'],ENT_QUOTES);?></option>
 									<?php }
 									 else{
 										?> 
@@ -121,7 +121,7 @@ if(isset($_POST['delete_question']))
 										$query = mysql_query("Select * from subtopic where topic_id='".$_GET['topic_id']."'");
 										while($row=mysql_fetch_array($query))
 										{ ?>
-											<option value="<?php echo $row['sub_id'];?>"><?php echo $row['subtopic'];?></option>
+											<option value="<?php echo htmlspecialchars($row['sub_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row['subtopic'],ENT_QUOTES);?></option>
 										<?php } ?>
 						  </select>
 						  
@@ -187,18 +187,18 @@ if(isset($_POST['delete_question']))
 								
 									  <tr class="even pointer">
 										<td><?php echo $i;?></td>
-										<td><?php echo $row['question']?></td>
-										<td><?php echo $row['opt1']?></td>
-										<td><?php echo $row['opt2']?></td>
-										<td><?php echo $row['opt3']?></td>
-										<td><?php echo $row['opt4']?></td>
-										<td><?php echo $row['answer']?></td>
+										<td><?php echo htmlspecialchars($row['question']?></td>
+										<td><?php echo htmlspecialchars($row['opt1']?></td>
+										<td><?php echo htmlspecialchars($row['opt2']?></td>
+										<td><?php echo htmlspecialchars($row['opt3']?></td>
+										<td><?php echo htmlspecialchars($row['opt4']?></td>
+										<td><?php echo htmlspecialchars($row['answer']?></td>
 										<td class="a-right a-right tc content-center">
 											<form action="" method="post">
-												<button type="submit" name="delete_question" class="btn btn-primary" value="<?php echo $row['qid']?>">Delete</button>
+												<button type="submit" name="delete_question" class="btn btn-primary" value="<?php echo htmlspecialchars($row['qid']?>">Delete</button>
 											</form>
 											<form action="edit_question.php" method="POST">
-												<button type="submit" name="edit_question" class="btn btn-primary" value="<?php echo $row['qid']?>">Edit</button>
+												<button type="submit" name="edit_question" class="btn btn-primary" value="<?php echo htmlspecialchars($row['qid']?>">Edit</button>
 											</form>
 										</td>
 									 </tr>

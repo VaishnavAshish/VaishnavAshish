@@ -5,7 +5,7 @@ require('header.php');
  
 $limit=15;
 if(isset($_GET['page'])){
-	$page=$_GET['page'];
+	$page=htmlspecialchars(_GET['page'],ENT_QUOTES);
 	$start=$page*$limit;
 	$end=$start+$limit;
 }
@@ -16,7 +16,7 @@ else {
 }	
 
 if(isset($_POST['delete_basic']))
-{	$id = $_POST['delete_basic'];
+{	$id = htmlspecialchars($_POST['delete_basic'];
 	$delete = mysql_query("Delete from `basics` where basics_id='".$id."'");
 	if($delete)
 	{	
@@ -58,7 +58,7 @@ if(isset($_POST['delete_basic']))
 											
 										
 									?>
-									<option value="<?php echo $row['cat_id'];?>"><?php echo $row['category'];?></option>
+									<option value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row['category'],ENT_QUOTES);?></option>
 										<?php } ?>
 								</select>
                         </div>
@@ -127,9 +127,9 @@ if(isset($_POST['delete_basic']))
 								
 								  <tr class="even pointer">
 									<td><?php echo $i;?></td>
-									<td><?php echo $row['heading']?></td>
+									<td><?php echo htmlspecialchars($row['heading'],ENT_QUOTES)?></td>
 									<td>
-										<a style="color:blue; text-decoration:underline;" href="../uploads/basics/<?php echo $row['pdf']?>"><?php echo $row['heading'].'.pdf';?></a>
+										<a style="color:blue; text-decoration:underline;" href="../uploads/basics/<?php echo htmlspecialchars($row['pdf'],ENT_QUOTES)?>"><?php echo $row['heading'].'.pdf';?></a>
 									</td>
 									
 									<?php 
@@ -137,29 +137,29 @@ if(isset($_POST['delete_basic']))
 									$cat_query=mysql_query("SELECT * FROM `category` where cat_id='".$cat_id."' ");
 									$cat_res=mysql_fetch_array($cat_query);
 									?>
-									<td><?php echo $cat_res['category']; ?></td>									
+									<td><?php echo htmlspecialchars($cat_res['category'],ENT_QUOTES); ?></td>									
 									
 									<?php 
-									$topic_id=$row['topic_id'];
+									$topic_id=htmlspecialchars($row['topic_id'],ENT_QUOTES);
 									$topic_query=mysql_query("SELECT * FROM `topics` where topic_id='".$topic_id."' ");
 									$topic_res=mysql_fetch_array($topic_query);
 									?>
-									<td><?php echo $topic_res['topic']; ?></td>
+									<td><?php echo htmlspecialchars($topic_res['topic'],ENT_QUOTES); ?></td>
 									
 									<?php 
-									$sub_id=$row['sub_id'];
+									$sub_id=htmlspecialchars($row['sub_id'],ENT_QUOTES);
 									$subtopic_query=mysql_query("SELECT * FROM `subtopic` where sub_id='".$sub_id."' ");
 									$subtopic_res=mysql_fetch_array($subtopic_query);
 									?>
-									<td><?php echo $subtopic_res['subtopic']; ?></td>
+									<td><?php echo htmlspecialchars($subtopic_res['subtopic'],ENT_QUOTES); ?></td>
 									
 									<td class="a-right a-right tc content-center">
 										<form action="" method="post">
-											<button type="submit" name="delete_basic" class="btn btn-primary" value="<?php echo $row['basics_id']?>">Delete</button>
+											<button type="submit" name="delete_basic" class="btn btn-primary" value="<?php echo htmlspecialchars($row['basics_id'],ENT_QUOTES)?>">Delete</button>
 											
 										</form>
 										<form action="edit_basics.php" method="POST">
-											<button type="submit" name="edit_basics" class="btn btn-primary" value="<?php echo $row['basics_id']?>">Edit</button>
+											<button type="submit" name="edit_basics" class="btn btn-primary" value="<?php echo htmlspecialchars($row['basics_id'],ENT_QUOTES)?>">Edit</button>
 										</form>
 									</td>
 								  </tr>

@@ -3,7 +3,7 @@ ob_start();
 require('sidebar.php');
 require('header.php');
 if(isset($_POST['edit_name']))
-	{	@$tn_id = $_POST['edit_name'];
+	{	@$tn_id = htmlspecialchars($_POST['edit_name'],ENT_QUOTES);
 		$result=mysql_query("Select * from test_name join test_heading on test_name.th_id=test_heading.th_id where tn_id='".$tn_id."'");
 		$row = mysql_fetch_array($result);
 		
@@ -12,14 +12,14 @@ if(isset($_POST['edit_name']))
 	{
 		
 
-    		$name = $_POST['name'];
-        $tn_id=$_POST['tn_id'];
-		$test_category = $_POST['test_category'];
-		$heading = $_POST['heading'];
-		$question=$_POST['nos'];
-		$hours=$_POST['hours'];
-		$minutes=$_POST['minutes'];
-		$seconds=$_POST['seconds'];
+    		$name = htmlspecialchars($_POST['name'],ENT_QUOTES);
+        $tn_id=htmlspecialchars($_POST['tn_id'],ENT_QUOTES);
+		$test_category = htmlspecialchars($_POST['test_category'],ENT_QUOTES);
+		$heading = htmlspecialchars($_POST['heading'],ENT_QUOTES);
+		$question = htmlspecialchars($_POST['nos'],ENT_QUOTES);
+		$hours = htmlspecialchars($_POST['hours'],ENT_QUOTES);
+		$minutes = htmlspecialchars($_POST['minutes'],ENT_QUOTES);
+		$seconds = htmlspecialchars($_POST['seconds'],ENT_QUOTES);
 		$arr=[$hours,$minutes,$seconds];
 		$time=implode(";",$arr);
 		 
@@ -51,8 +51,8 @@ if(isset($_POST['edit_name']))
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Test Name<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" required="required" name="name" value="<?php echo $row['tn_name']?>"class="form-control col-md-7 col-xs-12">
-						  <input style="display:none;" type="text" required="required" name="tn-id" value="<?php echo $row['tn_id'];?>" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="first-name" required="required" name="name" value="<?php echo htmlspecialchars($row['tn_name'],ENT_QUOTES);?>"class="form-control col-md-7 col-xs-12">
+						  <input style="display:none;" type="text" required="required" name="tn-id" value="<?php echo htmlspecialchars($row['tn_id'],ENT_QUOTES);?>" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       
@@ -70,7 +70,7 @@ if(isset($_POST['edit_name']))
 											
 										
 									?>
-									<option value="<?php echo $row_cat['tc_id'];?>"><?php echo $row_cat['tc_name'];?></option>
+									<option value="<?php echo htmlspecialchars($row_cat['tc_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row_cat['tc_name'],ENT_QUOTES);?></option>
 										<?php } ?>
 								</select>
                         </div>
@@ -91,7 +91,7 @@ if(isset($_POST['edit_name']))
                           <input type="number" id="first-name" required="required" name="nos" value="<?php echo $row['no_of_q'];?>"class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
-					  <?php $time= explode(";",$row['time']);?>
+					  <?php $time= htmlspecialchars(explode(";",$row['time']),ENT_QUOTES);?>
             
 					   <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Test Time<span class="required">*</span>

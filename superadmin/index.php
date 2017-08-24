@@ -3,7 +3,7 @@ require('sidebar.php');
 require('header.php');
  
 if(isset($_POST['delete_user'])){	
-   $check = $_POST['delete_user'];
+   $check = htmlspecialchars($_POST['delete_user'],ENT_QUOTES);
    $delete = mysql_query("UPDATE  users  set status=3 WHERE uid = '".$check."' ");
    if($delete)
    {
@@ -13,7 +13,7 @@ if(isset($_POST['delete_user'])){
 	    echo "<script>alert('Unsuccessful');</script>";
 }	
 else if(isset($_POST['recover_user'])){	
-   $check1 = $_POST['recover_user'];
+   $check1 = htmlspecialchars($_POST['recover_user'],ENT_QUOTES);
    $recover = mysql_query("UPDATE  users  set status=1 WHERE uid = '".$check1."' ");
    if($recover)
    {
@@ -65,26 +65,26 @@ $count = mysql_num_rows($query)-1;
 								
 								  <tr class="even pointer">
 									<td class=" "><?php echo $i;?></td>
-									<td class=" "><?php echo $row['name']?></td>
-									<td class="a-right a-right "><?php echo $row['email']?></td>
+									<td class=" "><?php echo htmlspecialchars($row['name'],ENT_QUOTES);?></td>
+									<td class="a-right a-right "><?php echo htmlspecialchars($row['email'],ENT_QUOTES);?></td>
 									<td class="tc content-center">
 										<form action="" method="post">
 										<?php if($row['status']=='3'){ ?>
-											<button type="submit" name="recover_user" class="btn btn-primary" value="<?php echo $row['uid']?>">Recover</button>
+											<button type="submit" name="recover_user" class="btn btn-primary" value="<?php echo htmlspecialchars($row['uid'],ENT_QUOTES);?>">Recover</button>
 										<?php }
 										 else { ?>
-											<button type="submit" name="delete_user" class="btn btn-primary" value="<?php echo $row['uid']?>">Delete</button>
+											<button type="submit" name="delete_user" class="btn btn-primary" value="<?php echo htmlspecialchars($row['uid'],ENT_QUOTES);?>">Delete</button>
 										 <?php } ?>
 										</form>
 										<?php if($row['status']=='1') {  ?>
-										 <button type="button" class="btn btn-warning change-status" id="change-status" value="<?php echo $row['uid']; ?>" status="<?php echo $row['status'];?>"><?php echo "Disable"; ?></button>
+										 <button type="button" class="btn btn-warning change-status" id="change-status" value="<?php echo htmlspecialchars($row['uid'],ENT_QUOTES); ?>" status="<?php echo htmlspecialchars($row['status'],ENT_QUOTES);?>"><?php echo "Disable"; ?></button>
 										<?php } 
 												 else if($row['status']=='2') { ?>
-										 <button type="button" class="btn btn-success change-status" id="change-status" value="<?php echo $row['uid']; ?>" status="<?php echo $row['status'];?>"><?php echo "Enable"; ?></button>
+										 <button type="button" class="btn btn-success change-status" id="change-status" value="<?php echo htmlspecialchars($row['uid'],ENT_QUOTES); ?>" status="<?php echo htmlspecialchars($row['status'],ENT_QUOTES);?>"><?php echo "Enable"; ?></button>
 									    <?php } 
 										
 										else { ?>
-										 <button type="button" class="btn btn-danger change-status disabled" id="change-status" value="<?php echo $row['uid']; ?>" status="<?php echo $row['status'];?>"><?php echo "Deleted"; ?></button>
+										 <button type="button" class="btn btn-danger change-status disabled" id="change-status" value="<?php echo htmlspecialchars($row['uid'],ENT_QUOTES); ?>" status="<?php echo htmlspecialchars($row['status'],ENT_QUOTES);?>"><?php echo "Deleted"; ?></button>
 									    <?php } ?>
 										
 									</td>

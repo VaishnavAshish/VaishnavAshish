@@ -2,7 +2,7 @@
 	include("../connection.php");
 	if(isset($_POST['topic_id']))
 	{
-		$topic_id=$_POST['topic_id'];
+		$topic_id=htmlspecialchars($_POST['topic_id'],ENT_QUOTES);
 		$query=mysql_query("select * from `subtopic` where topic_id='".$topic_id."'");
 		if(mysql_num_rows($query)>0){
 				while($row=mysql_fetch_array($query))

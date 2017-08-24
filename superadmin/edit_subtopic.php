@@ -4,17 +4,17 @@ require('sidebar.php');
 require('header.php');
 	
 		if(isset($_POST['edit_subtopic']))
-	{	@$subid = $_POST['edit_subtopic'];
+	{	$subid = htmlspecialchars($_POST['edit_subtopic'],ENT_QUOTES);
 		$result=mysql_query("Select * from `topics` join `category` on topics.cat_id=category.cat_id join `subtopic` on subtopic.cat_id = topics.cat_id && subtopic.topic_id=topics.topic_id where subtopic.sub_id = '".$subid."'");
 		$row = mysql_fetch_array($result);
 		
 	}
 	if(isset($_POST['submit']))
 	{
-		@$subtopic = $_POST['subtopic'];
-		@$category = $_POST['category'];
-		$topic_id = $_POST['topic'];
-		$sub_id = $_POST['sub_id'];
+		$subtopic = htmlspecialchars($_POST['subtopic'],ENT_QUOTES);
+		$category = htmlspecialchars($_POST['category'],ENT_QUOTES);
+		$topic_id = htmlspecialchars($_POST['topic'],ENT_QUOTES);
+		$sub_id = htmlspecialchars($_POST['sub_id'],ENT_QUOTES);
 		$result = mysql_query("Update `subtopic` set subtopic='".$subtopic."',cat_id='".$category."',topic_id='".$topic_id."' where sub_id='".$sub_id."'");
 		if($result)
 		{
@@ -62,7 +62,7 @@ require('header.php');
 											
 										
 									?>
-									<option value="<?php echo $row['cat_id'];?>"><?php echo $row['category'];?></option>
+									<option value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row['category'],ENT_QUOTES);?></option>
 									<?php } ?>	
 								</select>
                         </div>
@@ -82,7 +82,7 @@ require('header.php');
 											
 										
 									?>
-									<option value="<?php echo $ro['topic_id'];?>"><?php echo $ro['topic'];?></option>
+									<option value="<?php echo htmlspecialchars($ro['topic_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($ro['topic'],ENT_QUOTES);?></option>
 										<?php } ?>
 								</select>
                         </div>

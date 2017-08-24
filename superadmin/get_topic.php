@@ -2,7 +2,7 @@
 error_reporting(0);
 include("../connection.php");
 if(isset($_POST['data'])){
-	$data=$_POST['data'];
+	$data=htmlspecialchars($_POST['data'],ENT_QUOTES);
 	$query="SELECT * FROM `topics` where cat_id='".$data['cat_id']."'";
 	if($data['filter']){
 		 $query.=" AND type='".$data['filter']."'";
@@ -21,7 +21,7 @@ if(isset($_POST['data'])){
 
 
 if(isset($_POST['cat_id'])){
-	$cat_id=$_POST['cat_id'];
+	$cat_id = htmlspecialchars($_POST['cat_id'],ENT_QUOTES);
 	$query=mysql_query("SELECT * FROM `topics` where cat_id='".$cat_id."'");
 	if(mysql_num_rows($query)>0){
 		while($row=mysql_fetch_array($query)){

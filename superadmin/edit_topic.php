@@ -5,7 +5,7 @@ require('header.php');
 
 
 	if(isset($_POST['edit_topic']))
-	{	@$tid = $_POST['edit_topic'];
+	{	@$tid = htmlspecialchars($_POST['edit_topic'],ENT_QUOTES);
 		$result=mysql_query("select * from `topics` join `category` on topics.cat_id = category.cat_id where topics.topic_id = '".$tid."'");
 		$row = mysql_fetch_array($result);
 		
@@ -14,10 +14,10 @@ require('header.php');
 
 	if(isset($_POST['submit']))
 	{
-		$topic = $_POST['topic'];
-		$category = $_POST['category'];
-		$topic_id = $_POST['topic_id'];
-		$type=$_POST['type'];
+		$topic = htmlspecialchars($_POST['topic'],ENT_QUOTES);
+		$category = htmlspecialchars($_POST['category'],ENT_QUOTES);
+		$topic_id = htmlspecialchars($_POST['topic_id'],ENT_QUOTES);
+		$type = htmlspecialchars($_POST['type'],ENT_QUOTES);
 		$result = mysql_query("Update `topics` set topic='".$topic."',cat_id='".$category."',type='".$type."' where topic_id='".$topic_id."'");
 		if($result)
 		{
@@ -45,8 +45,8 @@ require('header.php');
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Topic Name <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" required="required" name="topic" value="<?php echo $row['topic'];?>" class="form-control col-md-7 col-xs-12">
-						  <input style="display:none;" type="text" required="required" name="topic_id" value="<?php echo $row['topic_id'];?>" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="first-name" required="required" name="topic" value="<?php echo htmlspecialchars($row['topic'],ENT_QUOTES);?>" class="form-control col-md-7 col-xs-12">
+						  <input style="display:none;" type="text" required="required" name="topic_id" value="<?php echo htmlspecialchars($row['topic_id'],ENT_QUOTES);?>" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       
@@ -64,7 +64,7 @@ require('header.php');
 										
 									?>		
 									
-									<option value="<?php echo $row['cat_id'];?>"><?php echo $row['category'];?></option>
+									<option value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row['category'],ENT_QUOTES);?></option>
 										<?php } ?>
 								</select>
                         </div>

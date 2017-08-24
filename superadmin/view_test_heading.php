@@ -2,7 +2,7 @@
 require('sidebar.php');
 require('header.php');  
 if(isset($_POST['delete_heading'])){	
-   $check = $_POST['delete_heading'];
+   $check = htmlspecialchars($_POST['delete_heading'],ENT_QUOTES);
    $delete = mysql_query("DELETE FROM test_heading WHERE th_id = '".$check."' ");
    if($delete)
    {	$delete_test_name=mysql_query("Delete from test_name where th_id = '".$check."'");
@@ -59,15 +59,15 @@ if(isset($_POST['delete_heading'])){
 								
 								  <tr class="even pointer">
 									<td class=" "><?php echo $i;?></td>
-									<td class=" "><?php echo $row['th_name']?></td>
-									<td class="a-right a-right "><?php echo $row['tc_name']?></td>
+									<td class=" "><?php echo htmlspecialchars($row['th_name'],ENT_QUOTES);?></td>
+									<td class="a-right a-right "><?php echo htmlspecialchars($row['tc_name'],ENT_QUOTES)?></td>
 									<td class="a-right a-right tc content-center">
 										<form action="" method="post">
-											<button type="submit" name="delete_heading" class="btn btn-primary" value="<?php echo $row['th_id'];?>">Delete</button>
+											<button type="submit" name="delete_heading" class="btn btn-primary" value="<?php echo htmlspecialchars($row['th_id'],ENT_QUOTES);?>">Delete</button>
 											
 										</form>
 										<form action="edit_test_heading.php" method="POST">
-											<button type="submit" name="edit_heading" class="btn btn-primary" value="<?php echo $row['th_id'];?>">Edit</button>
+											<button type="submit" name="edit_heading" class="btn btn-primary" value="<?php echo htmlspecialchars($row['th_id'],ENT_QUOTES);?>">Edit</button>
 										</form>
 									</td>
 									

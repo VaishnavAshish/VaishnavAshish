@@ -49,13 +49,13 @@ require('header.php');
 								
 								  <tr class="even pointer">
 									<td><?php echo $i;?></td>
-											<td><?php echo $row['category']?></td>
+											<td><?php echo htmlspecialchars($row['category'],ENT_QUOTES)?></td>
 											
-											<td><?php echo $row['topic']?></td>
-											<td><?php echo $row['subtopic']?></td>
+											<td><?php echo htmlspecialchars($row['topic'],ENT_QUOTES)?></td>
+											<td><?php echo htmlspecialchars($row['subtopic'],ENT_QUOTES)?></td>
 									<td class="a-right a-right tc">
 										<form action="edit_subtopic.php" method="POST">
-											<button type="submit" name="view_question" class="btn btn-primary" value="<?php echo $row['sub_id']?>">View Question</button>
+											<button type="submit" name="view_question" class="btn btn-primary" value="<?php echo htmlspecialchars($row['sub_id'],ENT_QUOTES);?>">View Question</button>
 										</form>
 									</td>
 									

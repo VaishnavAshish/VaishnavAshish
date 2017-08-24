@@ -7,8 +7,8 @@ require('header.php');
 
 	if(isset($_POST['submit']))
 	{
-		@$heading =ucwords(htmlspecialchars($_POST['heading'],ENT_QUOTES));
-		@$category = htmlspecialchars($_POST['category'],ENT_QUOTES);
+		$heading =ucwords(htmlspecialchars($_POST['heading'],ENT_QUOTES));
+		$category = htmlspecialchars($_POST['category'],ENT_QUOTES);
 		$result = mysql_query("Insert into `test_heading`(th_name,tc_id) values('$heading','$category')");
 		if($result)
 		{

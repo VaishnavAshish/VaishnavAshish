@@ -4,18 +4,18 @@ require('header.php');
 
 if(isset($_POST['edit_videos']))
 	{	
-		$video_id = $_POST['edit_videos']; 
+		$video_id = htmlspecialchars($_POST['edit_videos'],ENT_QUOTES); 
 		$res = mysql_query("SELECT * FROM `videos` WHERE video_id='".$video_id."'");
 		$row_video = mysql_fetch_array($res);
 	}
 
 if(isset($_POST['submit']))
-	{	$video_id = $_POST['video_id'];
-		$video_name = $_POST['video_name'];
-		$youtube_id = $_POST['youtube_id'];
-		$category = $_POST['category'];
-		$topic_id = $_POST['topic_id'];
-		$sub_id = $_POST['sub_id'];
+	{	$video_id = htmlspecialchars($_POST['video_id'],ENT_QUOTES);
+		$video_name = htmlspecialchars($_POST['video_name'],ENT_QUOTES);
+		$youtube_id = htmlspecialchars($_POST['youtube_id'],ENT_QUOTES);
+		$category = htmlspecialchars($_POST['category'],ENT_QUOTES);
+		$topic_id = htmlspecialchars($_POST['topic_id'],ENT_QUOTES);
+		$sub_id = htmlspecialchars($_POST['sub_id'],ENT_QUOTES);
 		$result = mysql_query("UPDATE `videos` set video_name='".$video_name."',youtube_id='".$youtube_id."',cat_id='".$category."',topic_id='".$topic_id."',sub_id='".$sub_id."' where video_id='".$video_id."' ");
 		if($result)
 		{
@@ -42,8 +42,8 @@ if(isset($_POST['submit']))
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Video Name:<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                           <input type="text" class="form-control" value="<?php echo $row_video['video_name']; ?>" placeholder="Enter Name of Video" name="video_name">
-						   <input style="display:none;" type="text" required="required" name="video_id" value="<?php echo $row_video['video_id'];?>" class="form-control col-md-7 col-xs-12">
+                           <input type="text" class="form-control" value="<?php echo htmlspecialchars($row_video['video_name'],ENT_QUOTES); ?>" placeholder="Enter Name of Video" name="video_name">
+						   <input style="display:none;" type="text" required="required" name="video_id" value="<?php echo htmlspecialchars($row_video['video_id'],ENT_QUOTES);?>" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 
@@ -51,7 +51,7 @@ if(isset($_POST['submit']))
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Link">Youtube Video Id: <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" class="form-control" value="<?php echo $row_video['youtube_id']; ?>"  placeholder="Enter Youtube Video Id" name="youtube_id">
+                          <input type="text" class="form-control" value="<?php echo htmlspecialchars($row_video['youtube_id'],ENT_QUOTES); ?>"  placeholder="Enter Youtube Video Id" name="youtube_id">
                         </div>
                       </div>
 					  
@@ -64,7 +64,7 @@ if(isset($_POST['submit']))
 									$cat=mysql_query("SELECT * FROM `category` WHERE cat_id='".$cat_id."'");
 									$cat_res=mysql_fetch_array($cat);
 									?>
-									<option value="<?php echo $cat_res['cat_id'];?>"><?php echo $cat_res['category'];?></option>
+									<option value="<?php echo htmlspecialchars($cat_res['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($cat_res['category'],ENT_QUOTES);?></option>
 									<?php 
 										$j = 0;
 										$query = mysql_query("Select * from category");
@@ -73,7 +73,7 @@ if(isset($_POST['submit']))
 											
 										
 									?>
-									<option value="<?php echo $row['cat_id'];?>"><?php echo $row['category'];?></option>
+									<option value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row['category'],ENT_QUOTES);?></option>
 										<?php } ?>
 								</select>
                         </div>
@@ -85,11 +85,11 @@ if(isset($_POST['submit']))
 							
                           <select class="sel_val topic-select form-control" name="topic_id" >
 							 <?php 
-							    $topic_id=$row_video['topic_id'];
+							    $topic_id=$row_video['topic_id'],ENT_QUOTES);
 								$topic=mysql_query("SELECT * FROM `topics` WHERE topic_id='".$topic_id."'");
 								$topic_res=mysql_fetch_array($topic);
 							?>
-							<option value="<?php echo $topic_res['topic_id'];?>"><?php echo $topic_res['topic'];?></option>
+							<option value="<?php echo htmlspecialchars($topic_res['topic_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($topic_res['topic'],ENT_QUOTES);?></option>
 						  </select>
                         </div>
                       </div>
@@ -100,11 +100,11 @@ if(isset($_POST['submit']))
 							
                           <select class="sel_val sub_topic-select form-control" name="sub_id" >
 							<?php 
-							    $sub_id=$row_video['sub_id'];
+							    $sub_id=htmlspecialchars($row_video['sub_id'],ENT_QUOTES);
 								$subtopic=mysql_query("SELECT * FROM `subtopic` WHERE sub_id='".$sub_id."'");
 								$subtopic_res=mysql_fetch_array($subtopic);
 							?>
-							<option value="<?php echo $subtopic_res['sub_id'];?>"><?php echo $subtopic_res['subtopic'];?></option>
+							<option value="<?php echo htmlspecialchars($subtopic_res['sub_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($subtopic_res['subtopic'],ENT_QUOTES);?></option>
 					 </select>
                         </div>
 					  </div>

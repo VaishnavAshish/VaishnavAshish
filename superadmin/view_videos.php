@@ -5,9 +5,9 @@ require('header.php');
  
 $limit=15;
 if(isset($_GET['page'])){
-	$page=$_GET['page'];
-	$start=$page*$limit;
-	$end=$start+$limit;
+	$page = htmlspecialchars($_GET['page'],ENT_QUOTES);
+	$start = $page*$limit;
+	$end = $start+$limit;
 }
 else {
 	$page=0;
@@ -16,7 +16,7 @@ else {
 }	
 
 if(isset($_POST['delete_video']))
-{	$id = $_POST['delete_video'];
+{	$id = htmlspecialchars($_POST['delete_video'],ENT_QUOTES);
 	$delete = mysql_query("Delete from `videos` where video_id='".$id."'");
 	if($delete)
 	{	
@@ -57,7 +57,7 @@ if(isset($_POST['delete_video']))
 											
 										
 									?>
-									<option value="<?php echo $row['cat_id'];?>"><?php echo $row['category'];?></option>
+									<option value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row['category'],ENT_QUOTES);?></option>
 										<?php } ?>
 								</select>
                         </div>
@@ -124,17 +124,17 @@ if(isset($_POST['delete_video']))
 								
 								  <tr class="even pointer">
 									<td><?php echo $i;?></td>
-									<td><?php echo $row['video_name']?></td>
+									<td><?php echo htmlspecialchars($row['video_name'],ENT_QUOTES);?></td>
 									<td>
-										<iframe width="100" height="100" src="https://www.youtube.com/embed/<?php echo $row['youtube_id']?>" frameborder="0" allowfullscreen></iframe>
+										<iframe width="100" height="100" src="https://www.youtube.com/embed/<?php echo htmlspecialchars($row['youtube_id'],ENT_QUOTES);?>" frameborder="0" allowfullscreen></iframe>
 									</td>	
 									<td class="a-right a-right tc content-center">
 										<form action="" method="post">
-											<button type="submit" name="delete_video" class="btn btn-primary" value="<?php echo $row['video_id']?>">Delete</button>
+											<button type="submit" name="delete_video" class="btn btn-primary" value="<?php echo htmlspecialchars($row['video_id'],ENT_QUOTES);?>">Delete</button>
 											
 										</form>
 										<form action="edit_videos.php" method="POST">
-											<button type="submit" name="edit_videos" class="btn btn-primary" value="<?php echo $row['video_id']?>">Edit</button>
+											<button type="submit" name="edit_videos" class="btn btn-primary" value="<?php echo htmlspecialchars($row['video_id'],ENT_QUOTES);?>">Edit</button>
 										</form>
 									</td>
 								  </tr>

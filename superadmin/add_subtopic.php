@@ -7,9 +7,9 @@ require('header.php');
 
 	if(isset($_POST['submit']))
 	{
-		@$subtopic = ucwords(htmlspecialchars($_POST['subtopic'],ENT_QUOTES));
-		@$category = htmlspecialchars($_POST['category'],ENT_QUOTES);
-		@$topic_id = htmlspecialchars($_POST['topic'],ENT_QUOTES);
+		$subtopic = ucwords(htmlspecialchars($_POST['subtopic'],ENT_QUOTES));
+		$category = htmlspecialchars($_POST['category'],ENT_QUOTES);
+		$topic_id = htmlspecialchars($_POST['topic'],ENT_QUOTES);
 		$result = mysql_query("Insert into `subtopic`(subtopic,cat_id,topic_id) values('$subtopic','$category','$topic_id')");
 		if($result)
 		{

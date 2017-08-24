@@ -3,7 +3,7 @@ require('sidebar.php');
 require('header.php');  
 
 if(isset($_POST['delete_category']))
-{	$id = $_POST['delete_category'];
+{	$id = htmlspecialchars($_POST['delete_category'],ENT_QUOTES);
 	$delete = mysql_query("Delete from `test_category` where tc_id='".$id."'");
 	if($delete)
 	{		$delete_heading=mysql_query("Delete from test_heading where tc_id='".$id."'");
@@ -65,15 +65,15 @@ $count = mysql_num_rows($query)-1;
 								
 								  <tr class="even pointer">
 									<td class=" "><?php echo $i;?></td>
-									<td><?php echo $row['tc_name']?></td>
+									<td><?php echo htmlspecialchars($row['tc_name'],ENT_QUOTES)?></td>
 									
 									<td class="a-right a-right tc content-center">
 										<form action="" method="post">
-											<button type="submit" name="delete_category" class="btn btn-primary" value="<?php echo $row['tc_id']?>">Delete</button>
+											<button type="submit" name="delete_category" class="btn btn-primary" value="<?php echo htmlspecialchars($row['tc_id'],ENT_QUOTES)?>">Delete</button>
 											
 										</form>
 										<form action="edit_cat.php" method="POST">
-											<button type="submit" name="edit_category" class="btn btn-primary" value="<?php echo $row['tc_id']?>">Edit</button>
+											<button type="submit" name="edit_category" class="btn btn-primary" value="<?php echo htmlspecialchars($row['tc_id'],ENT_QUOTES)?>">Edit</button>
 										</form>
 									</td>
 									

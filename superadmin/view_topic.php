@@ -3,7 +3,7 @@ require('sidebar.php');
 require('header.php');
 
 if(isset($_POST['delete_topic'])){	
-   $check = $_POST['delete_topic'];
+   $check = htmlspacialchar($_POST['delete_topic'],ENT_QUOTES);
    $delete = mysql_query("DELETE FROM topics WHERE topic_id = '".$check."' ");
    if($delete)
    {	$sub_query=mysql_query("Delete from `subtopic` where topic_id='".$check."'");
@@ -58,19 +58,19 @@ if(isset($_POST['delete_topic'])){
 								
 								  <tr class="even pointer">
 									<td class=" "><?php echo $i;?></td>
-									<td class=" "><?php echo $row['topic']?></td>
-									<td class="a-right a-right "><?php echo $row['category']?></td>
+									<td class=" "><?php echo htmlspacialchar($row['topic']?></td>
+									<td class="a-right a-right "><?php echo htmlspacialchar($row['category']?></td>
 									<td class="a-right a-right "><?php 
-										echo $row['type'];
+										echo htmlspacialchar($row['type'],ENT_QUOTES);
 									   ?>
 									</td>
 									<td class="tc content-center">
 										<form action="" method="post">
-											<button type="submit" name="delete_topic" class="btn btn-primary" value="<?php echo $row['topic_id']?>">Delete</button>
+											<button type="submit" name="delete_topic" class="btn btn-primary" value="<?php echo htmlspacialchar($row['topic_id'],ENT_QUOTES);?>">Delete</button>
 											
 										</form>
 										<form action="edit_topic.php" method="POST">
-											<button type="submit" name="edit_topic" class="btn btn-primary" value="<?php echo $row['topic_id']?>">Edit</button>
+											<button type="submit" name="edit_topic" class="btn btn-primary" value="<?php echo htmlspacialchar($row['topic_id'],ENT_QUOTES);?>">Edit</button>
 										</form>
 									</td>
 									
