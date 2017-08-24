@@ -2,6 +2,79 @@
 session_start();
 require ('connection.php');
 ?>
+<script>
+	
+	window.fbAsyncInit = function() {
+		// FB JavaScript SDK configuration and setup
+		FB.init({
+		  appId      : '1848921672102352', // FB App ID
+		  cookie     : true,  // enable cookies to allow the server to access the session
+		  xfbml      : true,  // parse social plugins on this page
+		  version    : 'v2.8' // use graph api version 2.8
+		});
+		
+		// Check whether the user already logged in
+		FB.getLoginStatus(function(response) {
+			if (response.status === 'connected') {
+				//display user data
+				getFbUserData();
+			}
+			});
+		};
+
+		// Load the JavaScript SDK asynchronously
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+
+		// Facebook login with JavaScript SDK
+		function fbLogin() {
+			FB.login(function (response) {
+				if (response.authResponse) {
+					// Get and display the user profile data
+					getFbUserData();
+				} else {
+					document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
+				}
+			}, {scope: 'email'});
+		}
+
+		// Fetch the user profile data from facebook
+		function getFbUserData(){
+			FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
+			function (response) {
+				saveUserData1(response);
+				
+			});
+		}
+	// Save user data to the database
+		function saveUserData1(userData){
+			var userData=JSON.stringify(userData);
+			$.ajax({
+					method :'post',
+					url : 'register.php',
+					data : {'userdata':userData},
+					dataType:'json',
+					success : function(response){			
+															$('#modal').html('<div class="text-danger" style="text-align:center;"><h2>'+response.msg+'</h2></div>');
+															setTimeout(function(){
+																					$('#modal').html(original);
+																					$('#close-modal').click();
+																					$('.modal-backdrop ,fade ,in').remove();
+																					$("#header").load("header.php");
+																				},2000
+																		);
+												}
+				});
+		   
+		}
+
+</script>
+
 <!--<script src="style/js/google_login.js"></script>-->
 <meta name="google-signin-client_id" content="160094403010-g2bveq2fqcl2proet99fc660ivji0oj8.apps.googleusercontent.com">
 
@@ -53,8 +126,22 @@ require ('connection.php');
 								<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#signup" style="padding: 8px 12px;background-color: #031658; color:#fff;">Login / Register</button>
 							</li>
 							<?php }?>
-							<li class="nav_li"  id="search" >
-								<form   class="navbar-form navbar-left">
+							<li class="nav_li gsearch"  id="search" style="width:270px" >
+					          <!-- <script>
+								  (function() {
+									var cx = '011329349375461885423:i5dvocmdaom';
+									var gcse = document.createElement('script');
+									gcse.type = 'text/javascript';
+									gcse.async = true;
+									gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+									var s = document.getElementsByTagName('script')[0];
+									s.parentNode.insertBefore(gcse, s);
+								  })();
+								</script>
+								<gcse:search></gcse:search>
+								-->
+								
+								 <form   class="navbar-form navbar-left">
 									<div class="form-group" style=" border-style:solid; border-width:thin;">
 									  <input type="text" class="form-control" placeholder="Search" style=" border-width: 0 !important; border-style:solid; border-width:thin;">
 									 </div>	
@@ -72,12 +159,26 @@ require ('connection.php');
 			
 				<div style="padding-top:90px;">	
               	<div class="col-xm-12 search-mobile">
-					<form class="navbar-form search-form" style="margin: 0px;margin-left: auto;margin-right: auto;">
+				<!--		
+				   <script>
+								  (function() {
+									var cx = '011329349375461885423:i5dvocmdaom';
+									var gcse = document.createElement('script');
+									gcse.type = 'text/javascript';
+									gcse.async = true;
+									gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+									var s = document.getElementsByTagName('script')[0];
+									s.parentNode.insertBefore(gcse, s);
+								  })();
+								</script>
+								<gcse:search></gcse:search>-->	
+			<form class="navbar-form search-form" style="margin: 0px;margin-left: auto;margin-right: auto;">
 						<div class=" form-group" style=" border-style:solid; border-width:thin; width:80%; float:left;">
-						     <input type="text" class="form-control" placeholder="Search" style=" border-width: 0 !important;">
+							 <input type="text" class="form-control" placeholder="Search" style=" border-width: 0 !important;">
 						 </div>	
 						<button type="submit" class="btn btn-default glyphicon glyphicon-search headdiv" style="margin-top:-1px;"></button>
 				    </form>
+				
 				</div>				
 				<div class="topnav" style="background-color:#e84c4c !important; padding-left:4%;" id="myTopnav">
 				  <a href="index.php">Home</a>
