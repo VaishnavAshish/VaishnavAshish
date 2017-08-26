@@ -49,7 +49,7 @@ require ('connection.php');
 										<li role="menuitem"><?php echo $_SESSION['email'];?></li>
 										<li class="divider"></li>
 										<li role="menuitem" class="logout">
-										<a href="JavaScript:void(0)">Logout</a></li>
+										<a href="logout.php?goto=<?php echo $_SERVER['REQUEST_URI']; ?>">Logout</a></li>
 									</ul>
 								</div>
 						   </li>
@@ -170,7 +170,7 @@ require ('connection.php');
 														<?php session_unset($_SESSION['login_msg']); 
 														      }
 															?>
-													<form method="post" action="login.php" class="login_form">
+													<form method="post" action="login.php?goto=<?php echo $_SERVER['REQUEST_URI']; ?>" class="login_form">
 														<div class="form-group">
 														  <label>Email:</label>
 														  <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>

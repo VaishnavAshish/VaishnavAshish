@@ -200,25 +200,25 @@ window.fbAsyncInit = function() {
 		   
 		}	
 });	
-	$(document).on('click','.logout',function(){
-		 var auth2 = gapi.auth2.getAuthInstance();
-		 var logout={
-				type:'post',
-				cache:false,
-				url:'logout.php',
-				data:{ status:'logout'},
-				success: function(result){
-					if(result=="ok"){
-					$("#header").load("header.php");
-					}
-				}
-		};
-    	auth2.signOut().then(function () {
-      			$.ajax(logout);
-    	});
+	// $(document).on('click','.logout',function(){
+		 // var auth2 = gapi.auth2.getAuthInstance();
+		 // var logout={
+				// type:'post',
+				// cache:false,
+				// url:'logout.php',
+				// data:{ status:'logout'},
+				// success: function(result){
+					// if(result=="ok"){
+					// $("#header").load("header.php");
+					// }
+				// }
+		// };
+    	// auth2.signOut().then(function () {
+      			// $.ajax(logout);
+    	// });
 
 	
-	});
+	// });
 	
 
 
