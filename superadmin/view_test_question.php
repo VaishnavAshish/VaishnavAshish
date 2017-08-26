@@ -16,7 +16,7 @@ else {
 }	
 
 if(isset($_POST['delete_question']))
-{	$id = htmlspecialchars($_POST['delete_question'];
+{	$id = htmlspecialchars($_POST['delete_question'],ENT_QUOTES);
 	$delete = mysql_query("Delete from `test_question` where tq_id='".$id."'");
 	if($delete)
 	{	
