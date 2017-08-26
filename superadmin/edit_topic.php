@@ -74,10 +74,10 @@ require('header.php');
                         <div class="col-md-6 col-sm-6 col-xs-12">
 						   <select class="sel_val form-control" name="type" >
 									<option value="">Select Type</option>
-									<option value="0">Folder</option>
-									<option value="1">Questions Page</option>
-									<option value="2">Basics Page</option>
-									<option value="3">Video Page</option>
+									<option value="Folder">Folder</option>
+									<option value="Questions">Questions </option>
+									<option value="Basics">Basics Page</option>
+									<option value="Video">Video Page</option>
 						   </select>
 						</div>
                       </div>
