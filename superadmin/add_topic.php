@@ -61,21 +61,15 @@ require('header.php');
                       </div>
 					  
 					  <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Topic</label>
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Type</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
                           <select class="sel_val topic-select form-control" name="type" >
-									<option value="">Select Topic</option>
-									<?php 
-										$j = 0;
-										$que = mysql_query("Select * from topics");
-										while($ro=mysql_fetch_array($que))
-										{
-											
-										
-									?>
-									<option value="<?php echo htmlspecialchars($ro['topic_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($ro['topic'],ENT_QUOTES);?></option>
-										<?php } ?>
+									<option value="">Select Type</option>
+									<option value="Questions">Question</option>
+									<option value="Basics">Basics</option>
+									<option value="Video">Video</option>
+									<option value="Folder">Folder</option>
 								</select>
                         </div>
                       </div>
