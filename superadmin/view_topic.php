@@ -58,19 +58,19 @@ if(isset($_POST['delete_topic'])){
 								
 								  <tr class="even pointer">
 									<td class=" "><?php echo $i;?></td>
-									<td class=" "><?php echo htmlspacialchar($row['topic']?></td>
-									<td class="a-right a-right "><?php echo htmlspacialchar($row['category']?></td>
+									<td class=" "><?php echo htmlspecialchars($row['topic'],ENT_QUOTES);?></td>
+									<td class="a-right a-right "><?php echo htmlspecialchars($row['category'],ENT_QUOTES);?></td>
 									<td class="a-right a-right "><?php 
-										echo htmlspacialchar($row['type'],ENT_QUOTES);
+										echo htmlspecialchars($row['type'],ENT_QUOTES);
 									   ?>
 									</td>
 									<td class="tc content-center">
 										<form action="" method="post">
-											<button type="submit" name="delete_topic" class="btn btn-primary" value="<?php echo htmlspacialchar($row['topic_id'],ENT_QUOTES);?>">Delete</button>
+											<button type="submit" name="delete_topic" class="btn btn-primary" value="<?php echo htmlspecialchars($row['topic_id'],ENT_QUOTES);?>">Delete</button>
 											
 										</form>
 										<form action="edit_topic.php" method="POST">
-											<button type="submit" name="edit_topic" class="btn btn-primary" value="<?php echo htmlspacialchar($row['topic_id'],ENT_QUOTES);?>">Edit</button>
+											<button type="submit" name="edit_topic" class="btn btn-primary" value="<?php echo htmlspecialchars($row['topic_id'],ENT_QUOTES);?>">Edit</button>
 										</form>
 									</td>
 									
