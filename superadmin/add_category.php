@@ -7,10 +7,11 @@ require('header.php');
 if(isset($_POST["submit"])) {
 	$name = htmlspecialchars(ucwords($_POST['category']),ENT_QUOTES);
 	$imageFileType = pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION);
-	$target_dir = "../images/".$name.".".$imageFileType;
 	$img_name = $name.".".$imageFileType;
-        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir);
        $result = mysql_query("Insert into `category`(category,cat_image) values('$name','$img_name')");
+		$imageID=mysql_insert_id();	  
+		$target_dir = "../images/".$imageID.".".$imageFileType;
+	    move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir);
 	   if($result)
 	   {
 		   echo "<script>alert('Success');</script>";

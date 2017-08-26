@@ -18,11 +18,15 @@ else if(isset($_POST["submit"])) {
 	$name = htmlspecialchars($_POST['category'],ENT_QUOTES);
 	$category_id=  htmlspecialchars($_POST['category_id'],ENT_QUOTES);
 	$imageFileType = pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION);
-	$target_dir = "../images/".$name.".".$imageFileType;
-	$img_name = $name.".".$imageFileType;
-        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir);
-       $resu = mysql_query("UPDATE `category` set category='".$name."',cat_image='".$img_name."' where cat_id = '".$category_id."'");
-	   if($resu)
+	$que="UPDATE `category` set category='".$name."'";
+	
+	if($imageFileType!=""){
+			echo $target_dir = "../images/".$_POST["submit"].".".$imageFileType;
+			$img_name = $_POST["submit"].".".$imageFileType;
+			move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir);
+	}
+	$que.=" where cat_id = '".$category_id."'";
+	   if(mysql_query($que))
 	   {  
            header('location:view_category.php');
 	   }
@@ -66,7 +70,7 @@ else if(isset($_POST["submit"])) {
 							    <div class="form-group">
 									<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 									  <button class="btn btn-primary" type="reset">Reset</button>
-									  <button type="submit" name="submit"class="btn btn-success">Submit</button>
+									  <button type="submit" name="submit" value="<?php echo $res['cat_id'];?>" class="btn btn-success">Submit</button>
 									</div>
 								</div>
 

@@ -1,25 +1,9 @@
 <?php 
 require('sidebar.php');
 require('header.php'); 
-if(isset($_POST["submit"])) {
-	$name = htmlspecialchars($_POST['category'],ENT_QUOTES);
-	$imageFileType = pathinfo($_FILES["fileToUpload"]["name"],PATHINFO_EXTENSION);
-	$target_dir = "images/".$name.".".$imageFileType;
-	$img_name = $name.".".$imageFileType;
-        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir);
-       $result = mysql_query("Insert into `category`(category,cat_image) values('$name','$img_name')");
-	   if($result)
-	   {
-		   echo "<script>alert('Success');</script>";
-	   }
-	   else
-	   {
-		   echo "<script>alert('Unsuccess');</script>";
-	   }
-    
-}
+
 if(isset($_POST['delete_category']))
-{	$id = htmlspecialchars($_POST['delete_category'];
+{	$id = htmlspecialchars($_POST['delete_category'],ENT_QUOTES);
     $img=mysql_fetch_array(mysql_query("SELECT cat_image FROM `category` where cat_id='".$id."' "));
 	$delete = mysql_query("Delete from `category` where cat_id='".$id."'");
 	 $old = getcwd();  // Save the current directory
@@ -85,7 +69,7 @@ if(isset($_POST['delete_category']))
 									<td class=" "><?php echo $i;?></td>
 									<td><?php echo htmlspecialchars($row['category'],ENT_QUOTES)?></td>
 									<td>
-										<img width="70px" height="70px" src="<?php echo htmlspecialchars($image,ENT_QUOTES);?>" alt="<?php echo htmlspecialchars($image,ENT_QUOTES);?>"></img>
+										<img width="70px" height="70px" src="../images/<?php echo $row['cat_id'];?>.png"></img>
 									</td>
 									<td class="a-right a-right tc content-center">
 										<form action="" method="post">
