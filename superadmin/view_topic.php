@@ -3,7 +3,7 @@ require('sidebar.php');
 require('header.php');
 
 if(isset($_POST['delete_topic'])){	
-   $check = htmlspacialchar($_POST['delete_topic'],ENT_QUOTES);
+   $check = htmlspecialchars($_POST['delete_topic'],ENT_QUOTES);
    $delete = mysql_query("DELETE FROM topics WHERE topic_id = '".$check."' ");
    if($delete)
    {	$sub_query=mysql_query("Delete from `subtopic` where topic_id='".$check."'");

@@ -5,7 +5,7 @@ require('header.php');
  
 $limit=15;
 if(isset($_GET['page'])){
-	$page=htmlspecialchars(_GET['page'],ENT_QUOTES);
+	$page=htmlspecialchars($_GET['page'],ENT_QUOTES);
 	$start=$page*$limit;
 	$end=$start+$limit;
 }
@@ -16,7 +16,7 @@ else {
 }	
 
 if(isset($_POST['delete_basic']))
-{	$id = htmlspecialchars($_POST['delete_basic'];
+{	$id = htmlspecialchars($_POST['delete_basic'],ENT_QUOTES);
 	$delete = mysql_query("Delete from `basics` where basics_id='".$id."'");
 	if($delete)
 	{	

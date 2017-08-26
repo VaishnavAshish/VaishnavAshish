@@ -64,7 +64,7 @@ require('header.php');
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Type</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
-                          <select class="sel_val topic-select form-control" name="type" >
+                          <select class="sel_val form-control" name="type" >
 									<option value="">Select Type</option>
 									<option value="Questions">Question</option>
 									<option value="Basics">Basics</option>

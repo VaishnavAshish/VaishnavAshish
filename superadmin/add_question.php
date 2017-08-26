@@ -8,7 +8,7 @@ require('header.php');
 		$question = htmlspecialchars($_POST['question'],ENT_QUOTES);
 		$opt1 = htmlspecialchars($_POST['opt1'],ENT_QUOTES);
 		$opt2 = htmlspecialchars($_POST['opt2'],ENT_QUOTES);
-		$opt3 = htmlspecialchars($_POST['opt3'],ENT_QUOTES;
+		$opt3 = htmlspecialchars($_POST['opt3'],ENT_QUOTES);
 		$opt4 = htmlspecialchars($_POST['opt4'],ENT_QUOTES);
 		$answer = htmlspecialchars($_POST['answer'],ENT_QUOTES);
 		

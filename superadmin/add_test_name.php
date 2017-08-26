@@ -10,7 +10,7 @@ require('header.php');
 		$name = htmlspecialchars($_POST['name'],ENT_QUOTES);
 		$test_category = htmlspecialchars($_POST['test_category'],ENT_QUOTES);
 		$heading = htmlspecialchars($_POST['heading'],ENT_QUOTES);
-		$question= htmlspecialchars($_POST['nos',ENT_QUOTES)];
+		$question= htmlspecialchars($_POST['nos'],ENT_QUOTES);
 		$hours = htmlspecialchars($_POST['hours'],ENT_QUOTES);
 		$minutes = htmlspecialchars($_POST['minutes'],ENT_QUOTES);
 		$seconds = htmlspecialchars($_POST['seconds'],ENT_QUOTES);

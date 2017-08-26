@@ -187,18 +187,18 @@ if(isset($_POST['delete_question']))
 								
 									  <tr class="even pointer">
 										<td><?php echo $i;?></td>
-										<td><?php echo htmlspecialchars($row['question']?></td>
-										<td><?php echo htmlspecialchars($row['opt1']?></td>
-										<td><?php echo htmlspecialchars($row['opt2']?></td>
-										<td><?php echo htmlspecialchars($row['opt3']?></td>
-										<td><?php echo htmlspecialchars($row['opt4']?></td>
-										<td><?php echo htmlspecialchars($row['answer']?></td>
+										<td><?php echo htmlspecialchars($row['question'],ENT_QUOTES);?></td>
+										<td><?php echo htmlspecialchars($row['opt1'],ENT_QUOTES);?></td>
+										<td><?php echo htmlspecialchars($row['opt2'],ENT_QUOTES);?></td>
+										<td><?php echo htmlspecialchars($row['opt3'],ENT_QUOTES);?></td>
+										<td><?php echo htmlspecialchars($row['opt4'],ENT_QUOTES);?></td>
+										<td><?php echo htmlspecialchars($row['answer'],ENT_QUOTES);?></td>
 										<td class="a-right a-right tc content-center">
 											<form action="" method="post">
-												<button type="submit" name="delete_question" class="btn btn-primary" value="<?php echo htmlspecialchars($row['qid']?>">Delete</button>
+												<button type="submit" name="delete_question" class="btn btn-primary" value="<?php echo htmlspecialchars($row['qid'],ENT_QUOTES);?>">Delete</button>
 											</form>
 											<form action="edit_question.php" method="POST">
-												<button type="submit" name="edit_question" class="btn btn-primary" value="<?php echo htmlspecialchars($row['qid']?>">Edit</button>
+												<button type="submit" name="edit_question" class="btn btn-primary" value="<?php echo htmlspecialchars($row['qid'],ENT_QUOTES);?>">Edit</button>
 											</form>
 										</td>
 									 </tr>
