@@ -8,7 +8,7 @@ if(isset($_POST['login']))
 echo '<script>alert("'.$_GET['goto'].'")</script>';	
 $email=$_POST['email'];
 $password=crypt(md5($_POST['password']),'$2y$@NTRIKSH$@@Y$#$%2sW@s&8Anxwu@SUbw23828@283hduchd');
-$check=mysql_query("SELECT * FROM `users` WHERE email='".$email."' && password='".$password."'");
+$check=mysql_query("SELECT * FROM `users` WHERE email='".$email."' && password='".$password."' && status=1");
 	if(mysql_num_rows($check)==0)
 	{  $_SESSION['login_msg']="Incorrect Username or Password";
 	   header("location:".$_GET['goto']);

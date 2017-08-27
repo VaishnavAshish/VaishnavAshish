@@ -77,10 +77,10 @@ $count = mysql_num_rows($query)-1;
 										 <?php } ?>
 										</form>
 										<?php if($row['status']=='1') {  ?>
-										 <button type="button" class="btn btn-warning change-status" id="change-status" value="<?php echo htmlspecialchars($row['uid'],ENT_QUOTES); ?>" status="<?php echo htmlspecialchars($row['status'],ENT_QUOTES);?>"><?php echo "Disable"; ?></button>
+										 <button type="button" class="btn btn-warning change-status" id="change-status" value="<?php echo $row['uid']; ?>" status="<?php echo htmlspecialchars($row['status'],ENT_QUOTES);?>"><?php echo "Disable"; ?></button>
 										<?php } 
 												 else if($row['status']=='2') { ?>
-										 <button type="button" class="btn btn-success change-status" id="change-status" value="<?php echo htmlspecialchars($row['uid'],ENT_QUOTES); ?>" status="<?php echo htmlspecialchars($row['status'],ENT_QUOTES);?>"><?php echo "Enable"; ?></button>
+										 <button type="button" class="btn btn-success change-status" id="change-status" value="<?php echo $row['uid']; ?>" status="<?php echo htmlspecialchars($row['status'],ENT_QUOTES);?>"><?php echo "Enable"; ?></button>
 									    <?php } 
 										
 										else { ?>
