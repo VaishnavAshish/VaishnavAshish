@@ -42,6 +42,9 @@ session_start();
 
     <!-- Custom Theme Style -->
     <link href="build/css/custom.min.css" rel="stylesheet">
+    
+    <script src="../angularTestFiles/angular/angular.min.js"></script>
+    <script src="angular/app.js"></script>
 	  
 	<!-- Custom Theme Style -->
     <link href="mystyle.css" rel="stylesheet">
