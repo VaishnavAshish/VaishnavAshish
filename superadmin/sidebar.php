@@ -88,6 +88,16 @@ session_start();
                      
                     </ul>
                   </li>
+				  
+				   <li><a><i class="fa fa-edit"></i>Sub-Category<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+					  <li><a href="add_subcat.php">Add Sub-Category </a></li>
+                      <li><a href="view_subcat.php">View Sub-Category</a></li>
+                      <li><a href="add_folder.php">Add Sub-Category topics</a></li>
+                      <li><a href="view_folder.php">View Sub-Category topics</a></li>
+                    </ul>
+                  </li>
+				  
                   <li><a><i class="fa fa-edit"></i> Topics <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="view_topic.php">View Topics </a></li>
@@ -96,24 +106,10 @@ session_start();
                     </ul>
                   </li>
                  
-				   <li><a><i class="fa fa-desktop"></i> SubTopic <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="add_subtopic.php">Add Subtopic</a></li>
-                       <li><a href="view_subtopic.php">view Subtopic</a></li>
-                     
-                    </ul>
-                  </li>
-                  
-				   <li><a><i class="fa fa-edit"></i> Folder <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="add_folder.php">Add Folder </a></li>
-                      <li><a href="view_folder.php">View Folder </a></li>
-                      
-                    </ul>
-                  </li>
-                
                   <li><a><i class="fa fa-table"></i> Questions <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+					  <li><a href="add_subtopic.php">Add Question subtopic</a></li>
+                      <li><a href="view_subtopic.php">View Question subtopic</a></li>
                       <li><a href="view_question.php">View Questions</a></li>
 					  <li><a href="add_question.php">Add Questions</a></li>
 					   <li><a href="upload_question.php">Upload Questions File</a></li>
