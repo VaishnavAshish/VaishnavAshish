@@ -2,7 +2,7 @@
 
 if(isset($_GET['tn_id']))
 {  
-	$testQuery="SELECT * FROM `test_name` join `test_heading` on test_name.th_id=test_heading.th_id join `test_category` on test_name.tc_id=test_category.tc_id where test_name.tn_id='".$_GET['tn_id']."' ";
+	$testQuery="SELECT * FROM `test_name` join `test_heading` on test_name.th_id=test_heading.th_id join `test_category` on test_name.tc_id=test_category.tc_id where test_name.tn_id='".htmlspecialchars($_GET['tn_id'],ENT_QUOTES)."' ";
 	$test_query=mysql_query($testQuery);
 	$test=mysql_fetch_array($test_query);
 	
