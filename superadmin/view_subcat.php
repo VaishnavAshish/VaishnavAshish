@@ -35,9 +35,8 @@ if(isset($_POST['delete_topic'])){
 								<thead>
 								  <tr class="headings">
 									<th class="column-title">S.No.</th>
-									<th class="column-title ">Topic Name</th>
 									<th class="column-title ">Category</th>
-									<th class="column-title ">Page Type</th>
+									<th class="column-title ">Sub-Category</th>
 									<th class="column-title no-link last tc"><span class="nobr">Action</span>
 									
 									</th>
@@ -49,7 +48,7 @@ if(isset($_POST['delete_topic'])){
 									<tbody>
 								<?php 
 										$i=0;
-										$result = mysql_query("Select * from topics join category on topics.cat_id = category.cat_id where topics.type!='Folder' ORDER BY category");
+										$result = mysql_query("Select * from topics join category on topics.cat_id = category.cat_id where topics.type='Folder' ORDER BY category");
 										while($row=mysql_fetch_array($result))
 										{
 											$i+=1;
@@ -58,19 +57,15 @@ if(isset($_POST['delete_topic'])){
 								
 								  <tr class="even pointer">
 									<td class=" "><?php echo $i;?></td>
-									<td class=" "><?php echo htmlspecialchars($row['topic'],ENT_QUOTES);?></td>
 									<td class="a-right a-right "><?php echo htmlspecialchars($row['category'],ENT_QUOTES);?></td>
-									<td class="a-right a-right "><?php 
-										echo htmlspecialchars($row['type'],ENT_QUOTES);
-									   ?>
-									</td>
+									<td class=" "><?php echo htmlspecialchars($row['topic'],ENT_QUOTES);?></td>
 									<td class="tc content-center">
 										<form action="" method="post">
 											<button type="submit" name="delete_topic" class="btn btn-primary" value="<?php echo htmlspecialchars($row['topic_id'],ENT_QUOTES);?>">Delete</button>
 											
 										</form>
-										<form action="edit_topic.php" method="POST">
-											<button type="submit" name="edit_topic" class="btn btn-primary" value="<?php echo htmlspecialchars($row['topic_id'],ENT_QUOTES);?>">Edit</button>
+										<form action="edit_subcat.php" method="POST">
+											<button type="submit" name="edit_subcat" class="btn btn-primary" value="<?php echo htmlspecialchars($row['topic_id'],ENT_QUOTES);?>">Edit</button>
 										</form>
 									</td>
 									
