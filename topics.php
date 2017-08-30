@@ -2,20 +2,20 @@
 include("connection.php");
 if(isset($_GET['cat_id']))
 {
-	$catQuery="SELECT * FROM `category` where cat_id=".$_GET['cat_id']." LIMIT 1";
+	$catQuery="SELECT * FROM `category` where cat_id=".htmlspecialchars($_GET['cat_id'],ENT_QUOTES)." LIMIT 1";
 	$category_query=mysql_query($catQuery);
 	$category=mysql_fetch_array($category_query);
 }
 if(isset($_GET['topic_id']))
 { 
-	$topQuery="SELECT * FROM `topics` where cat_id=".$_GET['cat_id']." LIMIT 1";
+	$topQuery="SELECT * FROM `topics` where cat_id=".htmlspecialchars($_GET['cat_id'],ENT_QUOTES)." LIMIT 1";
 	$topic_query=mysql_query($topQuery);
 	$topic=mysql_fetch_array($topic_query);
 }
 if(!isset($_GET['folder'])){
-	$query=mysql_query("SELECT * FROM `topics` where topics.cat_id=".$_GET['cat_id']);
+	$query=mysql_query("SELECT * FROM `topics` where topics.cat_id=".htmlspecialchars($_GET['cat_id'],ENT_QUOTES));
 }else {
-	$query=mysql_query("SELECT *,f_name as topic FROM `folder` where cat_id=".$_GET['cat_id']." AND topic_id=".$_GET['topic_id']);
+	$query=mysql_query("SELECT *,f_name as topic FROM `folder` where cat_id=".htmlspecialchars($_GET['cat_id'],ENT_QUOTES)." AND topic_id=".htmlspecialchars($_GET['topic_id'],ENT_QUOTES));
 }
 ?>
 <!DOCTYPE html>

@@ -1,10 +1,10 @@
 <?php
 include('connection.php');
 if(isset($_POST['contact'])){
-	$name=$_POST['name'];
-	$email=$_POST['email'];
-	$mobile=$_POST['mobile'];
-	$message=$_POST['message'];
+	$name = htmlspecialchars($_POST['name'],ENT_QUOTES);
+	$email = htmlspecialchars($_POST['email'],ENT_QUOTES);
+	$mobile = htmlspecialchars($_POST['mobile'],ENT_QUOTES);
+	$message = htmlspecialchars($_POST['message'],ENT_QUOTES);
 	$contact_query=mysql_query("INSERT INTO `contact_us`(name,email,mobile,message) values('$name','$email','$mobile','$message')");
 	if($contact_query)
 		echo '<script>alert("Successful");</script>';
@@ -14,8 +14,8 @@ if(isset($_POST['contact'])){
 }
 
 if(isset($_POST['subscription'])){
-	$name=$_POST['name'];
-	$email=$_POST['email'];
+	$name=htmlspecialchars($_POST['name'],ENT_QUOTES);
+	$email=htmlspecialchars($_POST['email'],ENT_QUOTES);
 	$subscription_query=mysql_query("INSERT INTO `subscription`(name,email) values('$name','$email')");
 	if($subscription_query)
 		echo '<script>alert("Successful");</script>';
