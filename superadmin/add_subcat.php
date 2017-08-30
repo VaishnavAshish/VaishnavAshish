@@ -7,9 +7,9 @@ require('header.php');
 
 	if(isset($_POST['submit']))
 	{
-		$topic = htmlspecialchars($_POST['topic'],ENT_QUOTES);
+		$topic = ucwords(htmlspecialchars($_POST['topic'],ENT_QUOTES));
 		$category = htmlspecialchars($_POST['category'],ENT_QUOTES);
-		$type = htmlspecialchars($_POST['type'],ENT_QUOTES);
+		$type ="Folder";
 		$result = mysql_query("Insert into `topics`(topic,cat_id,type) values('$topic','$category','$type')");
 		if($result)
 		{
@@ -30,10 +30,10 @@ require('header.php');
                     <h1>Add Topic</h1>
                     <div class="clearfix"></div>
                   </div>
-			<form id="demo-form2"name="subtopic" data-parsley-validate method="POST" class="form-horizontal form-label-left">
+			<form id="demo-form2" data-parsley-validate method="POST"class="form-horizontal form-label-left">
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Topic Name <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Sub-Category Name <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="first-name" required="required" name="topic" value=""class="form-control col-md-7 col-xs-12">
@@ -45,48 +45,30 @@ require('header.php');
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
                           <select class="sel_val form-control" name="category" >
-														<option value="">Select Category</option>
-															<?php 
-																$j = 0;
-																$query = mysql_query("Select * from category");
-																while($row=mysql_fetch_array($query))
-																{
-															?>
-														<option value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row['category'],ENT_QUOTES);?></option>
-															<?php } ?>
-													</select>
-                        </div>
-                      </div>
-					  
-					  <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Type</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-
-						  <select class="sel_val form-control" name="type" >
-								<option value="">Select Type</option>
-								<option value="Questions">Question</option>
-								<option value="Basics">Basics</option>
-								<option value="Video">Video</option>
-						  </select>
-
+									<option value="">Select Category</option>
+									<?php 
+										$j = 0;
+										$query = mysql_query("Select * from category");
+										while($row=mysql_fetch_array($query))
+										{
+											
+										
+									?>
+									<option value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row['category'],ENT_QUOTES);?></option>
+										<?php } ?>
+								</select>
                         </div>
                       </div>
                       
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          
-						  <button class="btn btn-primary" type="reset">Reset</button>
                           <button type="submit" name="submit"class="btn btn-success">Submit</button>
+						  <button class="btn btn-primary" type="reset">Reset</button>
                         </div>
                       </div>
 
                     </form>
-
-    
-
-
-        
         </div>
         <!-- /page content -->
 

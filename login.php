@@ -6,7 +6,7 @@ if(isset($_GET['goto'])){
 if(isset($_POST['login']))
 {
 echo '<script>alert("'.$_GET['goto'].'")</script>';	
-$email=$_POST['email'];
+$email=htmlspecialchars($_POST['email'],ENT_QUOTES);
 $password=crypt(md5($_POST['password']),'$2y$@NTRIKSH$@@Y$#$%2sW@s&8Anxwu@SUbw23828@283hduchd');
 $check=mysql_query("SELECT * FROM `users` WHERE email='".$email."' && password='".$password."' && status=1");
 	if(mysql_num_rows($check)==0)

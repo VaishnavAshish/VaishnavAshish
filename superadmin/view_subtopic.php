@@ -36,6 +36,7 @@ if(isset($_POST['delete_subtopic']))
 									<th class="column-title">S.No.</th>
 									<th class="column-title ">Category</th>
 									<th class="column-title ">Topic</th>
+									<th class="column-title ">Folder</th>
 									<th class="column-title ">SubTopic</th>
 									<th class="column-title no-link last tc"><span class="nobr">Action</span>
 									
@@ -45,7 +46,14 @@ if(isset($_POST['delete_subtopic']))
 									<tbody>
 								<?php 
 										$i=0;
-										$result = mysql_query("Select * from `topics` join `category` on topics.cat_id=category.cat_id join `subtopic` on subtopic.cat_id = topics.cat_id && subtopic.topic_id=topics.topic_id ORDER BY category ");
+										$que="Select *
+											from `subtopic` 
+												join `category` on subtopic.cat_id=category.cat_id 
+												left outer join `topics` on topics.topic_id=subtopic.topic_id
+												left outer join `folder` on subtopic.folder_id = folder.f_id
+											";
+										
+										$result = mysql_query($que);
 										while($row=mysql_fetch_array($result))
 										{
 											$i+=1;
@@ -56,13 +64,16 @@ if(isset($_POST['delete_subtopic']))
 									<td><?php echo $i;?></td>
 											<td><?php echo htmlspecialchars($row['category'],ENT_QUOTES)?></td>
 											<td><?php echo htmlspecialchars($row['topic'],ENT_QUOTES)?></td>
+											<td><?php echo htmlspecialchars($row['f_name'],ENT_QUOTES)?></td>
 											<td><?php echo htmlspecialchars($row['subtopic'],ENT_QUOTES)?></td>
 									<td class="a-right a-right tc content-center">
 										<form action="" method="post">
+											<input type="hidden" name="type" value="<?php echo $row['tab']?>">
 											<button type="submit" name="delete_subtopic" class="btn btn-primary" value="<?php echo htmlspecialchars($row['sub_id'],ENT_QUOTES);?>">Delete</button>
 											
 										</form>
 										<form action="edit_subtopic.php" method="POST">
+											<input type="hidden" name="type" value="<?php echo $row['tab']?>">
 											<button type="submit" name="edit_subtopic" class="btn btn-primary" value="<?php echo htmlspecialchars($row['sub_id'],ENT_QUOTES);?>">Edit</button>
 										</form>
 									</td>

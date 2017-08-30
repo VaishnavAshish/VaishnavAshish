@@ -2,8 +2,8 @@
 include("connection.php");
 if(isset($_GET['topic_id']))
 { 
-    
-	$topQuery="SELECT * FROM `topics` where topic_id=".$_GET['topic_id']." LIMIT 1";
+    $topic_id = htmlspecialchars($_GET['topic_id'],ENT_QUOTES);
+	$topQuery="SELECT * FROM `topics` where topic_id='".$topic_id."' LIMIT 1";
 	$topic_query=mysql_query($topQuery);
 	$topic=mysql_fetch_array($topic_query);
 

@@ -1,18 +1,25 @@
 <?php 
- include("connection.php");
+session_start();
+include("connection.php");
+if(!isset($_SESSION['username']) && !isset($_SESSION['email']))
+{
+	$_SESSION['status']="login required";
+	header("location:index.php");
+}	
+
 if(isset($_GET['cat_id']))
 {
-	$catQuery="SELECT * FROM `category` where cat_id=".$_GET['cat_id']." LIMIT 1";
+	$catQuery="SELECT * FROM `category` where cat_id=".htmlspecialchars($_GET['cat_id'],ENT_QUOTES)." LIMIT 1";
 	$category_query=mysql_query($catQuery);
 	$category=mysql_fetch_array($category_query);
-	$query=mysql_query("SELECT * FROM `topics` where topics.cat_id='".$_GET['cat_id']."' ");
+	$query=mysql_query("SELECT * FROM `topics` where topics.cat_id='".htmlspecialchars($_GET['cat_id'],ENT_QUOTES)."' ");
 }
 if(isset($_GET['topic_id']))
 { 
-	$topQuery="SELECT * FROM `topics` where cat_id=".$_GET['cat_id']." LIMIT 1";
+	$topQuery="SELECT * FROM `topics` where cat_id=".htmlspecialchars($_GET['cat_id'],ENT_QUOTES)." LIMIT 1";
 	$topic_query=mysql_query($topQuery);
 	$topic=mysql_fetch_array($topic_query);
-    $topicQuery="SELECT * FROM `basics` where topic_id=".$_GET['topic_id'];
+    $topicQuery="SELECT * FROM `basics` where topic_id=".htmlspecialchars($_GET['topic_id'],ENT_QUOTES);
 	$topic_query=mysql_query($topicQuery);
 }
 ?>

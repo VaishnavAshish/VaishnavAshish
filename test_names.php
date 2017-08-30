@@ -3,13 +3,13 @@
 
 if(isset($_GET['th_id']))
 { 
-	$topQuery="SELECT * FROM `test_heading` where th_id='".$_GET['th_id']."' ";
+	$topQuery="SELECT * FROM `test_heading` where th_id='".htmlspecialchars($_GET['th_id'],ENT_QUOTES)."' ";
 	$heading_query=mysql_query($topQuery);
 	$test_heading=mysql_fetch_array($heading_query);
 }
 if(isset($_GET['tc_id']))
 { 
-	$catQuery="SELECT * FROM `test_category` where tc_id='".$_GET['tc_id']."' ";
+	$catQuery="SELECT * FROM `test_category` where tc_id='".htmlspecialchars($_GET['tc_id'],ENT_QUOTES)."' ";
 	$cat_query=mysql_query($catQuery);
 	$test_cat=mysql_fetch_array($cat_query);
 }

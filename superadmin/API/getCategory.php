@@ -6,6 +6,6 @@ if($result=mysql_query($query)){
 	while($row=mysql_fetch_array($result)){
 		$a[]=$row;
 	}
-	json_encode($a);
+		echo json_encode($a);
 }
 ?>

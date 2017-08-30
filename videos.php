@@ -2,13 +2,13 @@
  include("connection.php");
 if(isset($_GET['cat_id']))
 {
-	$catQuery="SELECT * FROM `category` where cat_id=".$_GET['cat_id']." LIMIT 1";
+	$catQuery="SELECT * FROM `category` where cat_id=".htmlspecialchars($_GET['cat_id'],ENT_QUOTES)." LIMIT 1";
 	$category_query=mysql_query($catQuery);
 	$category=mysql_fetch_array($category_query);
 }
 if(isset($_GET['topic_id']))
 { 
-	$topQuery="SELECT * FROM `topics` where topic_id=".$_GET['topic_id']." LIMIT 1";
+	$topQuery="SELECT * FROM `topics` where topic_id=".htmlspecialchars($_GET['topic_id'],ENT_QUOTES)." LIMIT 1";
 	$topic_query=mysql_query($topQuery);
 	$topic=mysql_fetch_array($topic_query);
 }
@@ -55,7 +55,7 @@ if(isset($_GET['topic_id']))
 		<div class="media_div col-sm-8 col-xs-12 " >
 			
 			<?php 
-				$Q="SELECT * FROM `videos` where cat_id=".$_GET['cat_id']." AND topic_id=".$_GET['topic_id'];
+				$Q="SELECT * FROM `videos` where cat_id=".htmlspecialchars($_GET['cat_id'],ENT_QUOTES)." AND topic_id=".htmlspecialchars($_GET['topic_id'],ENT_QUOTES);
 				$query=mysql_query($Q);
 				if(mysql_num_rows($query)>0){
 				while($row=mysql_fetch_array($query)){

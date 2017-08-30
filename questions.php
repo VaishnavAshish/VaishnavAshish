@@ -40,7 +40,7 @@
 <?php 
     include("header.php");
 	
-	$que = mysql_query("Select * from `question` where 	sub_id=".$_GET['sub_id']." limit $start,$limit ");	
+	$que = mysql_query("Select * from `question` where 	sub_id=".htmlspecialchars($_GET['sub_id'],ENT_QUOTES)." limit $start,$limit ");	
 	$page_count=mysql_num_rows(mysql_query("Select * from `question`"))/$limit;
 ?>
 <!--/Header-->

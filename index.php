@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-	  <title>Navigation</title>
+	  <title>Aptitude, Reasoning, Verbal, Engineering, Medical Questions and Answers -PadhlePappu</title>
 	  <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <meta name="google-signin-client_id" content="214155233946-n3vsd276lrd5tno5m00nd7k4f1h5id32.apps.googleusercontent.com">
@@ -24,7 +24,13 @@
 <?php include("header.php");?>	
 </div>
 <!--/Header-->
-
+<?php
+if(isset($_SESSION['status'])){
+?>
+<script>$('#modal').click();</script>
+<?php	
+}
+?>
 <?php 
 $cat=mysql_query("SELECT * FROM `category`");
 ?>
