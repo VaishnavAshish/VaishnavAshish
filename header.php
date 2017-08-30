@@ -115,7 +115,8 @@ require ('connection.php');
 				</div>				
 				<div class="topnav" style="background-color:#e84c4c !important; padding-left:4%;" id="myTopnav">
 				  <a href="index.php">Home</a>
-				  <a href="about.php">About</a>
+				  <a href="about.php">About Us</a>
+				   <a href="contact.php">Contact Us</a>
 					 <?php 
 					 $cat=mysql_query("SELECT * FROM `category`");
 					 while($res=mysql_fetch_array($cat))
