@@ -21,8 +21,8 @@
 									if(isset($_GET['cat_id'])){
 										$query.=" where cat_id=".$_GET['cat_id'];
 									}
-									if(isset($_GET['topic_id'])){
-										$query.=" AND topic_id=".$_GET['topic_id'];
+									if(isset($_GET['folder_id'])){
+										$query.=" AND folder_id=".$_GET['folder_id'];
 									}
 									if(isset($_GET['topic_id'])){
 										$query.=" AND topic_id=".$_GET['topic_id'];

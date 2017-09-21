@@ -25,23 +25,27 @@ angular.module("adminPanel", [])
 
         subtopic.nextFetch = function (data, type) {
             if (data[2] == 'Folder') {
+				 subtopic.showFolder = true;
                 subtopic.fetchFolder(data[1], type);
-                subtopic.showFolder = true;
             } else {
-                subtopic.fetchSubtopic(data[1], type);
-                subtopic.showFolder = false;
+				 subtopic.showFolder = false;
+                subtopic.fetchsubTopic(data[1], type);
+               
             }
         }
 
-        subtopic.fetchSubtopic = function (selectedID, type) {
+        subtopic.fetchsubTopic = function (selectedID, type,f) {
             var defer = $q.defer();
             subtopic.subtopic = [];
             subtopic.subtopictext = "PLease Wait...";
             var req = {
                 url: "http://localhost/VaishnavAshish/superadmin/API/getSubTopic.php",
                 method: "POST",
-                data: { folderID: selectedID }
+				data:{}
             };
+			if(f==1){ req.data.folderID= selectedID ;}else{
+				req.data.topicID=selectedID;
+			}
             if (type) { req.data.type = type; }
             $http(req).then(function (response) {
                 subtopic.subtopic = response.data;

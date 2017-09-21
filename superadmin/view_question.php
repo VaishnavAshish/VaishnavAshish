@@ -19,7 +19,7 @@
 									<option value="">Select Category</option>
 									<?php 
 										$j = 0;
-										$query = mysql_query("Select * from category");
+										$query = mysql_query("Select * from `category` where page='topics.php'");
 										while($row=mysql_fetch_array($query))
 										{
 											
@@ -38,8 +38,8 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
                           <select class="form-control" id="topicID" onChange="showUser(document.getElementById('newssearch').value,document.getElementById('category').value,document.getElementById('topicID').value)" ng-model="subtopic.selectedTopic" ng-change="subtopic.nextFetch(subtopic.selectedTopic.split(','),'Question')" >
-									<option value="">{{subtopic.subtopictext?subtopic.subtopictext:'Please Select'}}</option>
-									<option ng-repeat="topic in subtopic.topic"  value="{{$index}},{{topic.topic_id}},{{topic.type}}">
+									<option value="">{{subtopic.topictext?subtopic.topictext:'Please Select'}}</option>
+									<option ng-repeat="topic in subtopic.topic track by $index"  value="{{$index}},{{topic.topic_id}},{{topic.type}}">
 										{{topic.topic}}
 									</option>
 								</select>
@@ -50,10 +50,24 @@
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select sub Category Topic</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
-                          <select class="form-control" onChange="showUser(document.getElementById('newssearch').value,document.getElementById('category').value,document.getElementById('topic').value,document.getElementById('folderID').value)" id="folderID">
+                          <select class="form-control" ng-model="subtopic.selectedSubTopic" ng-change="subtopic.fetchsubTopic(subtopic.selectedSubTopic,'Question',1)" onChange="showUser(document.getElementById('newssearch').value,document.getElementById('category').value,document.getElementById('topicID').value,document.getElementById('folderID').value)" id="folderID">
 									<option value="">{{subtopic.foldertext?subtopic.foldertext:'Please Select'}}</option>
-									<option ng-repeat="topic in subtopic.folder" value="{{topic.f_id}}">
+									<option ng-repeat="topic in subtopic.folder track by $index" value="{{topic.f_id}}">
 										{{topic.f_name}}
+									</option>
+								</select>
+                        </div>
+                      </div>
+					  <input type="hidden" id="folderID" ng-if="!subtopic.showFolder">
+					  
+					    <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select sub Category Topic</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+							
+                          <select id="subpicID" class="form-control" ng-model="subtopic.selectedSubsubTopic" name="subpicID"  onChange="showUser(document.getElementById('newssearch').value,document.getElementById('category').value,document.getElementById('topicID').value,document.getElementById('folderID').value,this.value)" >
+									<option value="">{{subtopic.subtopictext?subtopic.subtopictext:'Please Select'}}</option>
+									<option ng-repeat="topic in subtopic.subtopic track by $index" value="{{topic.sub_id}}">
+										{{topic.subtopic}}
 									</option>
 								</select>
                         </div>
@@ -83,11 +97,12 @@
 
 <script>
 showUser();
-function showUser(search,cat_id,topic_id,folder_id) {
+function showUser(search,cat_id,topic_id,folder_id,subtopicID) {
 var str=" ";
 if(cat_id){str+="cat_id="+cat_id;}
 if(topic_id){var topic=topic_id.split(",");str+="&topic_id="+topic[1];}
 if(folder_id){str+="&folder_id="+folder_id;}
+if(subtopicID){str+="&sub_id="+subtopicID;}
 if(search && search!=""){str+="&q="+search;}
         if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari

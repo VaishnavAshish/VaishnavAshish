@@ -38,7 +38,7 @@ require('header.php');
 
 
  <!-- page content -->
-        <div class="right_col" role="main">
+        <div class="right_col" ng-app="adminPanel" ng-controller="subtopicADDCtrl as subtopic" role="main">
 			<?php include("index_counter.php");?>
 			<div class="x_title">
                     <h1>Upload CSV file of Questions:</h1>
@@ -54,46 +54,38 @@ require('header.php');
                         </div>
                       </div>
 					  
-					  <div class="form-group">
+					<div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Category</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
-                          <select class="sel_val form-control" name="category-question" >
+                          <select id="category" onChange="showUser(document.getElementById('newssearch').value,document.getElementById('category').value)" class="form-control" name="category" ng-model="subtopic.selectedCategory"  ng-change="subtopic.fetchTopic(subtopic.selectedCategory,'Question')">
 									<option value="">Select Category</option>
 									<?php 
 										$j = 0;
-										$query = mysql_query("Select * from category");
+										$que="Select *
+											from `subtopic` 
+												join `category` on subtopic.cat_id=category.cat_id 
+												left outer join `topics` on topics.topic_id=subtopic.topic_id
+												left outer join `folder` on subtopic.folder_id = folder.f_id
+											";
+										$query = mysql_query($que);
 										while($row=mysql_fetch_array($query))
 										{
 											
 										
 									?>
-									<option value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row['category'],ENT_QUOTES);?></option>
+									<option value="<?php echo htmlspecialchars($row['sub_id'],ENT_QUOTES);?>">
+											<?php echo htmlspecialchars($row['subtopic'],ENT_QUOTES);?>
+									</option>
 										<?php } ?>
 								</select>
                         </div>
                       </div>
 					  
-					   <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Topic</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-							
-                          <select class="sel_val topic-select topic-type-question form-control" name="topic_id" >
-									<option value="">Select Topic</option>
-						  </select>
-                        </div>
-                      </div>
+					 
 					  
-					  <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select SubTopic</label>
-					  <div class="col-md-6 col-sm-6 col-xs-12">
-							
-                          <select class="sel_val sub_topic-select form-control" name="sub_id" >
-									<option value="">Select SubTopic</option>
-						  </select>
-                        </div>
-						
-                      </div>
+					
+
 					  
 
                       

@@ -1,4 +1,5 @@
 <?php
+$a=array();
 error_reporting(0);
 require("../../connection.php");
 $d = json_decode(file_get_contents("php://input"), false); 

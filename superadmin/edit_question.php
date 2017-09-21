@@ -122,7 +122,7 @@ require('header.php');
 					   <div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Topic</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-							<?php $topic_id=htmlspecialchars($row['topic_id'];
+							<?php $topic_id=$row['topic_id'];
 									$topic=mysql_query("SELECT * FROM `topics` WHERE topic_id='".$topic_id."'");
 									$topic_res=mysql_fetch_array($topic);
 									?>
