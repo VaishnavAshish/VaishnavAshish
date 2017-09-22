@@ -21,7 +21,7 @@ if(isset($_GET['topic_id']))
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
 	   <link rel="stylesheet" href="style/style.css">
 	  <link rel="stylesheet" href="style/css/bootstrap.min.css">
-	  <script src="style/js/jquery.min.js"></script>
+	  <script src="style/js/jquery.min3.js"></script>
 	  <script src="style/js/bootstrap.min.js"></script>
   </head>
 
@@ -55,13 +55,13 @@ if(isset($_GET['topic_id']))
 		<div class="media_div col-sm-8 col-xs-12 " >
 			
 			<?php 
-				$Q="SELECT * FROM `videos` where cat_id=".htmlspecialchars($_GET['cat_id'],ENT_QUOTES)." AND topic_id=".htmlspecialchars($_GET['topic_id'],ENT_QUOTES);
+				$Q="SELECT * FROM `videos` where cat_id=".$_GET['cat_id']." AND topic_id=".$_GET['topic_id'];
 				$query=mysql_query($Q);
 				if(mysql_num_rows($query)>0){
 				while($row=mysql_fetch_array($query)){
 			?>
 						<div class="col-xs-12 col-sm-6 image-subtopics" style="margin-bottom:50px;" >
-							<iframe class="img-responsive" src="https://www.youtube.com/embed/6R5UveljmOQ" frameborder="0" allowfullscreen></iframe>
+							<iframe class="img-responsive" src="https://www.youtube.com/embed/<?php echo $row['youtube_id']?>" frameborder="0" allowfullscreen></iframe>
 						</div>
 			<?php }
 			   }else {?>
