@@ -9,8 +9,8 @@ require('header.php');
 		$youtube_id = htmlspecialchars($_POST['youtube_id'],ENT_QUOTES);
 		$category = htmlspecialchars($_POST['category-videos'],ENT_QUOTES);
 		$topic_id = htmlspecialchars($_POST['topic_id'],ENT_QUOTES);
-		$sub_id = htmlspecialchars($_POST['sub_id'],ENT_QUOTES);
-		$result = mysql_query("Insert into `videos`(video_name,youtube_id,cat_id,topic_id,sub_id) values('$video_name','$youtube_id','$category','$topic_id','$sub_id')");
+	
+		$result = mysql_query("Insert into `videos`(video_name,youtube_id,cat_id,topic_id) values('$video_name','$youtube_id','$category','$topic_id')");
 		if($result)
 		{
 			echo "<script>alert('successful');</script>";
@@ -78,15 +78,7 @@ require('header.php');
                         </div>
                       </div>
 					  
-					  <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select SubTopic</label>
-					  <div class="col-md-6 col-sm-6 col-xs-12">
-							
-                          <select class="sel_val sub_topic-select form-control" name="sub_id" >
-									<option value="">Select SubTopic</option>
-						  </select>
-                        </div>
-					  </div>
+					 
 					 
 					  <div class="ln_solid"></div>
                       <div class="form-group">
