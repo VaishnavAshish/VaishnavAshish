@@ -19,16 +19,22 @@ require('header.php');
 		$opt3 = htmlspecialchars($_POST['opt3'],ENT_QUOTES);
 		$opt4 = htmlspecialchars($_POST['opt4'],ENT_QUOTES);
 		$answer = htmlspecialchars($_POST['answer'],ENT_QUOTES);
-		$category = htmlspecialchars($_POST['category'],ENT_QUOTES);
-		$topic_id = htmlspecialchars($_POST['topic_id'],ENT_QUOTES);
-		$sub_id = htmlspecialchars($_POST['sub_id'],ENT_QUOTES);
-		 echo "<script>alert('".$category.$topic_id.$sub_id."');</script>";
-		$result = mysql_query("UPDATE `question` set question='".$question."',opt1='".$opt1."',opt2='".$opt2."',opt3='".$opt3."',opt4='".$opt4."',answer='".$answer."',cat_id='".$category."',topic_id='".$topic_id."',sub_id='".$sub_id."' WHERE qid='".$qid."' ");
+		$ids=htmlspecialchars($_POST['category'],ENT_QUOTES);
+		$ids=explode(":",$ids);
+		$cat_id=$ids[0];
+		$topic_id = $ids[1];
+		$folder_id=$ids[2];
+		$sub_id = $ids[3];
+		$qu="UPDATE `question` set question='".$question."',opt1='".$opt1."',opt2='".$opt2."',opt3='".$opt3."',opt4='".$opt4."',answer='".$answer."',cat_id=".$cat_id.",topic_id=".$topic_id.",sub_id=".$sub_id."";
+		 if(!empty($folder_id)){$qu.="folder_id=".$folder_id;}
+		 echo $qu.=" WHERE qid=".$qid."";
+		$result = mysql_query($qu);
 		if($result)
 		{
 			header('Location:view_question.php');
 		}
 		else echo "<script>alert('unsuccessful');</script>";
+		echo mysql_error();
 	}
 	
 	
@@ -95,56 +101,40 @@ require('header.php');
                         </div>
                       </div>
 					  
-					  <div class="form-group">
+					 
+					  
+					
+					  
+					 	<div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Category</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
-                          <select class="sel_val form-control" name="category" >
-									<?php $cat_id= htmlspecialchars($row['cat_id'],ENT_QUOTES);
-									$cat=mysql_query("SELECT * FROM `category` WHERE cat_id='".$cat_id."'");
-									$cat_res=mysql_fetch_array($cat);
-									?>
-									<option value="<?php echo htmlspecialchars($cat_res['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($cat_res['category'],ENT_QUOTES);?></option>
-									<?php 
+                          <select id="category"  class="form-control" name="category">
+									<option value="">Select Category</option>
+										<?php 
 										$j = 0;
-										$query_cat = mysql_query("Select * from category");
-										while($row_cat=mysql_fetch_array($query_cat))
-										{
-											
-										
+										$que="Select 
+												`subtopic`.`cat_id` as cat_id,
+												`subtopic`.`topic_id` as topic_id,
+												`subtopic`.`folder_id` as folder_id,
+												`subtopic`.`sub_id` as sub_id,
+												`subtopic`.`subtopic` as subtopic
+											from `subtopic` 
+												join `category` on subtopic.cat_id=category.cat_id 
+												left outer join `topics` on topics.topic_id=subtopic.topic_id
+												left outer join `folder` on subtopic.folder_id = folder.f_id
+											";
+										$query = mysql_query($que);
+										while($roww=mysql_fetch_array($query))
+										{	
 									?>
-									<option value="<?php echo htmlspecialchars($row_cat['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row_cat['category'],ENT_QUOTES);?></option>
+									<option <?php if($roww['sub_id']==$row['sub_id']){echo "selected";}?> value="<?php echo htmlspecialchars($roww['cat_id'],ENT_QUOTES);?>:<?php echo htmlspecialchars($roww['topic_id'],ENT_QUOTES);?>:<?php echo htmlspecialchars($roww['folder_id'],ENT_QUOTES);?>:<?php echo htmlspecialchars($roww['sub_id'],ENT_QUOTES);?>">
+											<?php echo htmlspecialchars($roww['subtopic'],ENT_QUOTES);?>
+									</option>
 										<?php } ?>
-							</select>
+								</select>
                         </div>
                       </div>
-					  
-					   <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Topic</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-							<?php $topic_id=$row['topic_id'];
-									$topic=mysql_query("SELECT * FROM `topics` WHERE topic_id='".$topic_id."'");
-									$topic_res=mysql_fetch_array($topic);
-									?>
-                          <select class="sel_val topic-select form-control" name="topic_id" >
-									<option value="<?php echo htmlspecialchars($topic_res['topic_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($topic_res['topic'],ENT_QUOTES);?></option>
-						  </select>
-                        </div>
-                      </div>
-					  
-					  <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select SubTopic</label>
-					  <div class="col-md-6 col-sm-6 col-xs-12">
-							
-                          <select class="sel_val sub_topic-select form-control" name="sub_id" >
-						  <?php $sub_id=htmlspecialchars($row['sub_id'],ENT_QUOTES);
-								$subtopic=mysql_query("SELECT * FROM `subtopic` WHERE sub_id='".$sub_id."'");
-								$subtopic_res=mysql_fetch_array($subtopic);
-							?>
-									<option value="<?php echo htmlspecialchars($subtopic_res['sub_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($subtopic_res['subtopic'],ENT_QUOTES);?></option>
-						  </select>
-                        </div>
-					  </div>
 					 
 					  <div class="ln_solid"></div>
                       <div class="form-group">

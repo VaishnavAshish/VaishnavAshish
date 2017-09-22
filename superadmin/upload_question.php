@@ -9,9 +9,13 @@ require('header.php');
 		$csv=htmlspecialchars(file_get_contents($name),ENT_QUOTES);
 		$array=array_map("str_getcsv",explode("\n",$csv));
 		$c = 0;
-		$category = htmlspecialchars($_POST['category-question'],ENT_QUOTES);
-		$topic_id = htmlspecialchars($_POST['topic_id'],ENT_QUOTES);
-		$sub_id = htmlspecialchars($_POST['sub_id'],ENT_QUOTES);
+		$ids=htmlspecialchars($_POST['category'],ENT_QUOTES);
+		$ids=explode(":",$ids);
+		$cat_id=$ids[0];
+		$topic_id = $ids[1];
+		$folder_id=$ids[2];
+		$sub_id = $ids[3];
+	
 		$random=mt_rand(1,1000);
 		foreach($array as $filesop)
 		 {
@@ -21,7 +25,8 @@ require('header.php');
 			$opt3 = $filesop[3];
 			$opt4 = $filesop[4];
 			$answer = $filesop[5];
-		$result = mysql_query("Insert into `question`(question,opt1,opt2,opt3,opt4,answer,cat_id,topic_id,sub_id) values('$question','$opt1','$opt2','$opt3','$opt4','$answer','$category','$topic_id','$sub_id')");
+		$result = mysql_query("Insert into `question`(question,opt1,opt2,opt3,opt4,answer,cat_id,topic_id,sub_id,folder_id) 
+												values('$question','$opt1','$opt2','$opt3','$opt4','$answer','$cat_id','$topic_id','$sub_id','$folder_id')");
 		$c = $c + 1;
 		  }
 		if($result)
@@ -58,11 +63,16 @@ require('header.php');
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Category</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
-                          <select id="category" onChange="showUser(document.getElementById('newssearch').value,document.getElementById('category').value)" class="form-control" name="category" ng-model="subtopic.selectedCategory"  ng-change="subtopic.fetchTopic(subtopic.selectedCategory,'Question')">
+                          <select id="category" class="form-control" name="category">
 									<option value="">Select Category</option>
 									<?php 
 										$j = 0;
-										$que="Select *
+										$que="Select 
+												`subtopic`.`cat_id` as cat_id,
+												`subtopic`.`topic_id` as topic_id,
+												`subtopic`.`folder_id` as folder_id,
+												`subtopic`.`sub_id` as sub_id,
+												`subtopic`.`subtopic` as subtopic
 											from `subtopic` 
 												join `category` on subtopic.cat_id=category.cat_id 
 												left outer join `topics` on topics.topic_id=subtopic.topic_id
@@ -70,11 +80,9 @@ require('header.php');
 											";
 										$query = mysql_query($que);
 										while($row=mysql_fetch_array($query))
-										{
-											
-										
+										{	
 									?>
-									<option value="<?php echo htmlspecialchars($row['sub_id'],ENT_QUOTES);?>">
+									<option value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES);?>:<?php echo htmlspecialchars($row['topic_id'],ENT_QUOTES);?>:<?php echo htmlspecialchars($row['folder_id'],ENT_QUOTES);?>:<?php echo htmlspecialchars($row['sub_id'],ENT_QUOTES);?>">
 											<?php echo htmlspecialchars($row['subtopic'],ENT_QUOTES);?>
 									</option>
 										<?php } ?>
