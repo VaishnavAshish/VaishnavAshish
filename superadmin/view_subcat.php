@@ -11,7 +11,7 @@ if(isset($_POST['delete_topic'])){
 		{
 			$question_query=mysql_query("Delete from `question` where topic_id='".$check."'");
 		}
-	   echo "<script>alert('User Deleted Successfully');</script>";
+	   echo "<script>alert('SubCategory Deleted Successfully');</script>";
    }
    else
 	    echo "<script>alert('Unsuccessful');</script>";

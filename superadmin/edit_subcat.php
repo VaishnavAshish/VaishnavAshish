@@ -5,7 +5,7 @@ require('header.php');
 
 
 	if(isset($_POST['edit_subcat']))
-	{	@$tid = htmlspecialchars($_POST['edit_topic'],ENT_QUOTES);
+	{	$tid = $_POST['edit_subcat'];
 		$result=mysql_query("select * from `topics` join `category` on topics.cat_id = category.cat_id where topics.topic_id = '".$tid."'");
 		$row = mysql_fetch_array($result);
 		
@@ -14,9 +14,9 @@ require('header.php');
 
 	if(isset($_POST['submit']))
 	{
-		$topic = htmlspecialchars($_POST['topic'],ENT_QUOTES);
-		$category = htmlspecialchars($_POST['category'],ENT_QUOTES);
-		$topic_id = htmlspecialchars($_POST['topic_id'],ENT_QUOTES);
+		$topic = $_POST['topic'];
+		$category = $_POST['category'];
+		$topic_id = $_POST['topic_id'];
 		$type ="Folder";
 		$result = mysql_query("Update `topics` set topic='".$topic."',cat_id='".$category."',type='".$type."' where topic_id='".$topic_id."'");
 		if($result)
@@ -24,7 +24,7 @@ require('header.php');
 		echo "<script>alert('Successfully Updated');</script>";
 			header('location:view_subcat.php');
 		}
-		
+        else { echo mysql_error(); }
 		
 	}
 ?>
@@ -36,7 +36,7 @@ require('header.php');
         <div class="right_col" role="main">
 			<?php include("index_counter.php");?>
 			<div class="x_title">
-                    <h1>Edit Topic</h1>
+                    <h1>Edit Sub-Category</h1>
                     <div class="clearfix"></div>
                   </div>
 			<form method="POST" data-parsley-validate class="form-horizontal form-label-left">
@@ -55,6 +55,7 @@ require('header.php');
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
                           <select class="sel_val form-control" name="category" >
+							<option value="">Select category</option>
 							<?php 
 										$i=0;
 										$result = mysql_query("Select * from category");
@@ -77,14 +78,8 @@ require('header.php');
 						  <button class="btn btn-primary" type="reset">Reset</button>
                         </div>
                       </div>
-
-                    </form>
-
-    
-
-
-        
-        </div>
+		    </form>
+		</div>
         <!-- /page content -->
 
 <?php 
