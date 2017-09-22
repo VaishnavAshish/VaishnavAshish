@@ -9,11 +9,6 @@
 	  <link rel="stylesheet" href="style/css/bootstrap.min.css">
 	  <script src="style/js/jquery.min.js"></script>
 	  <script src="style/js/bootstrap.min.js"></script>
-	
-<script>
-
-
-</script>
 	</head>
 	
 
@@ -30,8 +25,6 @@ if(isset($_SESSION['status'])){
 <script>$('#modal').click();</script>
 <?php	
 }
-?>
-<?php 
 $cat=mysql_query("SELECT * FROM `category`");
 ?>
 

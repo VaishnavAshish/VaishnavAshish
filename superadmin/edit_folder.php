@@ -7,17 +7,17 @@ require('header.php');
 	{	$f_id = $_POST['edit_folder'];
 		$result=mysql_query("select * from `folder` where f_id='".$f_id."'" );
 		$row = mysql_fetch_array($result);
-		
+		$cat=$row['cat_id'];
 	}
 	
 	if(isset($_POST['submit']))
 	{
-		@$subtopic = $_POST['subtopic'];
-		@$category =$_POST['folderCategory'];
+		$folder_id=$_POST['f_id'];
+		$category =$_POST['folderCategory'];
 		$topic_id = $_POST['topic'];
-		$sub_id =$_POST['sub_id'];
+		$folder_name =$_POST['folder_name'];
 		$type=$_POST['type'];
-		$result = mysql_query("Update `subtopic` set subtopic='".$subtopic."',cat_id='".$category."',topic_id='".$topic_id."' where sub_id='".$sub_id."'");
+		$result = mysql_query("Update `folder` set f_name='".$folder_name."',cat_id='".$category."',topic_id='".$topic_id."',type='".$type."' where f_id='".$folder_id."'");
 		if($result)
 		{
 			echo "<script>alert('Successfully Updated');</script>";
@@ -46,9 +46,7 @@ require('header.php');
                       <div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Category</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-							<?php 
-							 $cat=$row['cat_id'];
-							?>
+							
                           <select class="sel_val form-control" name="folderCategory" >
 									
 									<?php 
@@ -84,6 +82,7 @@ require('header.php');
 									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Sub-Category Topic<span class="required">*</span></label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
 										<input type="text" required="required" name="folder_name" value="<?php echo $row['f_name'];?>" placeholder="Enter Folder Name"class="form-control col-md-7 col-xs-12">
+									     <input type="text" style="display:none;" required="required" name="f_id" value="<?php echo $row['f_id'];?>" class="form-control col-md-7 col-xs-12">
 									</div>
 								</div>
 
