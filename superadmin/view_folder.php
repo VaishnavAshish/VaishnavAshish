@@ -25,7 +25,7 @@ if(isset($_POST['delete_folder']))
              <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
 					<div class="x_title">
-                    <h1>View Folder</h1>
+                    <h1>Sub-category Topics</h1>
                     <div class="clearfix"></div>
                   </div>
 				    <div class="x_content">
@@ -34,8 +34,8 @@ if(isset($_POST['delete_folder']))
 								<thead>
 								  <tr class="headings">
 									<th class="column-title">S.No.</th>
-									<th class="column-title ">Folder Name</th>
 									<th class="column-title ">Category</th>
+									<th class="column-title ">Sub-category Name</th>
 									<th class="column-title ">Topic</th>
 									<th class="column-title ">Type</th>
 									<th class="column-title no-link last tc"><span class="nobr">Action</span>
@@ -55,8 +55,8 @@ if(isset($_POST['delete_folder']))
 								
 								  <tr class="even pointer">
 									<td><?php echo $i;?></td>
+									        <td><?php echo htmlspecialchars($row['category'],ENT_QUOTES)?></td>
 											<td><?php echo htmlspecialchars($row['f_name'],ENT_QUOTES)?></td>
-											<td><?php echo htmlspecialchars($row['category'],ENT_QUOTES)?></td>
 											<td><?php echo htmlspecialchars($row['topic'],ENT_QUOTES)?></td>
 											<td><?php echo htmlspecialchars($row['type'],ENT_QUOTES)?></td>
 									<td class="a-right a-right tc content-center">
