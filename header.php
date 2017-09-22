@@ -170,7 +170,17 @@ require ('connection.php');
 															</div>
 														<?php session_unset($_SESSION['login_msg']); 
 														      }
-															?>
+															  else if(isset($_SESSION['status']) AND $_SESSION['status']=="login required")
+															  {?>
+														   <script>$("#signup").modal("show");</script>
+															<div  class="alert alert-danger fade in">
+																<a href="#" class="close" data-dismiss="alert">×</a>
+																<strong>
+																	<?php  echo strtoupper($_SESSION['status']);?>
+																</strong>
+															</div>
+														  <?php  }?>
+														
 													<form method="post" action="login.php?goto=<?php echo $_SERVER['REQUEST_URI']; ?>" class="login_form">
 														<div class="form-group">
 														  <label>Email:</label>

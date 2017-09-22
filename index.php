@@ -20,10 +20,11 @@
 </div>
 <!--/Header-->
 <?php
-if(isset($_SESSION['status'])){
+if(isset($_SESSION['status']) AND $_SESSION['status']!=""){
 ?>
-<script>$('#modal').click();</script>
+<script>$('#signup').modal('show');;</script>
 <?php	
+session_unset($_SESSION['status']); 
 }
 $cat=mysql_query("SELECT * FROM `category`");
 ?>
