@@ -3,7 +3,7 @@ include('../connection.php');
 if(isset($_POST['login']))
 	{
 		$username = htmlspecialchars($_POST['username'],ENT_QUOTES);
-		$password = htmlspecialchars(crypt($_POST['password'],'$2y$@NTRIKSH$@@Y$'),ENT_QUOTES);
+		$password = crypt(md5($_POST['password']),'$2y$@NTRIKSH$@@Y$#$%2sW@s&8Anxwu@SUbw23828@283hduchd');
 		$result = mysql_query("Select * from users where uid=1 && email='".$username."' && password ='".$password."'");
 		$count = mysql_num_rows($result);
 		if($count>0)
