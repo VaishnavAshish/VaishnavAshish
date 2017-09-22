@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 22, 2017 at 04:18 AM
+-- Generation Time: Sep 22, 2017 at 09:07 AM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -32,17 +32,18 @@ CREATE TABLE IF NOT EXISTS `basics` (
   `pdf` text NOT NULL,
   `cat_id` int(11) NOT NULL,
   `topic_id` int(11) NOT NULL,
-  `sub_id` int(11) NOT NULL,
+  `folder_id` int(11) DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`basics_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `basics`
 --
 
-INSERT INTO `basics` (`basics_id`, `heading`, `pdf`, `cat_id`, `topic_id`, `sub_id`, `created`) VALUES
-(2, 'english', 'english7.pdf', 23, 12, 7, '2017-07-22 11:30:47');
+INSERT INTO `basics` (`basics_id`, `heading`, `pdf`, `cat_id`, `topic_id`, `folder_id`, `created`) VALUES
+(2, 'english', 'english7.pdf', 23, 12, 7, '2017-07-22 11:30:47'),
+(3, 'heading here', 'heading here.pdf', 23, 24, 0, '2017-09-22 05:48:33');
 
 -- --------------------------------------------------------
 
@@ -110,19 +111,16 @@ CREATE TABLE IF NOT EXISTS `folder` (
   `topic_id` int(11) NOT NULL,
   `type` text NOT NULL,
   PRIMARY KEY (`f_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `folder`
 --
 
 INSERT INTO `folder` (`f_id`, `f_name`, `cat_id`, `topic_id`, `type`) VALUES
-(1, 'foler1', 23, 14, ''),
-(4, 'Ashish', 24, 12, ''),
-(5, 'ashis', 24, 12, ''),
-(6, 'Folder new', 23, 11, ''),
-(13, 'folder now add here', 23, 14, 'Question'),
-(14, 'sfds', 23, 18, 'Video');
+(15, 'maths sub-category topic', 23, 19, 'Question'),
+(16, 'folder secound', 23, 20, 'Question'),
+(17, 'videos', 23, 20, 'Video');
 
 -- --------------------------------------------------------
 
@@ -143,68 +141,63 @@ CREATE TABLE IF NOT EXISTS `question` (
   `folder_id` int(11) DEFAULT NULL,
   `sub_id` int(11) NOT NULL,
   PRIMARY KEY (`qid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=548 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=623 ;
 
 --
 -- Dumping data for table `question`
 --
 
 INSERT INTO `question` (`qid`, `question`, `opt1`, `opt2`, `opt3`, `opt4`, `answer`, `cat_id`, `topic_id`, `folder_id`, `sub_id`) VALUES
-(347, 'Sunil is younger than ravi by 4 years. If their ages are in the respective ratio of 7:9, how old is sunil ?', '14 years', '17 years', '21 years', 'None of these', 'A', 24, 13, NULL, 8),
-(445, 'Sunil is younger than ravi by 4 years. If their ages are in the respective ratio of 7:9, how old is sunil ?', '14 years', '17 years', '21 years', 'None of these', 'D', 24, 13, NULL, 8),
-(446, 'The ratio betwwen the present ages of S and T is 6:7. If T is 4 years old than S, what will be the ratio of the ages of S and T after 4 years ?', '0.1277777777777778', '0.1284722222222222', '0.16875', 'None of these', 'D', 24, 13, NULL, 8),
-(447, 'Ramesh was asked to tell his age in years. His reply was, "Take my age three years, multiply it  by 3  and then substract three times my age three years ago and you will know how old I am" What was the age of the person ?', ' 20 years', '16 years', '24 years', '18 years', 'D', 24, 13, NULL, 8),
-(448, 'Age of a man is three times the age of his son. After 10 years, the age of the man would become two times the age of his son. What is the present age of man /', '64 years', '52 years', '30 years', '48 years', 'C', 24, 13, NULL, 8),
-(449, 'The total of  present ages of Ram, Shyam and Ajay is 72 years. Total of present ages of Ram and Shyam is 42 years. What is the present age of Ajay ?', '30 years', '24 years', '36 years', '18 years', 'A', 24, 13, NULL, 8),
-(450, 'The present age of Saroj is 6 times the age of Ajay. Present age of Ajay is 20 years less than  the present age of Saroj. What is the present age of Saroj ?', '16 years', '18 years', '20 years', 'None of these', 'D', 24, 13, NULL, 8),
-(451, 'The total of ages of Jay, ramesh and Sunil is 93 years. Ten years ago, the ratio of their ages was 2:3:4 . What is the present age of Sunil', '34 years', '38 years', '44 years', '52 years', 'B', 24, 13, NULL, 8),
-(452, 'The ratio of present ages of two brothers is 1:2 and 5 years back, the ratio was 1:3. What will be the ratio of their ages after 5 years ?', '0.04444444444444445', '0.08541666666666665', '0.1284722222222222', '0.2125', 'D', 24, 13, NULL, 8),
-(453, 'Hritik is 40 years old and rocky is 60 years old. How many years ago was the ratio of their ages 3:5 ?', '10 years', '5 years', '7 years', '9 years', 'A', 24, 13, NULL, 8),
-(454, 'A man is 24 years older than his son. In two years, his age will be twice the age of his son. The present age of the son is :', '13 years', '17 years', '22 years', '7 years', 'C', 24, 13, NULL, 8),
-(455, 'A is two years older than B who is twice as old as C. If the total of the ages of A, B and C be 27, then how old is B ?', '5 years', '10 years', '5 years', '3 years', 'B', 24, 13, NULL, 8),
-(456, 'Ten years ago, A was half of B in age. If the ratio of their present ages is 3:4, what will be the total of their present ages ?', '25 years', '30 years', '65 years', 'None of these', 'D', 24, 13, NULL, 8),
-(457, 'Ramesh present age is two-fifth of the age of his mother. After 8 years, he will be one-half of the age of his mother. How old is the mother at present?', '24 years', '36 years', '40 years', '56 years', 'C', 24, 13, NULL, 8),
-(458, 'In ten years A will be twice as old as B was 10 years ago. If A is now 9 years older than B,  the present age of B is', '19 years', '39 years', '29 years', '49 years', 'B', 24, 13, NULL, 8),
-(459, 'The difference between the ages of two persons is 10 years. Fifteen years ago, the elder one was as old as the younger one. The present age of the elder person is', '45 years', '25 years', ' 35 years', '55 years', 'C', 24, 13, NULL, 8),
-(460, 'The sum of ages of 5 children born at the interval of 3 years each is 50 years. What is the age of the youngest child ?', '8 years', '4 years', '10 years', 'None of these', 'B', 24, 13, NULL, 8),
-(461, 'The total age A and B is 12 years more than the total age of Band C. C is how many years younger than A ?', '12 years', '24 years', 'C is elder than A', 'None of these', 'A', 24, 13, NULL, 8),
-(462, 'Eighteen years ago, a father was three times as old as his son. Now father is only twice as old as his son. Then the sum of the present ages of the son and the father is :', '72 years', '54 years', '108 years', '105 years', 'C', 24, 13, NULL, 8),
-(463, 'Sunil is younger than ravi by 4 years. If their ages are in the respective ratio of 7:9, how old is sunil ?', '14 years', '17 years', '21 years', 'None of these', 'D', 24, 13, NULL, 8),
-(464, 'The ratio betwwen the present ages of S and T is 6:7. If T is 4 years old than S, what will be the ratio of the ages of S and T after 4 years ?', '0.1277777777777778', '0.1284722222222222', '0.16875', 'None of these', 'D', 24, 13, NULL, 8),
-(465, 'Ramesh was asked to tell his age in years. His reply was, "Take my age three years, multiply it  by 3  and then substract three times my age three years ago and you will know how old I am" What was the age of the person ?', ' 20 years', '16 years', '24 years', '18 years', 'D', 24, 13, NULL, 8),
-(466, 'Age of a man is three times the age of his son. After 10 years, the age of the man would become two times the age of his son. What is the present age of man /', '64 years', '52 years', '30 years', '48 years', 'C', 24, 13, NULL, 8),
-(467, 'The total of  present ages of Ram, Shyam and Ajay is 72 years. Total of present ages of Ram and Shyam is 42 years. What is the present age of Ajay ?', '30 years', '24 years', '36 years', '18 years', 'A', 24, 13, NULL, 8),
-(468, 'The present age of Saroj is 6 times the age of Ajay. Present age of Ajay is 20 years less than  the present age of Saroj. What is the present age of Saroj ?', '16 years', '18 years', '20 years', 'None of these', 'D', 24, 13, NULL, 8),
-(469, 'The total of ages of Jay, ramesh and Sunil is 93 years. Ten years ago, the ratio of their ages was 2:3:4 . What is the present age of Sunil', '34 years', '38 years', '44 years', '52 years', 'B', 24, 13, NULL, 8),
-(470, 'The ratio of present ages of two brothers is 1:2 and 5 years back, the ratio was 1:3. What will be the ratio of their ages after 5 years ?', '0.04444444444444445', '0.08541666666666665', '0.1284722222222222', '0.2125', 'D', 24, 13, NULL, 8),
-(471, 'Hritik is 40 years old and rocky is 60 years old. How many years ago was the ratio of their ages 3:5 ?', '10 years', '5 years', '7 years', '9 years', 'A', 24, 13, NULL, 8),
-(472, 'A man is 24 years older than his son. In two years, his age will be twice the age of his son. The present age of the son is :', '13 years', '17 years', '22 years', '7 years', 'C', 24, 13, NULL, 8),
-(473, 'A is two years older than B who is twice as old as C. If the total of the ages of A, B and C be 27, then how old is B ?', '5 years', '10 years', '5 years', '3 years', 'B', 24, 13, NULL, 8),
-(474, 'Ten years ago, A was half of B in age. If the ratio of their present ages is 3:4, what will be the total of their present ages ?', '25 years', '30 years', '65 years', 'None of these', 'D', 24, 13, NULL, 8),
-(475, 'Ramesh present age is two-fifth of the age of his mother. After 8 years, he will be one-half of the age of his mother. How old is the mother at present?', '24 years', '36 years', '40 years', '56 years', 'C', 24, 13, NULL, 8),
-(476, 'In ten years A will be twice as old as B was 10 years ago. If A is now 9 years older than B,  the present age of B is', '19 years', '39 years', '29 years', '49 years', 'B', 24, 13, NULL, 8),
-(477, 'The difference between the ages of two persons is 10 years. Fifteen years ago, the elder one was as old as the younger one. The present age of the elder person is', '45 years', '25 years', ' 35 years', '55 years', 'C', 24, 13, NULL, 8),
-(478, 'The sum of ages of 5 children born at the interval of 3 years each is 50 years. What is the age of the youngest child ?', '8 years', '4 years', '10 years', 'None of these', 'B', 24, 13, NULL, 8),
-(479, 'The total age A and B is 12 years more than the total age of Band C. C is how many years younger than A ?', '12 years', '24 years', 'C is elder than A', 'None of these', 'A', 24, 13, NULL, 8),
-(480, 'Eighteen years ago, a father was three times as old as his son. Now father is only twice as old as his son. Then the sum of the present ages of the son and the father is :', '72 years', '54 years', '108 years', '105 years', 'C', 24, 13, NULL, 8),
-(530, 'Sunil is younger than ravi by 4 years. If their ages are in the respective ratio of 7:9, how old is sunil ?', '14 years', '17 years', '21 years', 'None of these', 'D', 23, 15, NULL, 9),
-(531, 'The ratio betwwen the present ages of S and T is 6:7. If T is 4 years old than S, what will be the ratio of the ages of S and T after 4 years ?', '0.1277777777777778', '0.1284722222222222', '0.16875', 'None of these', 'D', 23, 15, NULL, 9),
-(532, 'Ramesh was asked to tell his age in years. His reply was, "Take my age three years, multiply it  by 3  and then substract three times my age three years ago and you will know how old I am" What was the age of the person ?', ' 20 years', '16 years', '24 years', '18 years', 'D', 23, 15, NULL, 9),
-(533, 'Age of a man is three times the age of his son. After 10 years, the age of the man would become two times the age of his son. What is the present age of man /', '64 years', '52 years', '30 years', '48 years', 'C', 23, 15, NULL, 9),
-(534, 'The total of  present ages of Ram, Shyam and Ajay is 72 years. Total of present ages of Ram and Shyam is 42 years. What is the present age of Ajay ?', '30 years', '24 years', '36 years', '18 years', 'A', 23, 15, NULL, 9),
-(535, 'The present age of Saroj is 6 times the age of Ajay. Present age of Ajay is 20 years less than  the present age of Saroj. What is the present age of Saroj ?', '16 years', '18 years', '20 years', 'None of these', 'D', 23, 15, NULL, 9),
-(536, 'The total of ages of Jay, ramesh and Sunil is 93 years. Ten years ago, the ratio of their ages was 2:3:4 . What is the present age of Sunil', '34 years', '38 years', '44 years', '52 years', 'B', 23, 15, NULL, 9),
-(537, 'The ratio of present ages of two brothers is 1:2 and 5 years back, the ratio was 1:3. What will be the ratio of their ages after 5 years ?', '0.04444444444444445', '0.08541666666666665', '0.1284722222222222', '0.2125', 'D', 23, 15, NULL, 9),
-(538, 'Hritik is 40 years old and rocky is 60 years old. How many years ago was the ratio of their ages 3:5 ?', '10 years', '5 years', '7 years', '9 years', 'A', 23, 15, NULL, 9),
-(539, 'A man is 24 years older than his son. In two years, his age will be twice the age of his son. The present age of the son is :', '13 years', '17 years', '22 years', '7 years', 'C', 23, 15, NULL, 9),
-(540, 'A is two years older than B who is twice as old as C. If the total of the ages of A, B and C be 27, then how old is B ?', '5 years', '10 years', '5 years', '3 years', 'B', 23, 15, NULL, 9),
-(541, 'Ten years ago, A was half of B in age. If the ratio of their present ages is 3:4, what will be the total of their present ages ?', '25 years', '30 years', '65 years', 'None of these', 'D', 23, 15, NULL, 9),
-(542, 'Ramesh present age is two-fifth of the age of his mother. After 8 years, he will be one-half of the age of his mother. How old is the mother at present?', '24 years', '36 years', '40 years', '56 years', 'C', 23, 15, NULL, 9),
-(543, 'In ten years A will be twice as old as B was 10 years ago. If A is now 9 years older than B,  the present age of B is', '19 years', '39 years', '29 years', '49 years', 'B', 23, 15, NULL, 9),
-(544, 'The difference between the ages of two persons is 10 years. Fifteen years ago, the elder one was as old as the younger one. The present age of the elder person is', '45 years', '25 years', ' 35 years', '55 years', 'C', 23, 15, NULL, 9),
-(545, 'The sum of ages of 5 children born at the interval of 3 years each is 50 years. What is the age of the youngest child ?', '8 years', '4 years', '10 years', 'None of these', 'B', 23, 15, NULL, 9),
-(546, 'The total age A and B is 12 years more than the total age of Band C. C is how many years younger than A ?', '12 years', '24 years', 'C is elder than A', 'None of these', 'A', 23, 15, NULL, 9),
-(547, 'Eighteen years ago, a father was three times as old as his son. Now father is only twice as old as his son. Then the sum of the present ages of the son and the father is :', '72 years', '54 years', '108 years', '105 years', 'C', 23, 15, NULL, 9);
+(573, '&quot;Sunil is younger than ravi by 4 years. If their ages are in the respective ratio of 7:9', ' how old is sunil ?&quot;', '&quot;14 years&quot;', '&quot;17 years&quot;', '&quot;21 years&quot;', '&quot;None of these&quot;', 23, 19, 15, 15),
+(574, '&quot;The ratio betwwen the present ages of S and T is 6:7. If T is 4 years old than S', ' what will be the ratio of the ages of S and T after 4 years ?&quot;', '&quot;0.1277777777777778&quot;', '&quot;0.1284722222222222&quot;', '&quot;0.16875&quot;', '&quot;None of these&quot;', 23, 19, 15, 15),
+(575, '&quot;Present ages of P and Q are in the ratio 5:6 respectively. Seven years hence this ratio will become 6:7 respectively. What is P&#039;s present age in years ?&quot;', '&quot;42&quot;', '&quot;49&quot;', '&quot;32&quot;', '&quot;25&quot;', '&quot;C&quot;', 23, 19, 15, 15),
+(576, '&quot;At present', ' the ratio between the ages of aman and david is 4:3 . After 6 years', ' aman&#039;s age will be 26 years. What is the age of david ?&quot;', '&quot;12 years&quot;', '&quot;21 years&quot;', '&quot;15 years&quot;', 23, 19, 15, 15),
+(577, '&quot;The ratio between the present ages of A and B is 5:7 respectively. If the difference between B&#039;s present age and A&#039;s age after 6 years is 2', ' what is the total of A&#039;s and B&#039;s  present ages ?&quot;', '&quot;52 years&quot;', '&quot;63 years&quot;', '&quot;44 years&quot;', '&quot;48 years&quot;', 23, 19, 15, 15),
+(578, '&quot;Ramesh was asked to tell his age in years. His reply was', ' &quot;&quot;Take my age three years', ' multiply it  by 3  and then substract three times my age three years ago and you will know how old I am&quot;&quot; What was the age of the person ?&quot;', '&quot; 20 years&quot;', '&quot;16 years&quot;', '&quot;24 years&quot;', 23, 19, 15, 15),
+(579, '&quot;Age of a man is three times the age of his son. After 10 years', ' the age of the man would become two times the age of his son. What is the present age of man /&quot;', '&quot;64 years&quot;', '&quot;52 years&quot;', '&quot;30 years&quot;', '&quot;48 years&quot;', 23, 19, 15, 15),
+(580, '&quot;The total of  present ages of Ram', ' Shyam and Ajay is 72 years. Total of present ages of Ram and Shyam is 42 years. What is the present age of Ajay ?&quot;', '&quot;30 years&quot;', '&quot;24 years&quot;', '&quot;36 years&quot;', '&quot;18 years&quot;', 23, 19, 15, 15),
+(581, '&quot;The present age of Saroj is 6 times the age of Ajay. Present age of Ajay is 20 years less than  the present age of Saroj. What is the present age of Saroj ?&quot;', '&quot;16 years&quot;', '&quot;18 years&quot;', '&quot;20 years&quot;', '&quot;None of these&quot;', '&quot;D&quot;', 23, 19, 15, 15),
+(582, '&quot;Six years ago', ' the ratio of the ages of Kamal And Sagar was 6:5. Four years hence', 'the ratio of their ages will be 11:10. What is Sagar&#039;s age at present ?&quot;', '&quot;12 years&quot;', '&quot;18 years&quot;', '&quot;16 years&quot;', 23, 19, 15, 15),
+(583, '&quot;The total of ages of Jay', ' ramesh and Sunil is 93 years. Ten years ago', ' the ratio of their ages was 2:3:4 . What is the present age of Sunil&quot;', '&quot;34 years&quot;', '&quot;38 years&quot;', '&quot;44 years&quot;', 23, 19, 15, 15),
+(584, '&quot;The ratio of present ages of two brothers is 1:2 and 5 years back', ' the ratio was 1:3. What will be the ratio of their ages after 5 years ?&quot;', '&quot;0.04444444444444445&quot;', '&quot;0.08541666666666665&quot;', '&quot;0.1284722222222222&quot;', '&quot;0.2125&quot;', 23, 19, 15, 15),
+(585, '&quot;Hritik is 40 years old and rocky is 60 years old. How many years ago was the ratio of their ages 3:5 ?&quot;', '&quot;10 years&quot;', '&quot;5 years&quot;', '&quot;7 years&quot;', '&quot;9 years&quot;', '&quot;A&quot;', 23, 19, 15, 15),
+(586, '&quot;A man is 24 years older than his son. In two years', ' his age will be twice the age of his son. The present age of the son is :&quot;', '&quot;13 years&quot;', '&quot;17 years&quot;', '&quot;22 years&quot;', '&quot;7 years&quot;', 23, 19, 15, 15),
+(587, '&quot;A is two years older than B who is twice as old as C. If the total of the ages of A', ' B and C be 27', ' then how old is B ?&quot;', '&quot;5 years&quot;', '&quot;10 years&quot;', '&quot;5 years&quot;', 23, 19, 15, 15),
+(588, '&quot;Ten years ago', ' A was half of B in age. If the ratio of their present ages is 3:4', ' what will be the total of their present ages ?&quot;', '&quot;25 years&quot;', '&quot;30 years&quot;', '&quot;65 years&quot;', 23, 19, 15, 15),
+(589, '&quot;The ratio between the present ages of A and B is 5:3 respectively. The ratio betweenA&#039;s age 4 years ago and B&#039;s age 4 years hence is 1:1. What is the ratio between A&#039;sage 4 years ago and B&#039;s age 4 years ago ?&quot;', '&quot;0.08402777777777777&quot;', '&quot;0.1256944444444444&quot;', '&quot;0.2111111111111111&quot;', '&quot;0.1277777777777778&quot;', '&quot;B&quot;', 23, 19, 15, 15),
+(590, '&quot;Asha&#039;s father was 38 years of age when she was born while her mother was 36 years old when her brother four years younger to her was born. What is the difference between the ages of her parents?&quot;', '&quot;6 years&quot;', '&quot;4 years&quot;', '&quot;8 years&quot;', '&quot;16 years&quot;', '&quot;A&quot;', 23, 19, 15, 15),
+(591, '&quot;Ramesh present age is two-fifth of the age of his mother. After 8 years', ' he will be one-half of the age of his mother. How old is the mother at present?&quot;', '&quot;24 years&quot;', '&quot;36 years&quot;', '&quot;40 years&quot;', '&quot;56 years&quot;', 23, 19, 15, 15),
+(592, '&quot;In ten years A will be twice as old as B was 10 years ago. If A is now 9 years older than B', '  the present age of B is&quot;', '&quot;19 years&quot;', '&quot;39 years&quot;', '&quot;29 years&quot;', '&quot;49 years&quot;', 23, 19, 15, 15),
+(593, '&quot;The difference between the ages of two persons is 10 years. Fifteen years ago', ' the elder one was as old as the younger one. The present age of the elder person is&quot;', '&quot;45 years&quot;', '&quot;25 years&quot;', '&quot; 35 years&quot;', '&quot;55 years&quot;', 23, 19, 15, 15),
+(594, '&quot;The father is aged three times ore than his son ravi. After 8 years', ' he would be two and a half times of ravi&#039;s age. After further 8 years', ' how many times would he be of ravi&#039;s age ?&quot;', '&quot;2 times&quot;', '&quot;2.5 times&quot;', '&quot;2.75 times &quot;', 23, 19, 15, 15),
+(595, '&quot;The sum of ages of 5 children born at the interval of 3 years each is 50 years. What is the age of the youngest child ?&quot;', '&quot;8 years&quot;', '&quot;4 years&quot;', '&quot;10 years&quot;', '&quot;None of these&quot;', '&quot;B&quot;', 23, 19, 15, 15),
+(596, '&quot;The total age A and B is 12 years more than the total age of Band C. C is how many years younger than A ?&quot;', '&quot;12 years&quot;', '&quot;24 years&quot;', '&quot;C is elder than A&quot;', '&quot;None of these&quot;', '&quot;A&quot;', 23, 19, 15, 15),
+(597, '&quot;Eighteen years ago', ' a father was three times as old as his son. Now father is only twice as old as his son. Then the sum of the present ages of the son and the father is :&quot;', '&quot;72 years&quot;', '&quot;54 years&quot;', '&quot;108 years&quot;', '&quot;105 years&quot;', 23, 19, 15, 15),
+(598, '&quot;Sunil is younger than ravi by 4 years. If their ages are in the respective ratio of 7:9', ' how old is sunil ?&quot;', '&quot;14 years&quot;', '&quot;17 years&quot;', '&quot;21 years&quot;', '&quot;None of these&quot;', 23, 20, 16, 17),
+(599, '&quot;The ratio betwwen the present ages of S and T is 6:7. If T is 4 years old than S', ' what will be the ratio of the ages of S and T after 4 years ?&quot;', '&quot;0.1277777777777778&quot;', '&quot;0.1284722222222222&quot;', '&quot;0.16875&quot;', '&quot;None of these&quot;', 23, 20, 16, 17),
+(600, '&quot;Present ages of P and Q are in the ratio 5:6 respectively. Seven years hence this ratio will become 6:7 respectively. What is P&#039;s present age in years ?&quot;', '&quot;42&quot;', '&quot;49&quot;', '&quot;32&quot;', '&quot;25&quot;', '&quot;C&quot;', 23, 20, 16, 17),
+(601, '&quot;At present', ' the ratio between the ages of aman and david is 4:3 . After 6 years', ' aman&#039;s age will be 26 years. What is the age of david ?&quot;', '&quot;12 years&quot;', '&quot;21 years&quot;', '&quot;15 years&quot;', 23, 20, 16, 17),
+(602, '&quot;The ratio between the present ages of A and B is 5:7 respectively. If the difference between B&#039;s present age and A&#039;s age after 6 years is 2', ' what is the total of A&#039;s and B&#039;s  present ages ?&quot;', '&quot;52 years&quot;', '&quot;63 years&quot;', '&quot;44 years&quot;', '&quot;48 years&quot;', 23, 20, 16, 17),
+(603, '&quot;Ramesh was asked to tell his age in years. His reply was', ' &quot;&quot;Take my age three years', ' multiply it  by 3  and then substract three times my age three years ago and you will know how old I am&quot;&quot; What was the age of the person ?&quot;', '&quot; 20 years&quot;', '&quot;16 years&quot;', '&quot;24 years&quot;', 23, 20, 16, 17),
+(604, '&quot;Age of a man is three times the age of his son. After 10 years', ' the age of the man would become two times the age of his son. What is the present age of man /&quot;', '&quot;64 years&quot;', '&quot;52 years&quot;', '&quot;30 years&quot;', '&quot;48 years&quot;', 23, 20, 16, 17),
+(605, '&quot;The total of  present ages of Ram', ' Shyam and Ajay is 72 years. Total of present ages of Ram and Shyam is 42 years. What is the present age of Ajay ?&quot;', '&quot;30 years&quot;', '&quot;24 years&quot;', '&quot;36 years&quot;', '&quot;18 years&quot;', 23, 20, 16, 17),
+(606, '&quot;The present age of Saroj is 6 times the age of Ajay. Present age of Ajay is 20 years less than  the present age of Saroj. What is the present age of Saroj ?&quot;', '&quot;16 years&quot;', '&quot;18 years&quot;', '&quot;20 years&quot;', '&quot;None of these&quot;', '&quot;D&quot;', 23, 20, 16, 17),
+(607, '&quot;Six years ago', ' the ratio of the ages of Kamal And Sagar was 6:5. Four years hence', 'the ratio of their ages will be 11:10. What is Sagar&#039;s age at present ?&quot;', '&quot;12 years&quot;', '&quot;18 years&quot;', '&quot;16 years&quot;', 23, 20, 16, 17),
+(608, '&quot;The total of ages of Jay', ' ramesh and Sunil is 93 years. Ten years ago', ' the ratio of their ages was 2:3:4 . What is the present age of Sunil&quot;', '&quot;34 years&quot;', '&quot;38 years&quot;', '&quot;44 years&quot;', 23, 20, 16, 17),
+(609, '&quot;The ratio of present ages of two brothers is 1:2 and 5 years back', ' the ratio was 1:3. What will be the ratio of their ages after 5 years ?&quot;', '&quot;0.04444444444444445&quot;', '&quot;0.08541666666666665&quot;', '&quot;0.1284722222222222&quot;', '&quot;0.2125&quot;', 23, 20, 16, 17),
+(610, '&quot;Hritik is 40 years old and rocky is 60 years old. How many years ago was the ratio of their ages 3:5 ?&quot;', '&quot;10 years&quot;', '&quot;5 years&quot;', '&quot;7 years&quot;', '&quot;9 years&quot;', '&quot;A&quot;', 23, 20, 16, 17),
+(611, '&quot;A man is 24 years older than his son. In two years', ' his age will be twice the age of his son. The present age of the son is :&quot;', '&quot;13 years&quot;', '&quot;17 years&quot;', '&quot;22 years&quot;', '&quot;7 years&quot;', 23, 20, 16, 17),
+(612, '&quot;A is two years older than B who is twice as old as C. If the total of the ages of A', ' B and C be 27', ' then how old is B ?&quot;', '&quot;5 years&quot;', '&quot;10 years&quot;', '&quot;5 years&quot;', 23, 20, 16, 17),
+(613, '&quot;Ten years ago', ' A was half of B in age. If the ratio of their present ages is 3:4', ' what will be the total of their present ages ?&quot;', '&quot;25 years&quot;', '&quot;30 years&quot;', '&quot;65 years&quot;', 23, 20, 16, 17),
+(614, '&quot;The ratio between the present ages of A and B is 5:3 respectively. The ratio betweenA&#039;s age 4 years ago and B&#039;s age 4 years hence is 1:1. What is the ratio between A&#039;sage 4 years ago and B&#039;s age 4 years ago ?&quot;', '&quot;0.08402777777777777&quot;', '&quot;0.1256944444444444&quot;', '&quot;0.2111111111111111&quot;', '&quot;0.1277777777777778&quot;', '&quot;B&quot;', 23, 20, 16, 17),
+(615, '&quot;Asha&#039;s father was 38 years of age when she was born while her mother was 36 years old when her brother four years younger to her was born. What is the difference between the ages of her parents?&quot;', '&quot;6 years&quot;', '&quot;4 years&quot;', '&quot;8 years&quot;', '&quot;16 years&quot;', '&quot;A&quot;', 23, 20, 16, 17),
+(616, '&quot;Ramesh present age is two-fifth of the age of his mother. After 8 years', ' he will be one-half of the age of his mother. How old is the mother at present?&quot;', '&quot;24 years&quot;', '&quot;36 years&quot;', '&quot;40 years&quot;', '&quot;56 years&quot;', 23, 20, 16, 17),
+(617, '&quot;In ten years A will be twice as old as B was 10 years ago. If A is now 9 years older than B', '  the present age of B is&quot;', '&quot;19 years&quot;', '&quot;39 years&quot;', '&quot;29 years&quot;', '&quot;49 years&quot;', 23, 20, 16, 17),
+(618, '&quot;The difference between the ages of two persons is 10 years. Fifteen years ago', ' the elder one was as old as the younger one. The present age of the elder person is&quot;', '&quot;45 years&quot;', '&quot;25 years&quot;', '&quot; 35 years&quot;', '&quot;55 years&quot;', 23, 20, 16, 17),
+(619, '&quot;The father is aged three times ore than his son ravi. After 8 years', ' he would be two and a half times of ravi&#039;s age. After further 8 years', ' how many times would he be of ravi&#039;s age ?&quot;', '&quot;2 times&quot;', '&quot;2.5 times&quot;', '&quot;2.75 times &quot;', 23, 20, 16, 17),
+(620, '&quot;The sum of ages of 5 children born at the interval of 3 years each is 50 years. What is the age of the youngest child ?&quot;', '&quot;8 years&quot;', '&quot;4 years&quot;', '&quot;10 years&quot;', '&quot;None of these&quot;', '&quot;B&quot;', 23, 20, 16, 17),
+(621, '&quot;The total age A and B is 12 years more than the total age of Band C. C is how many years younger than A ?&quot;', '&quot;12 years&quot;', '&quot;24 years&quot;', '&quot;C is elder than A&quot;', '&quot;None of these&quot;', '&quot;A&quot;', 23, 20, 16, 17),
+(622, '&quot;Eighteen years ago', ' a father was three times as old as his son. Now father is only twice as old as his son. Then the sum of the present ages of the son and the father is :&quot;', '&quot;72 years&quot;', '&quot;54 years&quot;', '&quot;108 years&quot;', '&quot;105 years&quot;', 23, 20, 16, 17);
 
 -- --------------------------------------------------------
 
@@ -253,18 +246,16 @@ CREATE TABLE IF NOT EXISTS `subtopic` (
   `topic_id` int(11) NOT NULL,
   `folder_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`sub_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `subtopic`
 --
 
 INSERT INTO `subtopic` (`sub_id`, `subtopic`, `cat_id`, `topic_id`, `folder_id`) VALUES
-(8, 'Ratio And Proportion', 24, 13, NULL),
-(9, 'Sub1', 23, 15, NULL),
-(10, 'Trains And Distance', 23, 15, NULL),
-(13, 'Sub1maths', 23, 12, NULL),
-(14, 'Topn', 23, 14, 0);
+(15, 'Maths Maths-sub Category Topic Subtopic', 23, 19, 15),
+(16, 'Folder Question Topic Of Maths', 23, 21, 0),
+(17, '1', 23, 20, 16);
 
 -- --------------------------------------------------------
 
@@ -390,19 +381,18 @@ CREATE TABLE IF NOT EXISTS `topics` (
   `cat_id` int(11) NOT NULL,
   `type` text NOT NULL,
   PRIMARY KEY (`topic_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
 -- Dumping data for table `topics`
 --
 
 INSERT INTO `topics` (`topic_id`, `topic`, `cat_id`, `type`) VALUES
-(12, 'Basics', 23, 'Basic'),
-(13, 'Videos', 23, 'Video'),
-(14, 'Folder', 23, 'Folder'),
-(15, 'Question 2', 23, 'Question'),
-(16, 'Topic Name New', 24, 'Question'),
-(18, 'New Folder', 23, 'Folder');
+(19, 'Maths Sub-category', 23, 'Folder'),
+(20, 'Secound', 23, 'Folder'),
+(21, 'maths folder topic', 23, 'Question'),
+(23, 'New VIDEO TOPIC', 23, 'Video'),
+(24, 'basic type topc', 23, 'Basics');
 
 -- --------------------------------------------------------
 
@@ -448,18 +438,17 @@ CREATE TABLE IF NOT EXISTS `videos` (
   `youtube_id` text NOT NULL,
   `cat_id` int(11) NOT NULL,
   `topic_id` int(11) NOT NULL,
+  `folder_id` int(11) DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`video_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `videos`
 --
 
-INSERT INTO `videos` (`video_id`, `video_name`, `youtube_id`, `cat_id`, `topic_id`, `created`) VALUES
-(2, 'Aptitude Video', 'PUGkUUDEd9E', 23, 13, '2017-07-22 12:19:25'),
-(3, 'Apty video', 'PUGkUUDEd9E', 23, 13, '2017-07-22 12:19:03'),
-(4, 'Videoname', '6R5UveljmOQ', 23, 13, '2017-07-22 12:20:27');
+INSERT INTO `videos` (`video_id`, `video_name`, `youtube_id`, `cat_id`, `topic_id`, `folder_id`, `created`) VALUES
+(5, '', 'IVMvq9rd8dA', 23, 20, 17, '2017-09-22 05:23:31');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

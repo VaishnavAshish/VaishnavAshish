@@ -58,21 +58,26 @@ require('header.php');
 									<option value="">Select Category</option>
 									<?php 
 										$j = 0;
-										$que="Select 
+										echo $que="Select 
 												topics.topic as name,
 												category.cat_id as cat_id,
+												`category`.`category` as cat_name,
 												`topics`.`topic_id` as topic_id,
-												'' as folder_id
+												'' as folder_id,
+												'' as folder_name
 											from `topics` 
 												join `category` on topics.cat_id=category.cat_id AND `topics`.`type`='Basics'
 											UNION (
 												SELECT 
 													f_name as name,
+													`category`.`category` as cat_name,
 													category.cat_id as cat_id,
 													`folder`.`topic_id` as topic_id,
-													f_id as folder_id
+													 f_id as folder_id,
+													 topics.topic as folder_name
 												FROM `folder` 
 												join `category` on folder.cat_id=category.cat_id AND `folder`.`type`='Basics'
+												join `topics` on folder.topic_id=topics.topic_id
 											)
 											";
 										$query = mysql_query($que);
@@ -82,7 +87,7 @@ require('header.php');
 										
 									?>
 									<option value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES);?>:<?php echo htmlspecialchars($row['topic_id'],ENT_QUOTES);?>:<?php echo htmlspecialchars($row['folder_id'],ENT_QUOTES);?>">
-										<?php echo $row['name'];?>
+											<?php echo $row['cat_name'].($row['folder_name']?" / ".$row['folder_name']:"")." / ".htmlspecialchars($row['name'],ENT_QUOTES);?>
 									</option>
 									<?php } ?>
 								</select>
