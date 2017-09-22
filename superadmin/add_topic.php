@@ -10,7 +10,8 @@ require('header.php');
 		$topic = htmlspecialchars($_POST['topic'],ENT_QUOTES);
 		$category = htmlspecialchars($_POST['category'],ENT_QUOTES);
 		$type = htmlspecialchars($_POST['type'],ENT_QUOTES);
-		$result = mysql_query("Insert into `topics`(topic,cat_id,type) values('$topic','$category','$type')");
+		$que="Insert into `topics`(topic,cat_id,type) values('$topic','$category','$type')";
+		$result = mysql_query($que);
 		if($result)
 		{
 			echo "<script>alert('successful');</script>";

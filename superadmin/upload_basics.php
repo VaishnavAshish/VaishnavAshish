@@ -6,11 +6,13 @@ require('header.php');
 	if(isset($_POST["submit"]))
 	{	
         $heading = htmlspecialchars($_POST['heading'],ENT_QUOTES);
-		$category = htmlspecialchars($_POST['category-basics'],ENT_QUOTES);
-	    $topic_id = htmlspecialchars($_POST['topic_id'],ENT_QUOTES);
-		$sub_id = htmlspecialchars($_POST['sub_id'],ENT_QUOTES);
+		$ids=htmlspecialchars($_POST['category'],ENT_QUOTES);
+		$ids=explode(":",$ids);
+		$cat_id=$ids[0];
+		$topic_id = $ids[1];
+		$folder_id=$ids[2];
 		$pdf=htmlspecialchars(($heading.$sub_id.".pdf"),ENT_QUOTES);
-		$result = mysql_query("Insert into `basics`(heading,pdf,cat_id,topic_id,sub_id) values('$heading','$pdf','$category','$topic_id','$sub_id')");
+		$result = mysql_query("Insert into `basics`(heading,pdf,cat_id,topic_id,folder_id) values('$heading','$pdf','$cat_id','$topic_id','$folder_id')");
 		  
 		if($result)
 		{   
@@ -52,43 +54,43 @@ require('header.php');
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Category</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
-                          <select class="sel_val form-control" name="category-basics" >
+                          <select class="sel_val form-control" name="category" >
 									<option value="">Select Category</option>
 									<?php 
 										$j = 0;
-										$query = mysql_query("Select * from category");
+										$que="Select 
+												topics.topic as name,
+												category.cat_id as cat_id,
+												`topics`.`topic_id` as topic_id,
+												'' as folder_id
+											from `topics` 
+												join `category` on topics.cat_id=category.cat_id AND `topics`.`type`='Basics'
+											UNION (
+												SELECT 
+													f_name as name,
+													category.cat_id as cat_id,
+													`folder`.`topic_id` as topic_id,
+													f_id as folder_id
+												FROM `folder` 
+												join `category` on folder.cat_id=category.cat_id AND `folder`.`type`='Basics'
+											)
+											";
+										$query = mysql_query($que);
 										while($row=mysql_fetch_array($query))
 										{
 											
 										
 									?>
-									<option value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES);?>"><?php echo htmlspecialchars($row['category'],ENT_QUOTES);?></option>
-										<?php } ?>
+									<option value="<?php echo htmlspecialchars($row['cat_id'],ENT_QUOTES);?>:<?php echo htmlspecialchars($row['topic_id'],ENT_QUOTES);?>:<?php echo htmlspecialchars($row['folder_id'],ENT_QUOTES);?>">
+										<?php echo $row['name'];?>
+									</option>
+									<?php } ?>
 								</select>
-                        </div>
-                      </div>
-					  
-					   <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Topic</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-							
-                          <select class="sel_val topic-select topic-type-basic form-control" name="topic_id" >
-									<option value="">Select Topic</option>
-						  </select>
                         </div>
                       </div>
 
 					  
-					  <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select SubTopic</label>
-					  <div class="col-md-6 col-sm-6 col-xs-12">
-							
-                          <select class="sel_val sub_topic-select form-control" name="sub_id" >
-									<option value="">Select SubTopic</option>
-						  </select>
-                        </div>
-						
-                      </div>
+					
 					  
 
                       

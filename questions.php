@@ -41,7 +41,7 @@
     include("header.php");
 	
 	$que = mysql_query("Select * from `question` where 	sub_id=".htmlspecialchars($_GET['sub_id'],ENT_QUOTES)." limit $start,$limit ");	
-	$page_count=mysql_num_rows(mysql_query("Select * from `question`"))/$limit;
+	$page_count=mysql_num_rows(mysql_query("Select * from `question` where 	sub_id=".htmlspecialchars($_GET['sub_id'],ENT_QUOTES)))/$limit;
 ?>
 <!--/Header-->
 
@@ -130,16 +130,21 @@
 						
 			 <?php $i++;  }?>	
 			 <ul class="pagination pagination-lg">
-								<li> <a  href="questions.php?page=<?php if($page>0) echo $page+1; else echo "#";?>">&laquo;</a></li>
+					<?php $first=false;$last=false;?>
+					<?php if($page>0) {$left=$page-1;} else {$first=true;}?>
+								<li> <a  href="<?php if(@$first){echo "#";}else {?>questions.php?page=<?php echo $left?>&sub_id=<?php echo $_GET['sub_id']?><?php }?>">&laquo;</a></li>
 								<?php $j=0;
 								 while($j<$page_count){
 									if($j==$page){ $class="active";} else $class='';
 								 ?>
-										<li class="<?php echo $class;?>" ><a  href="questions.php?page=<?php echo $j; ?>"><?php echo $j+1; ?></a></li>
+										<li class="<?php echo $class;?>" ><a  href="questions.php?page=<?php echo $j; ?>&sub_id=<?php echo $_GET['sub_id']?>"><?php echo $j+1; ?></a></li>
 								<?php $j++; 
 								      }  ?>
-							      <li><a href="questions.php?page=<?php if($page<$page_count-1) echo $page+1; else echo "#"; ?>">&raquo;</a></li>	  
-							    </ul>
+									  
+									  <?php if($page<$page_count-1){$right=$page+1;}else {$last=true;}?>
+										<li><a href="<?php if(@$last){echo "#";}else {?>questions.php?page=<?php echo $right?>&sub_id=<?php echo $_GET['sub_id']?><?php }?>">&raquo;</a></li>	  
+					
+									  </ul>
 	</div>
 	
 <!--News-->
