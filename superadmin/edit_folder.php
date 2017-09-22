@@ -12,10 +12,11 @@ require('header.php');
 	
 	if(isset($_POST['submit']))
 	{
-		@$subtopic = htmlspecialchars($_POST['subtopic'],ENT_QUOTES);
-		@$category = htmlspecialchars($_POST['category'],ENT_QUOTES);
-		$topic_id = htmlspecialchars($_POST['topic'],ENT_QUOTES);
-		$sub_id = htmlspecialchars($_POST['sub_id'],ENT_QUOTES);
+		@$subtopic = $_POST['subtopic'];
+		@$category =$_POST['folderCategory'];
+		$topic_id = $_POST['topic'];
+		$sub_id =$_POST['sub_id'];
+		$type=$_POST['type'];
 		$result = mysql_query("Update `subtopic` set subtopic='".$subtopic."',cat_id='".$category."',topic_id='".$topic_id."' where sub_id='".$sub_id."'");
 		if($result)
 		{
@@ -45,23 +46,33 @@ require('header.php');
                       <div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Category</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-							
+							<?php 
+							 $cat=$row['cat_id'];
+							?>
                           <select class="sel_val form-control" name="folderCategory" >
-									<option value="">Select Category</option>
+									
 									<?php 
 										$j = 0;
 										$query = mysql_query("Select * from category");
 										while($ro=mysql_fetch_array($query))
 										{
+											if($ro['cat_id']==$cat){
 									?>
-									<option value="<?php echo $ro['cat_id'];?>"><?php echo htmlspecialchars($row['category'],ENT_QUOTES);?></option>
-										<?php } ?>
+											
+											<option selected value="<?php echo $ro['cat_id'];?>"><?php echo $ro['category'];?></option>
+								
+								<?php } else{
+									?>			
+											
+									<option value="<?php echo $ro['cat_id'];?>"><?php echo $ro['category'];?></option>
+								   <?php }
+					                    } ?>
 							</select>
                         </div>
                       </div>
 					  
 					  <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Topic</label>
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Select Sub-Category</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
                           <select class="sel_val topic-select form-control" name="topic" >
@@ -70,7 +81,7 @@ require('header.php');
                         </div>
                       </div>
 					  <div class="form-group">
-									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Folder Name <span class="required">*</span></label>
+									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Sub-Category Topic<span class="required">*</span></label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
 										<input type="text" required="required" name="folder_name" value="<?php echo $row['f_name'];?>" placeholder="Enter Folder Name"class="form-control col-md-7 col-xs-12">
 									</div>
@@ -93,9 +104,9 @@ require('header.php');
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          
-						  <button class="btn btn-primary" type="reset">Reset</button>
                           <button type="submit" name="submit"class="btn btn-success">Submit</button>
+						  <button class="btn btn-primary" type="reset">Reset</button>
+
                         </div>
                       </div>
 
