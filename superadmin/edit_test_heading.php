@@ -5,7 +5,7 @@ require('header.php');
 
 
 	if(isset($_POST['edit_heading']))
-	{	@$tid = htmlspecialchars($_POST['edit_heading'];
+	{	@$tid = htmlspecialchars($_POST['edit_heading']);
 		$result=mysql_query("select * from `test_heading` where th_id = '".$tid."'");
 		$row = mysql_fetch_array($result);
 		

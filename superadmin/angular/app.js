@@ -8,7 +8,7 @@ angular.module("adminPanel", [])
             subtopic.topic = [];
             subtopic.topictext = "PLease Wait...";
             var req = {
-                url: "http://localhost/VaishnavAshish/superadmin/API/getTopics.php",
+                url: "http://localhost/proj/VaishnavAshish/superadmin/API/getTopics.php",
                 method: "POST",
                 data: { categoryID: selectedCategory }
             };
@@ -39,7 +39,7 @@ angular.module("adminPanel", [])
             subtopic.subtopic = [];
             subtopic.subtopictext = "PLease Wait...";
             var req = {
-                url: "http://localhost/VaishnavAshish/superadmin/API/getSubTopic.php",
+                url: "http://localhost/proj/VaishnavAshish/superadmin/API/getSubTopic.php",
                 method: "POST",
 				data:{}
             };
@@ -61,7 +61,7 @@ angular.module("adminPanel", [])
             subtopic.folder = [];
             subtopic.foldertext = "PLease Wait...";
             var req = {
-                url: "http://localhost/VaishnavAshish/superadmin/API/getFolder.php",
+                url: "http://localhost/proj/VaishnavAshish/superadmin/API/getFolder.php",
                 method: "POST",
                 data: { topicID: selectedID }
             };

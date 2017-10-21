@@ -40,7 +40,7 @@ require('header.php');
                     <h1>Add Question</h1>
                     <div class="clearfix"></div>
                   </div>
-			<form id="demo-form2" data-parsley-validate method="POST"class="form-horizontal form-label-left">
+			<form method="POST" ng-submit="true" action="" class="form-horizontal form-label-left">
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Question:<span class="required">*</span>
@@ -133,7 +133,7 @@ require('header.php');
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                           
 						  <button class="btn btn-primary" type="reset">Reset</button>
-                          <button type="submit" name="submit"class="btn btn-success">Submit</button>
+                          <button type="submit" name="submit" class="btn btn-success">Submit</button>
                         </div>
                       </div>
 

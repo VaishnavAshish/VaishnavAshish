@@ -26,7 +26,7 @@ require('header.php');
 		$folder_id=$ids[2];
 		$sub_id = $ids[3];
 		$qu="UPDATE `question` set question='".$question."',opt1='".$opt1."',opt2='".$opt2."',opt3='".$opt3."',opt4='".$opt4."',answer='".$answer."',cat_id=".$cat_id.",topic_id=".$topic_id.",sub_id=".$sub_id."";
-		 if(!empty($folder_id)){$qu.="folder_id=".$folder_id;}
+		 if(!empty($folder_id)){$qu.=" ,folder_id=".$folder_id;}
 		 echo $qu.=" WHERE qid=".$qid."";
 		$result = mysql_query($qu);
 		if($result)
