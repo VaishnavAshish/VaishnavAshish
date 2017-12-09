@@ -70,22 +70,22 @@ if(isset($_GET['topic_id']))
 				if(mysql_num_rows($query)>0){
 				while($row=mysql_fetch_array($query)){
 			?>
-            <div class="col-xs-12 col-sm-6">
+            <div class="col-xs-12 col-sm-12">
                 <h3 style="color:green"><?php echo $row['tc_name']?></h3>
                 <?php 
                    $qu = mysql_query("SELECT * FROM `test_heading` WHERE tc_id=".$row['tc_id']);
                    while($r=mysql_fetch_array($qu)){    
                 ?>
 					<a href="test_names.php?tc_id=<?php echo $r['tc_id'];?>&&th_id=<?php echo $r['th_id'];?>&&cat_id=<?php echo $_GET['cat_id'];?>">
-                        <div class="col-xs-12 image-subtopics" style="" >
+                        <div class="col-xs-6 image-subtopics" style="" >
 							<img  src="images/file.png">
 							<h6 class="subtopics-heading" ><?php echo $r['th_name'];?></h6>
 						</div>
                     </a>
-			<?php }
-            }?>
+			<?php } ?>		
             </div>
-            <?php
+			<?php
+            }
 			   }else {?>
                     <div class="row" style="margin-top:20px;margin-bottom:20px;">
                             <div class="container">

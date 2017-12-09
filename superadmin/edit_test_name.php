@@ -27,7 +27,7 @@ if(isset($_POST['edit_name']))
 		if($result)
 		{
 			echo "<script>alert('successful');</script>";
-      header('Location:view_test_name.php');
+          header('Location:view_test_name.php');
 		}
 		else echo "<script>alert('unsuccessful');</script>";
 	}
@@ -52,7 +52,7 @@ if(isset($_POST['edit_name']))
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="first-name" required="required" name="name" value="<?php echo htmlspecialchars($row['tn_name'],ENT_QUOTES);?>"class="form-control col-md-7 col-xs-12">
-						  <input style="display:none;" type="text" required="required" name="tn-id" value="<?php echo $row['tn_id'];?>" class="form-control col-md-7 col-xs-12">
+						  <input style="display:none;" type="text" required="required" name="tn_id" value="<?php echo $row['tn_id'];?>" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       
