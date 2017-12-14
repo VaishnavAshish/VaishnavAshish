@@ -581,3 +581,12 @@ marquee {
     display: inline-block;
     width: -webkit-fill-available;
 }
+
+
+@media (max-width: 767px)
+	{ 
+		.signin_search
+		{display: none !important;
+		}
+	
+	}

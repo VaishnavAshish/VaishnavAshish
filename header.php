@@ -2,11 +2,6 @@
 session_start();
 require ('connection.php');
 ?>
-<script>
-	
-	
-
-</script>
 
 <!--<script src="style/js/google_login.js"></script>-->
 <meta name="google-signin-client_id" content="160094403010-g2bveq2fqcl2proet99fc660ivji0oj8.apps.googleusercontent.com">
@@ -27,12 +22,12 @@ require ('connection.php');
 				    <!--Logo-->
 				
 					<div  class="col-md-3 col-sm-3 col-xs-6" style="min-height:1px; padding-right:15px; padding-left:15px; height:83px;">
-					 <a href="index.php"><img src="images/logo.png" style="max-width:100%; max-height:100%;"></a>
+					 <a href="index.php"><img src="images/logo.png" style=""></a>
 					</div>
 				
 				
 				 <!--search and sign in-->
-					<div class="col-md-9 col-sm-9 col-xs-6" style="background-color:; height:73px; ">
+					<div class="col-md-9 col-sm-9 col-xs-6 signin_search" style=" height:73px; ">
 						<div style="float:right; padding-top: 2%;">
 							<ul id="nav_search"style=" ">
 							<?php 
@@ -83,7 +78,7 @@ require ('connection.php');
 							</li>
 							    
 						   </div>
-					</div>
+					</div> 
 			</div>
 		</div>	
 			
@@ -105,13 +100,14 @@ require ('connection.php');
 								  })();
 								</script>
 								<gcse:search></gcse:search>-->	
-			<form class="navbar-form search-form" style="margin: 0px;margin-left: auto;margin-right: auto;">
+		<!--Mobile Search
+					<form class="navbar-form search-form" style="margin: 0px;margin-left: auto;margin-right: auto;">
 						<div class=" form-group" style=" border-style:solid; border-width:thin; width:80%; float:left;">
 							 <input type="text" class="form-control" placeholder="Search" style=" border-width: 0 !important;">
 						 </div>	
 						<button type="submit" class="btn btn-default glyphicon glyphicon-search headdiv" style="margin-top:-1px;"></button>
 				    </form>
-				
+				-->
 				</div>				
 				<div class="topnav" style="background-color:#e84c4c !important; padding-left:4%;" id="myTopnav">
 				  <a href="index.php">Home</a>
