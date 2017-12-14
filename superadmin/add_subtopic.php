@@ -71,7 +71,7 @@ require('header.php');
                         <div class="col-md-6 col-sm-6 col-xs-12">
 							
                           <select class="form-control" name="topic" ng-model="subtopic.selectedTopic" ng-change="subtopic.nextFetch(subtopic.selectedTopic.split(','),'Question')" >
-									<option value="">{{subtopic.subtopictext?subtopic.subtopictext:'Please Select'}}</option>
+									<option value="">{{subtopic.topictext?subtopic.topictext:'Please Select'}}</option>
 									<option ng-repeat="topic in subtopic.topic"  value="{{$index}},{{topic.topic_id}},{{topic.type}}">
 										{{topic.topic}}
 									</option>

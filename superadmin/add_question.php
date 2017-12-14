@@ -99,16 +99,24 @@ require('header.php');
 									<option value="">Select Category</option>
 										<?php 
 										$j = 0;
-										$que="Select 
+										$que="
+                    Select 
 												`subtopic`.`cat_id` as cat_id,
 												`subtopic`.`topic_id` as topic_id,
 												`subtopic`.`folder_id` as folder_id,
 												`subtopic`.`sub_id` as sub_id,
 												`subtopic`.`subtopic` as subtopic
-											from `subtopic` 
+											from `subtopic`
 												join `category` on subtopic.cat_id=category.cat_id 
-												left outer join `topics` on topics.topic_id=subtopic.topic_id
 												left outer join `folder` on subtopic.folder_id = folder.f_id
+                      UNION ALL
+                      SELECT 
+                        `topics`.`cat_id` as cat_id,
+												`topics`.`topic_id` as topic_id,
+												'' AS folder_id,
+												'' AS sub_id,
+												topic AS subtopic
+                      from `topics` where type='Question'
 											";
 										$query = mysql_query($que);
 										while($row=mysql_fetch_array($query))

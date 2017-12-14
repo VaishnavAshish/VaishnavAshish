@@ -4,7 +4,8 @@ error_reporting(0);
 include('connection.php');
 session_start();
 
-if(isset($_POST['userdata'])){
+if(isset($_POST['userdata']))
+		{
 					$data=json_decode($_POST['userdata'], true);
 					$name=$data['first_name']." ".$data['last_name'];
 					$email=$data['email'];

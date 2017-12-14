@@ -7,6 +7,7 @@ $query="SELECT * FROM `topics` where cat_id=".$d->categoryID;
 if(isset($d->type)){
 	$query.=" AND (type='".$d->type."' OR type='Folder');";
 }
+$query;
 if($result=mysql_query($query)){
 	while($row=mysql_fetch_array($result)){
 		$a[]=$row;
